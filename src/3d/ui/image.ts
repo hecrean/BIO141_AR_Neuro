@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, MeshPhysicalMaterial, PlaneBufferGeometry, VideoTexture, Vector3 } from 'three';
+import { DoubleSide, Mesh, MeshPhysicalMaterial, PlaneBufferGeometry, Vector3 } from 'three';
 import { EventHandlers } from '../event';
 import { isMesh } from '.';
 import { AssetsCtx } from '../assets';

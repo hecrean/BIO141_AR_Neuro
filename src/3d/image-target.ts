@@ -4,7 +4,6 @@ import { SceneGraphCtx } from './state';
 import * as THREE from 'three';
 import { Mesh, Vector3 } from 'three';
 import { basisVectors } from '../math';
-import { pipe } from 'rxjs';
 
 // this is used to keep track of our image targets...
 export type TargetName = 'Eva-Thoma-front' | 'Eduard-Rohrbach-front' | 'Raphael-Bieri-front' | 'business_card';
