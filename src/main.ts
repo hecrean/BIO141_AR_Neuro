@@ -101,6 +101,7 @@ const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx) => () => {
 const runAR = async () => {
     const assetCtx = initAssetCtx();
     await loadAssetBundle<'texture'>(assetCtx.texture.api, assetCtx.texture.cache, textureBundle)();
+    console.log('assetCtx', assetCtx);
     const sceneCxt = initSceneGraphCtx(assetCtx);
     XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx) });
 };

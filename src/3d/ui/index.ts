@@ -58,7 +58,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
     );
     const textButton = textureButtonMesh(assetCtx, '/img/text.jpg', false, new Vector2(4, 4), new Vector3(3, 3, 3));
 
-    const biogenButton = textureButtonMesh(assetCtx, '/img/biogen.jpg', false, new Vector2(4, 4), new Vector3(2, 1, 1));
+    const biogenButton = textureButtonMesh(assetCtx, '/img/biogen.png', false, new Vector2(4, 4), new Vector3(2, 1, 1));
 
     const mainVideo = videoMesh('/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));
 
