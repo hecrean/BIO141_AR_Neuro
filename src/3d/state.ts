@@ -40,8 +40,10 @@ export type State = { sceneCtx: SceneGraphCtx; assetCtx: AssetsCtx; renderCtx: R
 export const initState = (renderCtx: RenderCxt, sceneCtx: SceneGraphCtx, assetCtx: AssetsCtx): State => {
     const obj3ds = Object.values(sceneCtx.objectHandles);
     const uis = Object.values(sceneCtx.ui).map((ui) => ui.el);
+    const surfaceMeshes = Object.values(sceneCtx.surfaceHandles).map((s) => s.surfaceMesh);
     renderCtx.scene.add(...obj3ds);
     renderCtx.scene.add(...uis);
+    renderCtx.scene.add(...surfaceMeshes);
 
     return { renderCtx, sceneCtx, assetCtx };
 };
