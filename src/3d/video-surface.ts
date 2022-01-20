@@ -9,13 +9,10 @@ export type VideoTargetSurface<T = TargetName> = {
     surfaceMesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
 };
 
-export type VideoSurfaceHandles = { [K in TargetName]: VideoTargetSurface<K> };
+export type VideoSurfaceHandles = { [K in TargetName]?: VideoTargetSurface<K> };
 
 export const initVideoSurfaces = (): VideoSurfaceHandles => {
     return {
-        escher_birds: mkVideoTargetSurface('escher_birds', '/mp4/aurora_demo.mp4'),
-        por_amor_al_arte: mkVideoTargetSurface('por_amor_al_arte', '/mp4/aurora_demo.mp4'),
-        conversations_with_friends: mkVideoTargetSurface('conversations_with_friends', '/mp4/aurora_demo.mp4'),
         business_card: mkVideoTargetSurface('business_card', '/mp4/aurora_demo.mp4'),
     };
 };

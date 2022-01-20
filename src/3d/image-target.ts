@@ -4,9 +4,10 @@ import { SceneGraphCtx } from './state';
 import * as THREE from 'three';
 import { Mesh, Vector3 } from 'three';
 import { basisVectors } from '../math';
+import { pipe } from 'rxjs';
 
 // this is used to keep track of our image targets...
-export type TargetName = 'por_amor_al_arte' | 'escher_birds' | 'conversations_with_friends' | 'business_card';
+export type TargetName = 'Eva-Thoma-front' | 'Eduard-Rohrbach-front' | 'Raphael-Bieri-front' | 'business_card';
 
 type Detail = {
     position: { x: number; y: number; z: number };
@@ -35,7 +36,7 @@ type Transform = {
 };
 
 // we want to transform meshes ino the same plane as the image target, but at an offset:
-function transformMeshInImageTargetPlane(imgTargetTransform: Transform, offset: Vector3, mesh: Mesh): void {
+export function transformMeshInImageTargetPlane(imgTargetTransform: Transform, offset: Vector3, mesh: Mesh): void {
     mesh.position.copy(imgTargetTransform.position);
     mesh.quaternion.copy(imgTargetTransform.rotation);
     mesh.scale.set(imgTargetTransform.scale.x, imgTargetTransform.scale.y, imgTargetTransform.scale.z);
@@ -59,46 +60,26 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
             const { align, makeVisible, play } = videoSurfaceHandlers;
             log(name, detail);
             switch (detail.name) {
-                case 'escher_birds': {
-                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
-                    align(surface)(r, q, s);
-                    makeVisible(surface);
-                    play(surface);
-                    transformMeshInImageTargetPlane(
-                        { position: r, rotation: q, scale: s },
-                        new Vector3(0, 1, 0),
-                        sceneCtx.ui['ui-EvaThomaWireframe'].el,
-                    );
-                    // sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
-                    break;
-                }
-                case 'por_amor_al_arte': {
-                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
-                    align(surface)(r, q, s);
-                    makeVisible(surface);
-                    play(surface);
-                    transformMeshInImageTargetPlane(
-                        { position: r, rotation: q, scale: s },
-                        new Vector3(0, 1, 0),
-                        sceneCtx.ui['ui-EvaThomaWireframe'].el,
-                    );
-                    // sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
-
-                    break;
-                }
                 case 'business_card': {
                     const surface = sceneCtx.videoSurfaceHandles[detail.name];
-                    align(surface)(r, q, s);
-                    makeVisible(surface);
-                    play(surface);
-                    transformMeshInImageTargetPlane(
-                        { position: r, rotation: q, scale: s },
-                        new Vector3(0, 1, 0),
-                        sceneCtx.ui['ui-EvaThomaWireframe'].el,
-                    );
-                    // sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
-
+                    if (surface) {
+                        align(surface)(r, q, s);
+                        makeVisible(surface);
+                        play(surface);
+                    }
                     break;
+                }
+                case 'Eduard-Rohrbach-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                }
+                case 'Eva-Thoma-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                }
+                case 'Raphael-Bieri-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
                 }
                 default:
                     break;
@@ -113,27 +94,12 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): CameraPipelineEven
             log(name, detail);
             const { pause, makeInvisible } = videoSurfaceHandlers;
             switch (detail.name) {
-                case 'escher_birds': {
-                    const surf = sceneCtx.videoSurfaceHandles[detail.name];
-                    pause(surf);
-                    makeInvisible(sceneCtx.videoSurfaceHandles[detail.name]);
-                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = false;
-
-                    break;
-                }
-                case 'por_amor_al_arte': {
-                    const surf = sceneCtx.videoSurfaceHandles[detail.name];
-                    pause(surf);
-                    makeInvisible(surf);
-                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = false;
-
-                    break;
-                }
                 case 'business_card': {
-                    const surf = sceneCtx.videoSurfaceHandles[detail.name];
-                    pause(surf);
-                    makeInvisible(surf);
-                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = false;
+                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
+                    if (surface) {
+                        makeInvisible(surface);
+                        pause(surface);
+                    }
 
                     break;
                 }
@@ -152,20 +118,24 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): CameraPipelineE
             const { align } = videoSurfaceHandlers;
             log(name, detail);
             switch (detail.name) {
-                case 'escher_birds': {
-                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
-                    align(surface)(r, q, s);
-                    break;
-                }
-                case 'por_amor_al_arte': {
-                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
-                    align(surface)(r, q, s);
-                    break;
-                }
                 case 'business_card': {
                     const surface = sceneCtx.videoSurfaceHandles[detail.name];
-                    align(surface)(r, q, s);
+                    if (surface) {
+                        align(surface)(r, q, s);
+                    }
                     break;
+                }
+                case 'Eduard-Rohrbach-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                }
+                case 'Eva-Thoma-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                }
+                case 'Raphael-Bieri-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
                 }
                 default:
                     break;

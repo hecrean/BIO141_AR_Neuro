@@ -1,9 +1,10 @@
 import { EventHandlers } from '../event';
-import { buttonEventApi, textureButtonMesh } from './button';
+import { buttonEventApi } from './button';
 import { videoMesh } from './video';
 import { InteractionCache, interactionCacheApi } from '../interaction-cache';
-import { Mesh, Vector2, Object3D, BufferGeometry, MeshStandardMaterial, Vector3 } from 'three';
+import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Vector3 } from 'three';
 import { AssetsCtx } from '../assets';
+import { imageMesh } from './image';
 
 enum UIKinds {
     Button,
@@ -11,7 +12,7 @@ enum UIKinds {
     Video,
 }
 
-type UIKey = 'ui-EvaThomaWireframe' | 'ui-main-video';
+type UIKey = 'raphelBieriAltImgMesh' | 'edwardRohrbachAltImgMesh' | 'evaThomaAltImgMesh' | 'mainVideo';
 
 type UIValue = {
     name: string;
@@ -61,26 +62,36 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
 
     // const biogenButton = textureButtonMesh(assetCtx, '/img/biogen.png', false, new Vector2(4, 4), new Vector3(2, 1, 1));
 
-    const evaThomaWireframeButton = textureButtonMesh(
+    const raphelBieriAltImgMesh = imageMesh(
+        '/img/Raphael-Bieri-alt.png',
         assetCtx,
-        '/eva-thoma-wireframe/wireframe.jpg',
-        false,
-        new Vector2(9.72, 3.49),
         new Vector3(0, 0, 0),
-        true,
+        new Vector3(0, 0, 0),
+    );
+    const edwardRohrbachAltImgMesh = imageMesh(
+        '/img/Raphael-Bieri-alt.png',
+        assetCtx,
+        new Vector3(0, 1, 0),
+        new Vector3(0, 0, 0),
+    );
+    const evaThomaAltImgMesh = imageMesh(
+        '/img/Raphael-Bieri-alt.png',
+        assetCtx,
+        new Vector3(0, 2, 0),
+        new Vector3(0, 0, 0),
     );
 
     const mainVideo = videoMesh('mp4/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));
 
     const uis: UIs = {
-        'ui-EvaThomaWireframe': {
-            name: 'ui-EvaThomaWireframe',
+        evaThomaAltImgMesh: {
+            name: 'evaThomaAltImgMesh',
             kind: UIKinds.Button,
             api: buttonEventApi,
-            el: evaThomaWireframeButton,
+            el: evaThomaAltImgMesh,
         },
-        'ui-main-video': {
-            name: 'ui-main-video',
+        mainVideo: {
+            name: 'mainVideo',
             kind: UIKinds.Video,
             api: {
                 ...defaultEventHandlers,
@@ -96,6 +107,18 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
                 },
             },
             el: mainVideo,
+        },
+        edwardRohrbachAltImgMesh: {
+            name: 'edwardRohrbachAltImgMesh',
+            kind: UIKinds.Button,
+            api: buttonEventApi,
+            el: edwardRohrbachAltImgMesh,
+        },
+        raphelBieriAltImgMesh: {
+            name: 'raphelBieriAltImgMesh',
+            kind: UIKinds.Button,
+            api: buttonEventApi,
+            el: raphelBieriAltImgMesh,
         },
     };
 
