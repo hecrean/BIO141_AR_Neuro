@@ -11,15 +11,16 @@ enum UIKinds {
     Video,
 }
 
-export type UIs = Record<
-    string,
-    {
-        name: string;
-        kind: UIKinds;
-        api: EventHandlers;
-        el: Mesh;
-    }
->;
+type UIKey = 'ui-EvaThomaWireframe' | 'ui-main-video';
+
+type UIValue = {
+    name: string;
+    kind: UIKinds;
+    api: EventHandlers;
+    el: Mesh;
+};
+
+export type UIs = { [K in UIKey]: UIValue };
 
 export const defaultEventHandlers: EventHandlers = {
     onPointerEnter: (state, _) => state,
@@ -71,60 +72,6 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
     const mainVideo = videoMesh('mp4/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));
 
     const uis: UIs = {
-        // 'ui-linkedinButton': {
-        //     name: 'ui-linkedinButton',
-        //     kind: UIKinds.Button,
-        //     api: {
-        //         ...defaultEventHandlers,
-        //         onPointerDown: (state, intersectionEv) => {
-        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
-
-        //             return state;
-        //         },
-        //         onPointerUp: (state, intersectionEv) => {
-        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
-
-        //             return state;
-        //         },
-        //     },
-        //     el: linkedinButton,
-        // },
-        // 'ui-textButton': {
-        //     name: 'ui-textButton',
-        //     kind: UIKinds.Button,
-        //     api: {
-        //         ...defaultEventHandlers,
-        //         onPointerDown: (state, intersectionEv) => {
-        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
-
-        //             return state;
-        //         },
-        //         onPointerUp: (state, intersectionEv) => {
-        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
-
-        //             return state;
-        //         },
-        //     },
-        //     el: textButton,
-        // },
-        // 'ui-biogenButton': {
-        //     name: 'ui-biogenButton',
-        //     kind: UIKinds.Button,
-        //     api: {
-        //         ...defaultEventHandlers,
-        //         onPointerDown: (state, intersectionEv) => {
-        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
-
-        //             return state;
-        //         },
-        //         onPointerUp: (state, intersectionEv) => {
-        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
-
-        //             return state;
-        //         },
-        //     },
-        //     el: biogenButton,
-        // },
         'ui-EvaThomaWireframe': {
             name: 'ui-EvaThomaWireframe',
             kind: UIKinds.Button,

@@ -2,6 +2,7 @@ import { CameraPipelineEventMsg } from './type';
 import { videoSurfaceHandlers } from './video-surface';
 import { SceneGraphCtx } from './state';
 import * as THREE from 'three';
+import { Mesh, Plane, Vector2, Vector3 } from 'three';
 
 // this is used to keep track of our image targets...
 export type TargetName = 'por_amor_al_arte' | 'escher_birds' | 'conversations_with_friends' | 'business_card';
@@ -26,6 +27,26 @@ const getTargetTransform = (detail: Detail) => {
     return { r, q, s };
 };
 
+type Transform = {
+    position: THREE.Vector3;
+    rotation: THREE.Quaternion;
+    scale: THREE.Vector3;
+};
+
+// we want to transform meshes ino the same plane as the image target, but at an offset:
+function transformMeshInImageTargetPlane(imgTargetTransform: Transform, offset: number, mesh: Mesh): void {
+    mesh.position.copy(imgTargetTransform.position);
+    mesh.quaternion.copy(imgTargetTransform.rotation);
+    mesh.scale.set(imgTargetTransform.scale.x, imgTargetTransform.scale.y, imgTargetTransform.scale.z);
+
+    const normal = new Vector3()
+        .set(imgTargetTransform.position.x, imgTargetTransform.position.y, imgTargetTransform.position.z)
+        .applyQuaternion(imgTargetTransform.rotation);
+
+    //offset the mesh by an amout in the xy component of the normal:
+    mesh.translateOnAxis(normal, offset);
+}
+
 export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEventMsg => {
     return {
         event: 'reality.imagefound',
@@ -39,6 +60,11 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     align(surface)(r, q, s);
                     makeVisible(surface);
                     play(surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        1,
+                        sceneCtx.ui['ui-EvaThomaWireframe'].el,
+                    );
                     break;
                 }
                 case 'por_amor_al_arte': {
