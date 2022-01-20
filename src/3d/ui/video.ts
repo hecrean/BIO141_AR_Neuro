@@ -1,13 +1,4 @@
-import {
-    DoubleSide,
-    Mesh,
-    MeshPhysicalMaterial,
-    PlaneBufferGeometry,
-    VideoTexture,
-    Matrix4,
-    Vector3,
-    Euler,
-} from 'three';
+import { DoubleSide, Mesh, MeshPhysicalMaterial, PlaneBufferGeometry, VideoTexture, Vector3 } from 'three';
 import { EventHandlers } from '../event';
 import { isMesh } from '.';
 
@@ -56,11 +47,11 @@ const unitFn = () => {
 
 export const videoEventApi: EventHandlers = {
     ...defaultEventHandlers,
-    onTouchStart: ({ renderCtx, sceneCtx, userCtx, assetCtx }, intersectionEv) => {
+    onTouchStart: ({ renderCtx, sceneCtx, assetCtx }, intersectionEv) => {
         //Prevent the browser from processing emulated mouse events.
         intersectionEv.nativeEvent.event.preventDefault();
 
-        return { renderCtx, sceneCtx, userCtx, assetCtx };
+        return { renderCtx, sceneCtx, assetCtx };
     },
     onPointerDown: (state, intersectionEv) => {
         isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;

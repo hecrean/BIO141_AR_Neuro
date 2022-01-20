@@ -15,7 +15,7 @@ import {
     Matrix4,
 } from 'three';
 import { SceneGraphCtx } from '../state';
-import { assetsCtx, AssetsCtx } from '../assets';
+import { initAssetCtx, AssetsCtx } from '../assets';
 import { toRecord } from '../../util';
 
 enum UIKinds {
@@ -43,11 +43,11 @@ export const defaultEventHandlers: EventHandlers = {
     onPointerLeave: (state, _) => state,
     onPointerMove: (state, _) => state,
     onPointerCancel: (state, _) => state,
-    onTouchStart: ({ renderCtx, sceneCtx, userCtx, assetCtx }, intersectionEv) => {
+    onTouchStart: ({ renderCtx, sceneCtx, assetCtx }, intersectionEv) => {
         //Prevent the browser from processing emulated mouse events.
         intersectionEv.nativeEvent.event.preventDefault();
 
-        return { renderCtx, sceneCtx, userCtx, assetCtx };
+        return { renderCtx, sceneCtx, assetCtx };
     },
     onTouchMove: (state, _) => state,
     onTouchEnd: (state, _) => state,
@@ -63,7 +63,7 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
 
 export const initUiElements = (assetCtx: AssetsCtx): UIs => {
     const linkedinButton = textureButtonMesh(
-        assetsCtx,
+        assetCtx,
         '/texture/linkedin_logo.png',
         false,
         new Vector2(4, 4),

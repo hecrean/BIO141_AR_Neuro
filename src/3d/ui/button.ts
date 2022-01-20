@@ -59,11 +59,11 @@ const unitFn = () => {
 
 export const buttonEventApi: EventHandlers = {
     ...defaultEventHandlers,
-    onTouchStart: ({ renderCtx, sceneCtx, userCtx, assetCtx }, intersectionEv) => {
+    onTouchStart: ({ renderCtx, sceneCtx, assetCtx }, intersectionEv) => {
         //Prevent the browser from processing emulated mouse events.
         intersectionEv.nativeEvent.event.preventDefault();
 
-        return { renderCtx, sceneCtx, userCtx, assetCtx };
+        return { renderCtx, sceneCtx, assetCtx };
     },
     onPointerDown: (state, intersectionEv) => {
         isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;

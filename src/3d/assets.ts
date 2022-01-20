@@ -128,7 +128,7 @@ export const loadAssetBundle = <K extends Tag>(api: AssetApi<K>, cache: AssetCac
             te.chain((processedAsset) =>
                 pipe(
                     te.fromIO(api.set(cache, url, processedAsset)),
-                    te.map((_) => processedAsset),
+                    te.map(() => processedAsset),
                 ),
             ),
         );

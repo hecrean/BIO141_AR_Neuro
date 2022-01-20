@@ -19,13 +19,6 @@ const observable = <K extends CanvasEventName>(canvasEl: HTMLCanvasElement, tag:
     );
 };
 
-// const keydown$ = observable(canvasEl, "keydown");
-// const keypress$ = observable(canvasEl, "keypress");
-// const keyup$ = observable(canvasEl, "keyup");
-// const lostpointercapture$ = observable(canvasEl, "lostpointercapture");
-// const pause$ = observable(canvasEl, "pause");
-// const play$ = observable(canvasEl, "play");
-// const playing$ = observable(canvasEl, "playing");
 const pointercancel$ = observable(canvasEl, 'pointercancel');
 const pointerdown$ = observable(canvasEl, 'pointerdown');
 const pointerenter$ = observable(canvasEl, 'pointerenter');
@@ -34,14 +27,8 @@ const pointermove$ = observable(canvasEl, 'pointermove');
 const pointerout$ = observable(canvasEl, 'pointerout');
 const pointerover$ = observable(canvasEl, 'pointerover');
 const pointerup$ = observable(canvasEl, 'pointerup');
-// const touchcancel$ = observable(canvasEl, "touchcancel");
-// const touchend$ = observable(canvasEl, "touchend");
-// const touchmove$ = observable(canvasEl, "touchmove");
-// const touchstart$ = observable(canvasEl, "touchstart");
-// const volumechange$ = observable(canvasEl, "volumechange");
-// const wheel$ = observable(canvasEl, "wheel");
 
-type Input = {
+export type Input = {
     canvasEvent: CanvasEvent<CanvasEventName>;
 };
 
