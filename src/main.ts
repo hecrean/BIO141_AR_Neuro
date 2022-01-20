@@ -1,12 +1,11 @@
 import './style.css';
-import { textureBundle } from './bundles';
-import { AssetsCtx, initAssetCtx, loadAssetBundle } from './3d/assets';
-import type { CameraPipelineModule, XR8 as XR8Type, XRExtras as XRExtrasType } from './3d/type';
-import { onImageFoundListener, onImageLostListener, onImageUpdatedListener } from './3d/image-target';
-import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './3d/state';
-import { input$, Input } from './3d/event';
-import { api as raycasterApi } from './3d/raycaster';
-import { interpreter } from './3d/event';
+import { textureBundle } from './assets/asset-bundles';
+import { AssetsCtx, initAssetCtx, loadAssetBundle } from './assets';
+import type { CameraPipelineModule, XR8 as XR8Type, XRExtras as XRExtrasType } from './type';
+import { onImageFoundListener, onImageLostListener, onImageUpdatedListener } from './image-target';
+import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './state';
+import { input$, Input, interpreter } from './events/canvas';
+import { api as raycasterApi } from './raycaster';
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;

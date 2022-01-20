@@ -22,7 +22,8 @@
     "dependencies": {
         "fp-ts": "^2.11.8",
         "rxjs": "^7.5.1",
-        "three": "^0.136.0"
+        "three": "^0.136.0",
+        "vite-tsconfig-paths": "^3.3.17"
     },
     "husky": {
         "hooks": {

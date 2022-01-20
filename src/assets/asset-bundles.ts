@@ -1,4 +1,4 @@
-import { AssetBundle } from './3d/assets';
+import { AssetBundle } from '.';
 
 export const textureBundle: AssetBundle = {
     tag: 'texture',

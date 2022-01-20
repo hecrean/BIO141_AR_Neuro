@@ -5,7 +5,7 @@ import { TargetName } from './image-target';
  * Emitted when image loading begins
  * Returns list of targets
  */
-type ImageLoadingMsg = {
+export type ImageLoadingMsg = {
     event: 'reality.imageloading';
     process: ({
         name,
@@ -26,7 +26,7 @@ type ImageLoadingMsg = {
  * Returns list of targets
  * In response to this event, we often construct geoemtry, pop up UI eleements etc.
  */
-type ImageScanningMsg = {
+export type ImageScanningMsg = {
     event: 'reality.imagescanning';
     process: ({
         name,
@@ -47,7 +47,7 @@ type ImageScanningMsg = {
  * Emitted when target is first found
  * typically we make AR content visible at this point
  */
-type ImageFoundMsg = {
+export type ImageFoundMsg = {
     event: 'reality.imagefound';
     process: ({
         name,
@@ -66,7 +66,7 @@ type ImageFoundMsg = {
 /**
  * Fires any time target image's position/rotation/scale is updated.
  */
-type ImageUpdatedMsg = {
+export type ImageUpdatedMsg = {
     event: 'reality.imageupdated';
     process: ({
         name,
@@ -85,7 +85,7 @@ type ImageUpdatedMsg = {
 /**
  * Emitted when target no longer tracked
  */
-type ImageLostMsg = {
+export type ImageLostMsg = {
     event: 'reality.imagelost';
     process: ({
         name,
@@ -175,7 +175,7 @@ type GlTextureRenderer = {
 };
 
 //XrController provides 6DoF camera tracking and interfaces for configuring tracking.
-type XrController = {
+export type XrController = {
     configure: (args: {
         enableWorldPoints?: true;
         enableLighting?: true;

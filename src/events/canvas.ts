@@ -1,5 +1,5 @@
 import { fromEvent, map, merge, Observable } from 'rxjs';
-import { State } from './state';
+import { State } from '../state';
 
 // eslint @typescript-eslint/no-non-null-assertion
 const canvasEl: HTMLCanvasElement = document.querySelector('canvas')!;

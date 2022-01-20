@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { Vector2 } from 'three';
-import { IntersectionEvent, CanvasEvent, CanvasEventName } from './event';
+import { IntersectionEvent, CanvasEvent, CanvasEventName } from './events/canvas';
 import { SceneGraphCtx, RenderCxt } from './state';
 
 export const initRaycaster = () => {

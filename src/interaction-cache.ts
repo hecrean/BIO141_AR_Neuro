@@ -1,4 +1,4 @@
-import { EventHandlers } from './event';
+import { EventHandlers } from './events/canvas';
 import { Object3D } from 'three';
 
 // db of object3d that are interactive, and their event handlers:
@@ -9,15 +9,15 @@ export const interactionCache = (): InteractionCache => {
 };
 
 interface InteractionCacheApi {
-    register: (cache: InteractionCache) => (o: Object3D, eventHandlers: EventHandlers) => void;
-    unregister: (cache: InteractionCache) => (o: Object3D) => void;
+    register: (cache: InteractionCache, o: Object3D, eventHandlers: EventHandlers) => void;
+    unregister: (cache: InteractionCache, o: Object3D) => void;
 }
 
 export const interactionCacheApi: InteractionCacheApi = {
-    register: (cache) => (o, eventHandlers) => {
+    register: (cache, o, eventHandlers) => {
         cache.set(o.uuid, eventHandlers);
     },
-    unregister: (cache) => (o) => {
+    unregister: (cache, o) => {
         cache.delete(o.uuid);
     },
 };
