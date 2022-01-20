@@ -43,9 +43,6 @@ export const defaultEventHandlers: EventHandlers = {
     onTouchCancel: (state, _) => state,
 };
 
-const unitFn = () => {
-    return;
-};
 export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMaterial> => {
     return o instanceof Mesh;
 };
