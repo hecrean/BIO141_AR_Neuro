@@ -6,24 +6,31 @@ import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
 
 enum UIKinds {
-    Button,
-    Video,
-    Image,
-    ImageTarget,
+    button,
+    div,
+    img,
+    video,
 }
 
 type UIElement = {
-    name: string;
     kind: UIKinds;
     api: EventHandlers;
     mesh: Mesh;
 };
 
 export type UIElementHandles = {
-    raphel_bio: UIElement;
-    edward_bio: UIElement;
-    eva_bio: UIElement;
-    app_video: UIElement;
+    raphelBieriLinkedin: UIElement;
+    edwardRohrbachLinkedin: UIElement;
+    evaThomaLinkedin: UIElement;
+    whatsappIcon: UIElement;
+    zoomIcon: UIElement;
+    mobileIcon: UIElement;
+    emailIcon: UIElement;
+    r42BusinessCard: UIElement;
+    evaBio: UIElement;
+    eduardBio: UIElement;
+    raphaelBio: UIElement;
+    mainVideo: UIElement;
 };
 
 type UIComponent = {
@@ -32,7 +39,7 @@ type UIComponent = {
 };
 
 export type UIComponentHandles = {
-    mainSurface: UIComponent;
+    rootSurface: UIComponent;
 };
 
 export const defaultEventHandlers: EventHandlers = {
@@ -60,35 +67,82 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
 };
 
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
-    const raphelBieriAltImgMesh = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, true);
-    const edwardRohrbachAltImgMesh = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, true);
-    const evaThomaAltImgMesh = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, true);
+    // img planes
+    const raphelBieriLinkedin = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, true);
+    const edwardRohrbachLinkedin = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, true);
+    const evaThomaLinkedin = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, true);
+    const whatsappIcon = createImagePlane('/img/Whastapp.png', assetCtx, true);
+    const zoomIcon = createImagePlane('/img/Zoom.png', assetCtx, true);
+    const mobileIcon = createImagePlane('/img/Mobile.png', assetCtx, true);
+    const emailIcon = createImagePlane('/img/Email.png', assetCtx, true);
+    const r42BusinessCard = createImagePlane('/img/random42-business-card.png', assetCtx, true);
+    const evaBio = createImagePlane('/img/Eva-Bio.png', assetCtx, true);
+    const eduardBio = createImagePlane('/img/Eduard-Bio.png', assetCtx, true);
+    const raphaelBio = createImagePlane('/img/Raphael-Bio.png', assetCtx, true);
+
+    // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1, 1, true);
 
     const uis: UIElementHandles = {
-        eva_bio: {
-            name: 'eva_bio',
-            kind: UIKinds.Button,
+        evaThomaLinkedin: {
+            kind: UIKinds.img,
             api: defaultEventHandlers,
-            mesh: evaThomaAltImgMesh,
+            mesh: evaThomaLinkedin,
         },
-        app_video: {
-            name: 'app_video',
-            kind: UIKinds.Video,
+        mainVideo: {
+            kind: UIKinds.video,
             api: defaultEventHandlers,
             mesh: mainVideo.mesh,
         },
-        edward_bio: {
-            name: 'edward_bio',
-            kind: UIKinds.Button,
+        edwardRohrbachLinkedin: {
+            kind: UIKinds.img,
             api: defaultEventHandlers,
-            mesh: edwardRohrbachAltImgMesh,
+            mesh: edwardRohrbachLinkedin,
         },
-        raphel_bio: {
-            name: 'raphael_bio',
-            kind: UIKinds.Button,
+        raphelBieriLinkedin: {
+            kind: UIKinds.img,
             api: defaultEventHandlers,
-            mesh: raphelBieriAltImgMesh,
+            mesh: raphelBieriLinkedin,
+        },
+        whatsappIcon: {
+            kind: UIKinds.button,
+            api: defaultEventHandlers,
+            mesh: whatsappIcon,
+        },
+        zoomIcon: {
+            kind: UIKinds.button,
+            api: defaultEventHandlers,
+            mesh: zoomIcon,
+        },
+        mobileIcon: {
+            kind: UIKinds.button,
+            api: defaultEventHandlers,
+            mesh: mobileIcon,
+        },
+        emailIcon: {
+            kind: UIKinds.button,
+            api: defaultEventHandlers,
+            mesh: emailIcon,
+        },
+        r42BusinessCard: {
+            kind: UIKinds.img,
+            api: defaultEventHandlers,
+            mesh: r42BusinessCard,
+        },
+        evaBio: {
+            kind: UIKinds.div,
+            api: defaultEventHandlers,
+            mesh: evaBio,
+        },
+        eduardBio: {
+            kind: UIKinds.div,
+            api: defaultEventHandlers,
+            mesh: eduardBio,
+        },
+        raphaelBio: {
+            kind: UIKinds.div,
+            api: defaultEventHandlers,
+            mesh: raphaelBio,
         },
     };
 
@@ -96,20 +150,37 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
 };
 
 export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
-    const setMeshPosition = (m: Mesh, { x, y, z }: Vector3) => {
+    const setPosition = (m: Object3D, { x, y, z }: Vector3) => {
         m.position.set(x, y, z);
         return m;
     };
 
-    const mainSurface = new Group();
-    setMeshPosition(el.raphel_bio.mesh, new Vector3(1, 1, 0));
-    setMeshPosition(el.edward_bio.mesh, new Vector3(-1, 1, 0));
-    setMeshPosition(el.eva_bio.mesh, new Vector3(1, -1, 0));
-    setMeshPosition(el.app_video.mesh, new Vector3(-1, -1, 0));
-    mainSurface.add(...[el.raphel_bio.mesh, el.edward_bio.mesh, el.eva_bio.mesh, el.app_video.mesh]);
+    const rootSurface = new Group();
+
+    const bios = new Group();
+    setPosition(el.raphelBieriLinkedin.mesh, new Vector3(1, 1, 0));
+    setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(-1, 1, 0));
+    setPosition(el.evaThomaLinkedin.mesh, new Vector3(1, -1, 0));
+    setPosition(el.mainVideo.mesh, new Vector3(-1, -1, 0));
+    bios.add(
+        ...[el.raphelBieriLinkedin.mesh, el.edwardRohrbachLinkedin.mesh, el.evaThomaLinkedin.mesh, el.mainVideo.mesh],
+    );
+
+    const contactMethods = new Group();
+    setPosition(el.zoomIcon.mesh, new Vector3(-1.5, 0, 0));
+    setPosition(el.mobileIcon.mesh, new Vector3(-0.5, 0, 0));
+    setPosition(el.emailIcon.mesh, new Vector3(0.5, 0, 0));
+    setPosition(el.whatsappIcon.mesh, new Vector3(1.5, 0, 0));
+    contactMethods.add(...[el.zoomIcon.mesh, el.mobileIcon.mesh, el.emailIcon.mesh, el.whatsappIcon.mesh]);
+
+    // grouos:
+    setPosition(bios, new Vector3(-3, 0, 0));
+    setPosition(contactMethods, new Vector3(3, 0, 0));
+
+    rootSurface.add(...[bios, contactMethods]);
 
     return {
-        mainSurface: { name: 'mainSurface', group: mainSurface },
+        rootSurface: { name: 'rootSurface', group: rootSurface },
     };
 };
 

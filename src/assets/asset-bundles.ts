@@ -13,5 +13,13 @@ export const textureBundle: AssetBundle = {
         '/img/Eva-Thoma-front.png',
         '/img/Raphael-Bieri-alt.png',
         '/img/Raphael-Bieri-front.png',
+        '/img/Eva-Bio.png',
+        '/img/Eduard-Bio.png',
+        '/img/Raphael-Bio.png',
+        '/img/Whastapp.png',
+        '/img/Mobile.png',
+        '/img/Email.png',
+        '/img/Zoom.png',
+        '/img/random42-business-card.png',
     ],
 };

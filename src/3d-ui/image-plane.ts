@@ -20,7 +20,6 @@ export const createImagePlane = (imageUrl: string, asset: AssetsCtx, visible: bo
             side: DoubleSide,
             map: imgTexture,
             visible: visible,
-            color: new Color('red'),
         }),
     );
 
