@@ -49,16 +49,16 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
 };
 
 export const initUiElements = (assetCtx: AssetsCtx): UIs => {
-    const linkedinButton = textureButtonMesh(
-        assetCtx,
-        '/img/linkedin_logo.png',
-        false,
-        new Vector2(4, 4),
-        new Vector3(0, -1, 3),
-    );
-    const textButton = textureButtonMesh(assetCtx, '/img/text.jpg', false, new Vector2(4, 4), new Vector3(3, 3, 3));
+    // const linkedinButton = textureButtonMesh(
+    //     assetCtx,
+    //     '/img/linkedin_logo.png',
+    //     false,
+    //     new Vector2(4, 4),
+    //     new Vector3(0, -1, 3),
+    // );
+    // const textButton = textureButtonMesh(assetCtx, '/img/text.jpg', false, new Vector2(4, 4), new Vector3(3, 3, 3));
 
-    const biogenButton = textureButtonMesh(assetCtx, '/img/biogen.png', false, new Vector2(4, 4), new Vector3(2, 1, 1));
+    // const biogenButton = textureButtonMesh(assetCtx, '/img/biogen.png', false, new Vector2(4, 4), new Vector3(2, 1, 1));
 
     const evaThomaWireframeButton = textureButtonMesh(
         assetCtx,
@@ -71,60 +71,60 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
     const mainVideo = videoMesh('mp4/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));
 
     const uis: UIs = {
-        'ui-linkedinButton': {
-            name: 'ui-linkedinButton',
-            kind: UIKinds.Button,
-            api: {
-                ...defaultEventHandlers,
-                onPointerDown: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
+        // 'ui-linkedinButton': {
+        //     name: 'ui-linkedinButton',
+        //     kind: UIKinds.Button,
+        //     api: {
+        //         ...defaultEventHandlers,
+        //         onPointerDown: (state, intersectionEv) => {
+        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
 
-                    return state;
-                },
-                onPointerUp: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
+        //             return state;
+        //         },
+        //         onPointerUp: (state, intersectionEv) => {
+        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
 
-                    return state;
-                },
-            },
-            el: linkedinButton,
-        },
-        'ui-textButton': {
-            name: 'ui-textButton',
-            kind: UIKinds.Button,
-            api: {
-                ...defaultEventHandlers,
-                onPointerDown: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
+        //             return state;
+        //         },
+        //     },
+        //     el: linkedinButton,
+        // },
+        // 'ui-textButton': {
+        //     name: 'ui-textButton',
+        //     kind: UIKinds.Button,
+        //     api: {
+        //         ...defaultEventHandlers,
+        //         onPointerDown: (state, intersectionEv) => {
+        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
 
-                    return state;
-                },
-                onPointerUp: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
+        //             return state;
+        //         },
+        //         onPointerUp: (state, intersectionEv) => {
+        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
 
-                    return state;
-                },
-            },
-            el: textButton,
-        },
-        'ui-biogenButton': {
-            name: 'ui-biogenButton',
-            kind: UIKinds.Button,
-            api: {
-                ...defaultEventHandlers,
-                onPointerDown: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
+        //             return state;
+        //         },
+        //     },
+        //     el: textButton,
+        // },
+        // 'ui-biogenButton': {
+        //     name: 'ui-biogenButton',
+        //     kind: UIKinds.Button,
+        //     api: {
+        //         ...defaultEventHandlers,
+        //         onPointerDown: (state, intersectionEv) => {
+        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
 
-                    return state;
-                },
-                onPointerUp: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
+        //             return state;
+        //         },
+        //         onPointerUp: (state, intersectionEv) => {
+        //             isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
 
-                    return state;
-                },
-            },
-            el: biogenButton,
-        },
+        //             return state;
+        //         },
+        //     },
+        //     el: biogenButton,
+        // },
         'ui-EvaThomaWireframe': {
             name: 'ui-EvaThomaWireframe',
             kind: UIKinds.Button,
