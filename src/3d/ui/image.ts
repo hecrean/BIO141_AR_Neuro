@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, MeshStandardMaterial, PlaneBufferGeometry, Vector3 } from 'three';
+import { DoubleSide, Mesh, PlaneGeometry, Vector3, LinearFilter, RGBFormat, MeshBasicMaterial } from 'three';
 import { EventHandlers } from '../event';
 import { isMesh } from '.';
 import { AssetsCtx } from '../assets';
@@ -6,16 +6,21 @@ import { option } from 'fp-ts';
 import { pipe } from 'fp-ts/function';
 
 export const imageMesh = (imageUrl: string, asset: AssetsCtx, position: Vector3, rotation: Vector3) => {
-    const imgTexture = asset.texture.api.get(asset.texture.cache, imageUrl);
+    const imgTexture = pipe(
+        asset.texture.api.get(asset.texture.cache, imageUrl),
+        option.getOrElseW(() => null),
+    );
+    if (imgTexture) {
+        imgTexture.minFilter = LinearFilter;
+        imgTexture.magFilter = LinearFilter;
+        imgTexture.format = RGBFormat;
+    }
 
     const mesh = new Mesh(
-        new PlaneBufferGeometry(1, 1),
-        new MeshStandardMaterial({
+        new PlaneGeometry(0.75, 1),
+        new MeshBasicMaterial({
             side: DoubleSide,
-            map: pipe(
-                imgTexture,
-                option.getOrElseW(() => null),
-            ),
+            map: imgTexture,
         }),
     );
     mesh.position.set(position.x, position.y, position.z);
