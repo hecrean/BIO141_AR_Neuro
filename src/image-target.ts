@@ -38,7 +38,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => 
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
-                    const root = sceneCtx.uiComponentHandles.mainSurface.group;
+                    const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
                     root.quaternion.copy(
                         new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
@@ -61,7 +61,7 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): ImageLostMsg => {
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
-                    const root = sceneCtx.uiComponentHandles.mainSurface.group;
+                    const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.visible = false;
                     break;
                 }
@@ -79,7 +79,7 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): ImageUpdatedMsg
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
-                    const root = sceneCtx.uiComponentHandles.mainSurface.group;
+                    const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
                     root.quaternion.copy(
                         new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
