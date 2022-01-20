@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, MeshPhysicalMaterial, PlaneBufferGeometry, Vector3 } from 'three';
+import { DoubleSide, Mesh, MeshStandardMaterial, PlaneBufferGeometry, Vector3 } from 'three';
 import { EventHandlers } from '../event';
 import { isMesh } from '.';
 import { AssetsCtx } from '../assets';
@@ -10,10 +10,7 @@ export const imageMesh = (imageUrl: string, asset: AssetsCtx, position: Vector3,
 
     const mesh = new Mesh(
         new PlaneBufferGeometry(1, 1),
-        new MeshPhysicalMaterial({
-            clearcoat: 1,
-            clearcoatRoughness: 0,
-            toneMapped: false,
+        new MeshStandardMaterial({
             side: DoubleSide,
             map: pipe(
                 imgTexture,

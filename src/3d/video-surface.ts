@@ -62,7 +62,6 @@ export const videoSurfaceHandlers: VideoTargetSurfaceHandlers = {
             surface.surfaceMesh.position.copy(position);
             surface.surfaceMesh.quaternion.copy(rotation);
             surface.surfaceMesh.scale.set(scale.x, scale.y, scale.z);
-            surface.surfaceMesh;
         },
     makeVisible: (surface: VideoTargetSurface) => {
         surface.surfaceMesh.visible = true;

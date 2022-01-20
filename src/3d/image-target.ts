@@ -70,15 +70,27 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                 }
                 case 'Eduard-Rohrbach-front': {
                     const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
-                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        new Vector3(0, 0, 0),
+                        surface,
+                    );
                 }
                 case 'Eva-Thoma-front': {
                     const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
-                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        new Vector3(0, 0, 0),
+                        surface,
+                    );
                 }
                 case 'Raphael-Bieri-front': {
                     const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
-                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        new Vector3(0, 0, 0),
+                        surface,
+                    );
                 }
                 default:
                     break;
