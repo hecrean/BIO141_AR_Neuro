@@ -43,23 +43,23 @@ export function transformMeshInImageTargetPlane(imgTargetTransform: Transform, o
     // const normal = new Vector3()
     //     .set(imgTargetTransform.position.x, imgTargetTransform.position.y, imgTargetTransform.position.z)
     //     .applyQuaternion(imgTargetTransform.rotation);
-    const [e1, e2, e3] = basisVectors(mesh);
+    // const [e1, e2, e3] = basisVectors(mesh);
 
     //offset the mesh by an amout in the xy component of the normal:
-    mesh.translateOnAxis(e1, offset.x);
-    mesh.translateOnAxis(e2, offset.y);
-    mesh.translateOnAxis(e3, offset.z);
+    // mesh.translateOnAxis(e1, offset.x);
+    // mesh.translateOnAxis(e2, offset.y);
+    // mesh.translateOnAxis(e3, offset.z);
 }
 
 export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEventMsg => {
     return {
         event: 'reality.imagefound',
         process: ({ name, detail }) => {
-            const { r, q, s } = getTargetTransform(detail);
-            const { align, makeVisible, play } = videoSurfaceHandlers;
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
+                    const { r, q, s } = getTargetTransform(detail);
+                    const { align, makeVisible, play } = videoSurfaceHandlers;
                     const surface = sceneCtx.videoSurfaceHandles[detail.name];
                     if (surface) {
                         align(surface)(r, q, s);
@@ -69,6 +69,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     break;
                 }
                 case 'Eduard-Rohrbach-front': {
+                    const { r, q, s } = getTargetTransform(detail);
                     const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
@@ -78,6 +79,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     break;
                 }
                 case 'Eva-Thoma-front': {
+                    const { r, q, s } = getTargetTransform(detail);
                     const surface = sceneCtx.ui.evaThomaAltImgMesh.el;
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
@@ -87,6 +89,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     break;
                 }
                 case 'Raphael-Bieri-front': {
+                    const { r, q, s } = getTargetTransform(detail);
                     const surface = sceneCtx.ui.raphelBieriAltImgMesh.el;
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
@@ -106,15 +109,14 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): CameraPipelineEven
         event: 'reality.imagelost',
         process: ({ name, detail }) => {
             log(name, detail);
-            const { pause, makeInvisible } = videoSurfaceHandlers;
             switch (detail.name) {
                 case 'business_card': {
+                    const { pause, makeInvisible } = videoSurfaceHandlers;
                     const surface = sceneCtx.videoSurfaceHandles[detail.name];
                     if (surface) {
                         makeInvisible(surface);
                         pause(surface);
                     }
-
                     break;
                 }
                 case 'Eduard-Rohrbach-front': {
@@ -143,11 +145,11 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): CameraPipelineE
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {
-            const { r, q, s } = getTargetTransform(detail);
-            const { align } = videoSurfaceHandlers;
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
+                    const { r, q, s } = getTargetTransform(detail);
+                    const { align } = videoSurfaceHandlers;
                     const surface = sceneCtx.videoSurfaceHandles[detail.name];
                     if (surface) {
                         align(surface)(r, q, s);
@@ -155,18 +157,33 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): CameraPipelineE
                     break;
                 }
                 case 'Eduard-Rohrbach-front': {
+                    const { r, q, s } = getTargetTransform(detail);
                     const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
-                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        new Vector3(0, 0, 0),
+                        surface,
+                    );
                     break;
                 }
                 case 'Eva-Thoma-front': {
+                    const { r, q, s } = getTargetTransform(detail);
                     const surface = sceneCtx.ui.evaThomaAltImgMesh.el;
-                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        new Vector3(0, 0, 0),
+                        surface,
+                    );
                     break;
                 }
                 case 'Raphael-Bieri-front': {
+                    const { r, q, s } = getTargetTransform(detail);
                     const surface = sceneCtx.ui.raphelBieriAltImgMesh.el;
-                    transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        new Vector3(0, 0, 0),
+                        surface,
+                    );
                     break;
                 }
                 default:
