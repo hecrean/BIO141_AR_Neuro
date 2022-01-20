@@ -51,13 +51,16 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
 export const initUiElements = (assetCtx: AssetsCtx): UIs => {
     const linkedinButton = textureButtonMesh(
         assetCtx,
-        '/texture/linkedin_logo.png',
+        '/img/linkedin_logo.png',
         false,
         new Vector2(4, 4),
-        new Vector3(3, 3, 3),
+        new Vector3(0, -1, 3),
     );
+    const textButton = textureButtonMesh(assetCtx, '/img/text.jpg', false, new Vector2(4, 4), new Vector3(3, 3, 3));
 
-    const mainVideo = videoMesh('/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(0, 0, 0));
+    const biogenButton = textureButtonMesh(assetCtx, '/img/biogen.jpg', false, new Vector2(4, 4), new Vector3(2, 1, 1));
+
+    const mainVideo = videoMesh('/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));
 
     const uis: UIs = {
         'ui-linkedinButton': {
@@ -77,6 +80,42 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
                 },
             },
             el: linkedinButton,
+        },
+        'ui-textButton': {
+            name: 'ui-textButton',
+            kind: UIKinds.Button,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, intersectionEv) => {
+                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
+
+                    return state;
+                },
+                onPointerUp: (state, intersectionEv) => {
+                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
+
+                    return state;
+                },
+            },
+            el: textButton,
+        },
+        'ui-biogenButton': {
+            name: 'ui-biogenButton',
+            kind: UIKinds.Button,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, intersectionEv) => {
+                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
+
+                    return state;
+                },
+                onPointerUp: (state, intersectionEv) => {
+                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
+
+                    return state;
+                },
+            },
+            el: biogenButton,
         },
         'ui-main-video': {
             name: 'ui-main-video',
