@@ -60,9 +60,9 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
 };
 
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
-    const raphelBieriAltImgMesh = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, false);
-    const edwardRohrbachAltImgMesh = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, false);
-    const evaThomaAltImgMesh = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, false);
+    const raphelBieriAltImgMesh = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, true);
+    const edwardRohrbachAltImgMesh = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, true);
+    const evaThomaAltImgMesh = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, true);
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1, 1);
 
     const uis: UIElementHandles = {

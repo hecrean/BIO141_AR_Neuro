@@ -12,7 +12,7 @@ interface VideoPlaneHandlers {
     pause: (surface: VideoPlane) => void;
 }
 
-export const createVideoPlane = (videoUrl: string, width: number, height: number): VideoPlane => {
+export const createVideoPlane = (videoUrl: string, width: number, height: number, visible: boolean): VideoPlane => {
     const videoEl = document.createElement('video');
     videoEl.src = videoUrl;
     videoEl.setAttribute('preload', 'auto');
@@ -26,7 +26,7 @@ export const createVideoPlane = (videoUrl: string, width: number, height: number
     texture.magFilter = LinearFilter;
     texture.format = RGBFormat;
 
-    const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: texture }));
+    const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: texture, visible: visible }));
 
     return {
         videoEl,
