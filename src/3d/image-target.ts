@@ -3,6 +3,7 @@ import { videoSurfaceHandlers } from './video-surface';
 import { SceneGraphCtx } from './state';
 import * as THREE from 'three';
 import { Mesh, Vector3 } from 'three';
+import { basisVectors } from '../math';
 
 // this is used to keep track of our image targets...
 export type TargetName = 'por_amor_al_arte' | 'escher_birds' | 'conversations_with_friends' | 'business_card';
@@ -34,17 +35,20 @@ type Transform = {
 };
 
 // we want to transform meshes ino the same plane as the image target, but at an offset:
-function transformMeshInImageTargetPlane(imgTargetTransform: Transform, offset: number, mesh: Mesh): void {
+function transformMeshInImageTargetPlane(imgTargetTransform: Transform, offset: Vector3, mesh: Mesh): void {
     mesh.position.copy(imgTargetTransform.position);
     mesh.quaternion.copy(imgTargetTransform.rotation);
     mesh.scale.set(imgTargetTransform.scale.x, imgTargetTransform.scale.y, imgTargetTransform.scale.z);
 
-    const normal = new Vector3()
-        .set(imgTargetTransform.position.x, imgTargetTransform.position.y, imgTargetTransform.position.z)
-        .applyQuaternion(imgTargetTransform.rotation);
+    // const normal = new Vector3()
+    //     .set(imgTargetTransform.position.x, imgTargetTransform.position.y, imgTargetTransform.position.z)
+    //     .applyQuaternion(imgTargetTransform.rotation);
+    const [e1, e2, e3] = basisVectors(mesh);
 
     //offset the mesh by an amout in the xy component of the normal:
-    mesh.translateOnAxis(normal, offset);
+    mesh.translateOnAxis(e1, offset.x);
+    mesh.translateOnAxis(e2, offset.y);
+    mesh.translateOnAxis(e3, offset.z);
 }
 
 export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEventMsg => {
@@ -62,10 +66,10 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     play(surface);
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
-                        -2,
+                        new Vector3(0, 1, 0),
                         sceneCtx.ui['ui-EvaThomaWireframe'].el,
                     );
-                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
+                    // sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
                     break;
                 }
                 case 'por_amor_al_arte': {
@@ -75,10 +79,10 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     play(surface);
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
-                        -2,
+                        new Vector3(0, 1, 0),
                         sceneCtx.ui['ui-EvaThomaWireframe'].el,
                     );
-                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
+                    // sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
 
                     break;
                 }
@@ -89,10 +93,10 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     play(surface);
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
-                        -2,
+                        new Vector3(0, 1, 0),
                         sceneCtx.ui['ui-EvaThomaWireframe'].el,
                     );
-                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
+                    // sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
 
                     break;
                 }
