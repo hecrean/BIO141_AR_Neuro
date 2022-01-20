@@ -77,7 +77,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     );
                 }
                 case 'Eva-Thoma-front': {
-                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    const surface = sceneCtx.ui.evaThomaAltImgMesh.el;
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
                         new Vector3(0, 0, 0),
@@ -85,7 +85,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     );
                 }
                 case 'Raphael-Bieri-front': {
-                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    const surface = sceneCtx.ui.raphelBieriAltImgMesh.el;
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
                         new Vector3(0, 0, 0),
@@ -119,11 +119,11 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): CameraPipelineEven
                     surface.visible = false;
                 }
                 case 'Eva-Thoma-front': {
-                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    const surface = sceneCtx.ui.evaThomaAltImgMesh.el;
                     surface.visible = false;
                 }
                 case 'Raphael-Bieri-front': {
-                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    const surface = sceneCtx.ui.raphelBieriAltImgMesh.el;
                     surface.visible = false;
                 }
                 default:
@@ -153,11 +153,11 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): CameraPipelineE
                     transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
                 }
                 case 'Eva-Thoma-front': {
-                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    const surface = sceneCtx.ui.evaThomaAltImgMesh.el;
                     transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
                 }
                 case 'Raphael-Bieri-front': {
-                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    const surface = sceneCtx.ui.raphelBieriAltImgMesh.el;
                     transformMeshInImageTargetPlane({ position: r, rotation: q, scale: s }, new Vector3(), surface);
                 }
                 default:
