@@ -2,7 +2,6 @@
 
 import * as THREE from 'three';
 import { TargetName } from './image-target';
-import { AssetsCtx } from './assets';
 
 export type VideoTargetSurface<T = TargetName> = {
     name: T;
