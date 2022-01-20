@@ -44,7 +44,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => 
                         new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
                     );
                     root.scale.set(detail.scale, detail.scale, detail.scale);
-                    root.visible = true;
+                    // root.visible = true;
                     break;
                 }
 
@@ -62,7 +62,7 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): ImageLostMsg => {
             switch (detail.name) {
                 case 'business_card': {
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
-                    root.visible = false;
+                    // root.visible = false;
                     break;
                 }
                 default:
@@ -85,7 +85,7 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): ImageUpdatedMsg
                         new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
                     );
                     root.scale.set(detail.scale, detail.scale, detail.scale);
-                    root.visible = true;
+                    // root.visible = true;
                     break;
                 }
                 default:
