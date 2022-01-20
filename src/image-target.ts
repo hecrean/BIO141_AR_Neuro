@@ -25,9 +25,9 @@ type Transform = {
 const getTargetTransform = (detail: Detail): Transform => {
     const { x: x1, y: x2, z: x3 } = detail.position;
     const { x: q1, y: q2, z: q3, w: q4 } = detail.rotation;
-    const r = new THREE.Vector3(x1, x2, x3);
-    const q = new THREE.Quaternion(q1, q2, q3, q4);
-    const s = new THREE.Vector3(detail.scale, detail.scale, detail.scale);
+    const r = new Vector3(x1, x2, x3);
+    const q = new Quaternion(q1, q2, q3, q4);
+    const s = new Vector3(detail.scale, detail.scale, detail.scale);
 
     return { position: r, rotation: q, scale: s };
 };
