@@ -128,19 +128,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
         'ui-EvaThomaWireframe': {
             name: 'ui-EvaThomaWireframe',
             kind: UIKinds.Button,
-            api: {
-                ...defaultEventHandlers,
-                onPointerDown: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
-
-                    return state;
-                },
-                onPointerUp: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
-
-                    return state;
-                },
-            },
+            api: buttonEventApi,
             el: evaThomaWireframeButton,
         },
         'ui-main-video': {
