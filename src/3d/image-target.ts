@@ -62,9 +62,10 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     play(surface);
                     transformMeshInImageTargetPlane(
                         { position: r, rotation: q, scale: s },
-                        1,
+                        -2,
                         sceneCtx.ui['ui-EvaThomaWireframe'].el,
                     );
+                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
                     break;
                 }
                 case 'por_amor_al_arte': {
@@ -72,6 +73,13 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     align(surface)(r, q, s);
                     makeVisible(surface);
                     play(surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        -2,
+                        sceneCtx.ui['ui-EvaThomaWireframe'].el,
+                    );
+                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
+
                     break;
                 }
                 case 'business_card': {
@@ -79,6 +87,13 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEve
                     align(surface)(r, q, s);
                     makeVisible(surface);
                     play(surface);
+                    transformMeshInImageTargetPlane(
+                        { position: r, rotation: q, scale: s },
+                        -2,
+                        sceneCtx.ui['ui-EvaThomaWireframe'].el,
+                    );
+                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = true;
+
                     break;
                 }
                 default:
@@ -98,18 +113,24 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): CameraPipelineEven
                     const surf = sceneCtx.videoSurfaceHandles[detail.name];
                     pause(surf);
                     makeInvisible(sceneCtx.videoSurfaceHandles[detail.name]);
+                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = false;
+
                     break;
                 }
                 case 'por_amor_al_arte': {
                     const surf = sceneCtx.videoSurfaceHandles[detail.name];
                     pause(surf);
                     makeInvisible(surf);
+                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = false;
+
                     break;
                 }
                 case 'business_card': {
                     const surf = sceneCtx.videoSurfaceHandles[detail.name];
                     pause(surf);
                     makeInvisible(surf);
+                    sceneCtx.ui['ui-EvaThomaWireframe'].el.visible = false;
+
                     break;
                 }
                 default:

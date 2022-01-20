@@ -67,6 +67,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
         false,
         new Vector2(9.72, 3.49),
         new Vector3(0, 0, 0),
+        false,
     );
 
     const mainVideo = videoMesh('mp4/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));

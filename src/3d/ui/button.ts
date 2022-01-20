@@ -13,6 +13,7 @@ export const textureButtonMesh = (
     backgroundShown: boolean,
     size: Vector2,
     position: Vector3,
+    visible: boolean,
 ) => {
     const diffuseMapO = api.get(cache, url);
 
@@ -27,12 +28,12 @@ export const textureButtonMesh = (
         transparent: backgroundShown,
         name: url,
         side: DoubleSide,
+        visible: visible,
     });
     // procedurally change size of plane based on input texture size?
     const geometry = new PlaneBufferGeometry(size.x, size.y);
     const mesh = new Mesh<PlaneBufferGeometry, MeshStandardMaterial>(geometry, material);
     mesh.position.set(position.x, position.y, position.z);
-    console.log(mesh);
     return mesh;
 };
 
