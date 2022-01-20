@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, PlaneGeometry, MeshBasicMaterial } from 'three';
+import { DoubleSide, Mesh, PlaneGeometry, MeshBasicMaterial, Color } from 'three';
 import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts';
 import { pipe } from 'fp-ts/function';
@@ -12,13 +12,15 @@ export const createImagePlane = (imageUrl: string, asset: AssetsCtx, visible: bo
         asset.texture.api.get(asset.texture.cache, imageUrl),
         option.getOrElseW(() => null),
     );
+    console.log(imgTexture);
 
     const mesh = new Mesh(
         new PlaneGeometry(0.75, 1),
         new MeshBasicMaterial({
             side: DoubleSide,
-            map: imgTexture,
+            // map: imgTexture,
             visible: visible,
+            color: new Color('red'),
         }),
     );
 
