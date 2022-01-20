@@ -8,5 +8,6 @@ export const textureBundle: AssetBundle = {
         '/img/Raphael_Bieri.jpg',
         '/img/text.jpg',
         '/img/biogen.png',
+        '/eva-thoma-wireframe/wireframe.jpg',
     ],
 };

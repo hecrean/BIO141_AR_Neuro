@@ -60,7 +60,15 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
 
     const biogenButton = textureButtonMesh(assetCtx, '/img/biogen.png', false, new Vector2(4, 4), new Vector3(2, 1, 1));
 
-    const mainVideo = videoMesh('/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));
+    const evaThomaWireframeButton = textureButtonMesh(
+        assetCtx,
+        '/eva-thoma-wireframe/wireframe.jpg',
+        false,
+        new Vector2(4, 4),
+        new Vector3(0, 0, 0),
+    );
+
+    const mainVideo = videoMesh('mp4/aurora_demo.mp4', new Vector3(5, 0, 0), new Vector3(2, 0, 0));
 
     const uis: UIs = {
         'ui-linkedinButton': {
@@ -117,6 +125,24 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
             },
             el: biogenButton,
         },
+        'ui-EvaThomaWireframe': {
+            name: 'ui-EvaThomaWireframe',
+            kind: UIKinds.Button,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, intersectionEv) => {
+                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
+
+                    return state;
+                },
+                onPointerUp: (state, intersectionEv) => {
+                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
+
+                    return state;
+                },
+            },
+            el: evaThomaWireframeButton,
+        },
         'ui-main-video': {
             name: 'ui-main-video',
             kind: UIKinds.Video,
@@ -141,5 +167,5 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
 };
 
 export const registerUi = (cache: InteractionCache, UIs: UIs) => {
-    Object.values(UIs).map((ui) => interactionCacheApi.register(cache)(ui.el, buttonEventApi));
+    Object.values(UIs).map((ui) => interactionCacheApi.register(cache)(ui.el, ui.api));
 };
