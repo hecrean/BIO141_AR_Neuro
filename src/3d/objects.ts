@@ -14,12 +14,8 @@ export const initObjects = (): ObjectHandles => {
 
     const ambientLight1 = new THREE.AmbientLight(0x404040, 5);
 
-    const cube1 = new THREE.Mesh(new THREE.BoxBufferGeometry(), new THREE.MeshStandardMaterial());
-    cube1.material.color.set('red');
-
     return {
         directionalLight1,
         ambientLight1,
-        cube1,
     };
 };

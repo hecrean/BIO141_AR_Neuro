@@ -64,7 +64,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
         assetCtx,
         '/eva-thoma-wireframe/wireframe.jpg',
         false,
-        new Vector2(4, 4),
+        new Vector2(2, 2),
         new Vector3(0, 0, 0),
     );
 
