@@ -2,7 +2,7 @@ import { CameraPipelineEventMsg } from './type';
 import { videoSurfaceHandlers } from './video-surface';
 import { SceneGraphCtx } from './state';
 import * as THREE from 'three';
-import { Mesh, Plane, Vector2, Vector3 } from 'three';
+import { Mesh, Vector3 } from 'three';
 
 // this is used to keep track of our image targets...
 export type TargetName = 'por_amor_al_arte' | 'escher_birds' | 'conversations_with_friends' | 'business_card';
