@@ -2,6 +2,7 @@
 
 import * as THREE from 'three';
 import { TargetName } from './image-target';
+import { AssetsCtx } from './assets';
 
 export type VideoTargetSurface<T = TargetName> = {
     name: T;
@@ -13,9 +14,9 @@ export type SurfaceHandles = { [K in TargetName]: VideoTargetSurface<K> };
 
 export const initSurfaces = (): SurfaceHandles => {
     return {
-        escher_birds: mkVideoTargetSurface('escher_birds', ''),
+        escher_birds: mkVideoTargetSurface('escher_birds', '/img/Eduard_Rohrbach.jpg'),
         por_amor_al_arte: mkVideoTargetSurface('por_amor_al_arte', ''),
-        conversations_with_friends: mkVideoTargetSurface('conversations_with_friends', ''),
+        conversations_with_friends: mkVideoTargetSurface('conversations_with_friends', '/img/Raphael_Bieri.jpeg'),
     };
 };
 
