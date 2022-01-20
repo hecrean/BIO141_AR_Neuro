@@ -1,22 +1,9 @@
-import * as THREE from 'three';
 import { EventHandlers } from '../event';
 import { buttonEventApi, textureButtonMesh } from './button';
-import { videoEventApi, videoMesh } from './video';
+import { videoMesh } from './video';
 import { InteractionCache, interactionCacheApi } from '../interaction-cache';
-import {
-    Mesh,
-    Color,
-    DoubleSide,
-    Vector2,
-    Object3D,
-    BufferGeometry,
-    MeshStandardMaterial,
-    Vector3,
-    Matrix4,
-} from 'three';
-import { SceneGraphCtx } from '../state';
-import { initAssetCtx, AssetsCtx } from '../assets';
-import { toRecord } from '../../util';
+import { Mesh, Vector2, Object3D, BufferGeometry, MeshStandardMaterial, Vector3 } from 'three';
+import { AssetsCtx } from '../assets';
 
 enum UIKinds {
     Button,
