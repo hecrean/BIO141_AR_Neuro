@@ -68,17 +68,17 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
 
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // img planes
-    const raphelBieriLinkedin = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, true);
-    const edwardRohrbachLinkedin = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, true);
-    const evaThomaLinkedin = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, true);
-    const whatsappIcon = createImagePlane('/img/Whastapp.png', assetCtx, true);
-    const zoomIcon = createImagePlane('/img/Zoom.png', assetCtx, true);
-    const mobileIcon = createImagePlane('/img/Mobile.png', assetCtx, true);
-    const emailIcon = createImagePlane('/img/Email.png', assetCtx, true);
-    const r42BusinessCard = createImagePlane('/img/random42-business-card.png', assetCtx, true);
-    const evaBio = createImagePlane('/img/Eva-Bio.png', assetCtx, true);
-    const eduardBio = createImagePlane('/img/Eduard-Bio.png', assetCtx, true);
-    const raphaelBio = createImagePlane('/img/Raphael-Bio.png', assetCtx, true);
+    const raphelBieriLinkedin = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, [1, 1], true);
+    const edwardRohrbachLinkedin = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, [1, 1], true);
+    const evaThomaLinkedin = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, [1, 1], true);
+    const whatsappIcon = createImagePlane('/img/Whastapp.png', assetCtx, [1, 1], true);
+    const zoomIcon = createImagePlane('/img/Zoom.png', assetCtx, [1, 1], true);
+    const mobileIcon = createImagePlane('/img/Mobile.png', assetCtx, [1, 1], true);
+    const emailIcon = createImagePlane('/img/Email.png', assetCtx, [1, 1], true);
+    const r42BusinessCard = createImagePlane('/img/random42-business-card.png', assetCtx, [1, 1], true);
+    const evaBio = createImagePlane('/img/Eva-Bio.png', assetCtx, [1, 1], true);
+    const eduardBio = createImagePlane('/img/Eduard-Bio.png', assetCtx, [1, 1], true);
+    const raphaelBio = createImagePlane('/img/Raphael-Bio.png', assetCtx, [1, 1], true);
 
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1, 1, true);

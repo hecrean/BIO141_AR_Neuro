@@ -7,7 +7,7 @@ export type ImagePlane = {
     mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
 };
 
-export const createImagePlane = (imageUrl: string, asset: AssetsCtx, visible: boolean) => {
+export const createImagePlane = (imageUrl: string, asset: AssetsCtx, size: [number, number], visible: boolean) => {
     const imgTexture = pipe(
         asset.texture.api.get(asset.texture.cache, imageUrl),
         option.getOrElseW(() => null),
@@ -15,7 +15,7 @@ export const createImagePlane = (imageUrl: string, asset: AssetsCtx, visible: bo
     console.log(imgTexture);
 
     const mesh = new Mesh(
-        new PlaneGeometry(0.75, 1),
+        new PlaneGeometry(size[0], size[1]),
         new MeshBasicMaterial({
             side: DoubleSide,
             map: imgTexture,
