@@ -50,7 +50,6 @@ export const initState = (renderCtx: RenderCxt, sceneCtx: SceneGraphCtx, assetCt
     renderCtx.scene.add(...[ambientLight1, directionalLight1]);
 
     // components
-    sceneCtx.uiComponentHandles.mainSurface.group.visible = false;
     renderCtx.scene.add(sceneCtx.uiComponentHandles.mainSurface.group);
 
     return { renderCtx, sceneCtx, assetCtx };
