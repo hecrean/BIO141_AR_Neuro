@@ -11,7 +11,7 @@ export const textureBundle: AssetBundle = {
         '/img/Eduard-Rohrbach-front.png',
         '/img/Eva-Thoma-alt.png',
         '/img/Eva-Thoma-front.png',
-        '/img/ Raphael-Bieri-alt.png',
-        '/img/ Raphael-Bieri-front.png',
+        '/img/Raphael-Bieri-alt.png',
+        '/img/Raphael-Bieri-front.png',
     ],
 };

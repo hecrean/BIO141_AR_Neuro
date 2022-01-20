@@ -69,13 +69,13 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
         new Vector3(0, 0, 0),
     );
     const edwardRohrbachAltImgMesh = imageMesh(
-        '/img/Raphael-Bieri-alt.png',
+        '/img/Eduard-Rohrbach-alt.png',
         assetCtx,
         new Vector3(0, 1, 0),
         new Vector3(0, 0, 0),
     );
     const evaThomaAltImgMesh = imageMesh(
-        '/img/Raphael-Bieri-alt.png',
+        '/img/Eva-Thoma-alt.png',
         assetCtx,
         new Vector3(0, 2, 0),
         new Vector3(0, 0, 0),
