@@ -1,6 +1,6 @@
 import { ImageFoundMsg, ImageLostMsg, ImageUpdatedMsg } from './type';
 import { SceneGraphCtx } from './state';
-import * as THREE from 'three';
+import { Vector3, Quaternion } from 'three';
 import { uiApi } from '3d-ui';
 
 // this is used to keep track of our image targets...
@@ -39,13 +39,13 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => 
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
-                    const transform = getTargetTransform(detail);
-                    uiApi.align(sceneCtx.uiComponentHandles.mainSurface.group)(
-                        transform.position,
-                        transform.rotation,
-                        transform.scale,
+                    const root = sceneCtx.uiComponentHandles.mainSurface.group;
+                    root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
+                    root.quaternion.copy(
+                        new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
                     );
-                    uiApi.makeVisible(sceneCtx.uiComponentHandles.mainSurface.group);
+                    root.scale.set(detail.scale, detail.scale, detail.scale);
+                    root.visible = true;
                     break;
                 }
 
@@ -62,7 +62,8 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): ImageLostMsg => {
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
-                    uiApi.makeInvisible(sceneCtx.uiComponentHandles.mainSurface.group);
+                    const root = sceneCtx.uiComponentHandles.mainSurface.group;
+                    root.visible = false;
                     break;
                 }
                 default:
@@ -79,12 +80,13 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): ImageUpdatedMsg
             log(name, detail);
             switch (detail.name) {
                 case 'business_card': {
-                    const transform = getTargetTransform(detail);
-                    uiApi.align(sceneCtx.uiComponentHandles.mainSurface.group)(
-                        transform.position,
-                        transform.rotation,
-                        transform.scale,
+                    const root = sceneCtx.uiComponentHandles.mainSurface.group;
+                    root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
+                    root.quaternion.copy(
+                        new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
                     );
+                    root.scale.set(detail.scale, detail.scale, detail.scale);
+                    root.visible = true;
                     break;
                 }
                 default:
