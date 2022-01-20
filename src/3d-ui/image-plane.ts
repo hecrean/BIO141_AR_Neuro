@@ -18,7 +18,7 @@ export const createImagePlane = (imageUrl: string, asset: AssetsCtx, visible: bo
         new PlaneGeometry(0.75, 1),
         new MeshBasicMaterial({
             side: DoubleSide,
-            // map: imgTexture,
+            map: imgTexture,
             visible: visible,
             color: new Color('red'),
         }),
