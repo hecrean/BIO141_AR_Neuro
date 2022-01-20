@@ -45,7 +45,7 @@ const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraP
             // Add objects to the scene and set starting camera position.
 
             XR8.XrController.configure({
-                imageTargets: ['por_amor_al_arte', 'escher_birds', 'conversations_with_friends'],
+                imageTargets: ['por_amor_al_arte', 'escher_birds', 'conversations_with_friends', 'business_card'],
             });
 
             // Sync the xr controller's 6DoF position and camera paremeters with our scene.
@@ -66,11 +66,7 @@ const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraP
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
         // updates can be applied at an appropriate synchronized point in the rendering cycle.
-        listeners: [
-            onImageUpdatedListener(sceneCxt.surfaceHandles),
-            onImageFoundListener(sceneCxt.surfaceHandles),
-            onImageLostListener(sceneCxt.surfaceHandles),
-        ],
+        listeners: [onImageUpdatedListener(sceneCxt), onImageFoundListener(sceneCxt), onImageLostListener(sceneCxt)],
     };
 };
 

@@ -1,8 +1,10 @@
 import { CameraPipelineEventMsg } from './type';
-import { surfaceHandlers, SurfaceHandles } from './surface';
+import { videoSurfaceHandlers } from './video-surface';
+import { SceneGraphCtx } from './state';
 import * as THREE from 'three';
 
-export type TargetName = 'por_amor_al_arte' | 'escher_birds' | 'conversations_with_friends';
+// this is used to keep track of our image targets...
+export type TargetName = 'por_amor_al_arte' | 'escher_birds' | 'conversations_with_friends' | 'business_card';
 
 type Detail = {
     position: { x: number; y: number; z: number };
@@ -24,23 +26,30 @@ const getTargetTransform = (detail: Detail) => {
     return { r, q, s };
 };
 
-export const onImageFoundListener = (surfaces: SurfaceHandles): CameraPipelineEventMsg => {
+export const onImageFoundListener = (sceneCtx: SceneGraphCtx): CameraPipelineEventMsg => {
     return {
         event: 'reality.imagefound',
         process: ({ name, detail }) => {
             const { r, q, s } = getTargetTransform(detail);
-            const { align, makeVisible, play } = surfaceHandlers;
+            const { align, makeVisible, play } = videoSurfaceHandlers;
             log(name, detail);
             switch (detail.name) {
                 case 'escher_birds': {
-                    const surface = surfaces[detail.name];
+                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
                     align(surface)(r, q, s);
                     makeVisible(surface);
                     play(surface);
                     break;
                 }
                 case 'por_amor_al_arte': {
-                    const surface = surfaces[detail.name];
+                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
+                    align(surface)(r, q, s);
+                    makeVisible(surface);
+                    play(surface);
+                    break;
+                }
+                case 'business_card': {
+                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
                     align(surface)(r, q, s);
                     makeVisible(surface);
                     play(surface);
@@ -52,21 +61,27 @@ export const onImageFoundListener = (surfaces: SurfaceHandles): CameraPipelineEv
         },
     };
 };
-export const onImageLostListener = (surfaces: SurfaceHandles): CameraPipelineEventMsg => {
+export const onImageLostListener = (sceneCtx: SceneGraphCtx): CameraPipelineEventMsg => {
     return {
         event: 'reality.imagelost',
         process: ({ name, detail }) => {
             log(name, detail);
-            const { pause, makeInvisible } = surfaceHandlers;
+            const { pause, makeInvisible } = videoSurfaceHandlers;
             switch (detail.name) {
                 case 'escher_birds': {
-                    const surf = surfaces[detail.name];
+                    const surf = sceneCtx.videoSurfaceHandles[detail.name];
                     pause(surf);
-                    makeInvisible(surfaces[detail.name]);
+                    makeInvisible(sceneCtx.videoSurfaceHandles[detail.name]);
                     break;
                 }
                 case 'por_amor_al_arte': {
-                    const surf = surfaces[detail.name];
+                    const surf = sceneCtx.videoSurfaceHandles[detail.name];
+                    pause(surf);
+                    makeInvisible(surf);
+                    break;
+                }
+                case 'business_card': {
+                    const surf = sceneCtx.videoSurfaceHandles[detail.name];
                     pause(surf);
                     makeInvisible(surf);
                     break;
@@ -78,21 +93,26 @@ export const onImageLostListener = (surfaces: SurfaceHandles): CameraPipelineEve
     };
 };
 
-export const onImageUpdatedListener = (surfaces: SurfaceHandles): CameraPipelineEventMsg => {
+export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): CameraPipelineEventMsg => {
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {
             const { r, q, s } = getTargetTransform(detail);
-            const { align } = surfaceHandlers;
+            const { align } = videoSurfaceHandlers;
             log(name, detail);
             switch (detail.name) {
                 case 'escher_birds': {
-                    const surface = surfaces[detail.name];
+                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
                     align(surface)(r, q, s);
                     break;
                 }
                 case 'por_amor_al_arte': {
-                    const surface = surfaces[detail.name];
+                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
+                    align(surface)(r, q, s);
+                    break;
+                }
+                case 'business_card': {
+                    const surface = sceneCtx.videoSurfaceHandles[detail.name];
                     align(surface)(r, q, s);
                     break;
                 }

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { initSurfaces, SurfaceHandles } from './surface';
+import { initVideoSurfaces, VideoSurfaceHandles } from './video-surface';
 import { initObjects, ObjectHandles } from './objects';
 import { UIs, registerUi, initUiElements } from './ui';
 import { AssetsCtx } from './assets';
@@ -12,7 +12,7 @@ export type RenderCxt = {
 };
 
 export type SceneGraphCtx = {
-    surfaceHandles: SurfaceHandles;
+    videoSurfaceHandles: VideoSurfaceHandles;
     objectHandles: ObjectHandles;
     raycaster: THREE.Raycaster;
     ui: UIs;
@@ -24,7 +24,7 @@ export const initSceneGraphCtx = (assetCtx: AssetsCtx): SceneGraphCtx => {
     const sceneCtx: SceneGraphCtx = {
         objectHandles: initObjects(),
         interactionCache: interactionCache(),
-        surfaceHandles: initSurfaces(),
+        videoSurfaceHandles: initVideoSurfaces(),
         raycaster: new THREE.Raycaster(),
         mouse: new THREE.Vector2(),
         ui: initUiElements(assetCtx),
@@ -38,12 +38,15 @@ export const initSceneGraphCtx = (assetCtx: AssetsCtx): SceneGraphCtx => {
 export type State = { sceneCtx: SceneGraphCtx; assetCtx: AssetsCtx; renderCtx: RenderCxt };
 
 export const initState = (renderCtx: RenderCxt, sceneCtx: SceneGraphCtx, assetCtx: AssetsCtx): State => {
+    // obj3d / ui / surfaces are all meshes... We're just semantically differentiating them
+    // for convenience. obj3d are regular ol' shapes. Ui are things like 3d buttons etc. Surfaces
+    // have inbuilt image target functionality.
     const obj3ds = Object.values(sceneCtx.objectHandles);
     const uis = Object.values(sceneCtx.ui).map((ui) => ui.el);
-    const surfaceMeshes = Object.values(sceneCtx.surfaceHandles).map((s) => s.surfaceMesh);
+    const videoSurfaceMeshes = Object.values(sceneCtx.videoSurfaceHandles).map((s) => s.surfaceMesh);
     renderCtx.scene.add(...obj3ds);
     renderCtx.scene.add(...uis);
-    renderCtx.scene.add(...surfaceMeshes);
+    renderCtx.scene.add(...videoSurfaceMeshes);
 
     return { renderCtx, sceneCtx, assetCtx };
 };
