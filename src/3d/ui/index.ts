@@ -8,8 +8,8 @@ import { imageMesh } from './image';
 
 enum UIKinds {
     Button,
-    None,
     Video,
+    Image,
 }
 
 type UIKey = 'raphelBieriAltImgMesh' | 'edwardRohrbachAltImgMesh' | 'evaThomaAltImgMesh' | 'mainVideo';
@@ -65,18 +65,21 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
     const raphelBieriAltImgMesh = imageMesh(
         '/img/Raphael-Bieri-alt.png',
         assetCtx,
+        false,
         new Vector3(0, 0, 0),
         new Vector3(0, 0, 0),
     );
     const edwardRohrbachAltImgMesh = imageMesh(
         '/img/Eduard-Rohrbach-alt.png',
         assetCtx,
+        false,
         new Vector3(0, 1, 0),
         new Vector3(0, 0, 0),
     );
     const evaThomaAltImgMesh = imageMesh(
         '/img/Eva-Thoma-alt.png',
         assetCtx,
+        false,
         new Vector3(0, 2, 0),
         new Vector3(0, 0, 0),
     );
@@ -93,19 +96,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIs => {
         mainVideo: {
             name: 'mainVideo',
             kind: UIKinds.Video,
-            api: {
-                ...defaultEventHandlers,
-                onPointerDown: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : unitFn;
-
-                    return state;
-                },
-                onPointerUp: (state, intersectionEv) => {
-                    isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : unitFn;
-
-                    return state;
-                },
-            },
+            api: buttonEventApi,
             el: mainVideo,
         },
         edwardRohrbachAltImgMesh: {

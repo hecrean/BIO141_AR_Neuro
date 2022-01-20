@@ -5,11 +5,18 @@ import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts';
 import { pipe } from 'fp-ts/function';
 
-export const imageMesh = (imageUrl: string, asset: AssetsCtx, position: Vector3, rotation: Vector3) => {
+export const imageMesh = (
+    imageUrl: string,
+    asset: AssetsCtx,
+    visible: boolean,
+    position: Vector3,
+    rotation: Vector3,
+) => {
     const imgTexture = pipe(
         asset.texture.api.get(asset.texture.cache, imageUrl),
         option.getOrElseW(() => null),
     );
+    console.log('imgtex', imgTexture);
     if (imgTexture) {
         imgTexture.minFilter = LinearFilter;
         imgTexture.magFilter = LinearFilter;
@@ -21,6 +28,7 @@ export const imageMesh = (imageUrl: string, asset: AssetsCtx, position: Vector3,
         new MeshBasicMaterial({
             side: DoubleSide,
             map: imgTexture,
+            visible: visible,
         }),
     );
     mesh.position.set(position.x, position.y, position.z);

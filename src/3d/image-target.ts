@@ -114,6 +114,18 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): CameraPipelineEven
 
                     break;
                 }
+                case 'Eduard-Rohrbach-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    surface.visible = false;
+                }
+                case 'Eva-Thoma-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    surface.visible = false;
+                }
+                case 'Raphael-Bieri-front': {
+                    const surface = sceneCtx.ui.edwardRohrbachAltImgMesh.el;
+                    surface.visible = false;
+                }
                 default:
                     break;
             }
