@@ -15,7 +15,6 @@ export const textureButtonMesh = (
     position: Vector3,
 ) => {
     const diffuseMapO = api.get(cache, url);
-    console.log('diffuseMapO', diffuseMapO);
 
     const material = new MeshStandardMaterial({
         map: pipe(

@@ -39,6 +39,7 @@ const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraP
             const renderCtx: RenderCxt = { scene, camera, gl: renderer };
 
             const state = initState(renderCtx, sceneCxt, assetCtx);
+            console.log('state', state);
 
             input$.subscribe((input) => responseToInput(input, state));
 
@@ -97,7 +98,6 @@ const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx) => () => {
 const runAR = async () => {
     const assetCtx = initAssetCtx();
     await loadAssetBundle<'texture'>(assetCtx.texture.api, assetCtx.texture.cache, textureBundle)();
-    console.log('assetCtx', assetCtx);
     const sceneCxt = initSceneGraphCtx(assetCtx);
     XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx) });
 };
