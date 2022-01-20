@@ -1,21 +1,15 @@
 import './style.css';
 import { textureBundle } from './bundles';
-import { initAssetCtx, loadAssetBundle } from './3d/assets';
+import { AssetsCtx, initAssetCtx, loadAssetBundle } from './3d/assets';
 import type { CameraPipelineModule, XR8 as XR8Type, XRExtras as XRExtrasType } from './3d/type';
 import { onImageFoundListener, onImageLostListener, onImageUpdatedListener } from './3d/image-target';
-import { initSceneGraphCtx, RenderCxt, initState, State } from './3d/state';
+import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './3d/state';
 import { input$, Input } from './3d/event';
 import { api as raycasterApi } from './3d/raycaster';
 import { interpreter } from './3d/event';
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
-
-// init state :
-const assetCtx = initAssetCtx();
-// > load resources into assetCtx
-await loadAssetBundle<'texture'>(assetCtx.texture.api, assetCtx.texture.cache, textureBundle)();
-const sceneCxt = initSceneGraphCtx(assetCtx);
 
 // update
 const responseToInput = (input: Input, state: State) => {
@@ -25,7 +19,7 @@ const responseToInput = (input: Input, state: State) => {
 };
 
 /// Our ArPipelineModule :
-const ArPipelineModule = (): CameraPipelineModule => {
+const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraPipelineModule => {
     // define variables
 
     return {
@@ -80,7 +74,7 @@ const ArPipelineModule = (): CameraPipelineModule => {
     };
 };
 
-const onxrloaded = () => {
+const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx) => () => {
     XR8.addCameraPipelineModules([
         // Add camera pipeline modules.
         // Existing pipeline modules.
@@ -93,7 +87,7 @@ const onxrloaded = () => {
         XRExtras.Loading.pipelineModule(), // Manages the loading screen on startup.
         XRExtras.RuntimeError.pipelineModule(), // Shows an error image on runtime error.
         // Custom pipeline modules.
-        ArPipelineModule(),
+        ArPipelineModule(sceneCxt, assetCtx),
     ]);
 
     // Open the camera and start running the camera run loop.
@@ -104,8 +98,11 @@ const onxrloaded = () => {
 };
 
 // Show loading screen before the full XR library has been loaded.
-const runAR = () => {
-    XRExtras.Loading.showLoading({ onxrloaded });
+const runAR = async () => {
+    const assetCtx = initAssetCtx();
+    await loadAssetBundle<'texture'>(assetCtx.texture.api, assetCtx.texture.cache, textureBundle)();
+    const sceneCxt = initSceneGraphCtx(assetCtx);
+    XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx) });
 };
 
 runAR();

@@ -13,12 +13,3 @@ export function toRecord<T extends { [P in RecordableKeys<T>]: string | number |
 ): Record<T[K], T> {
     return array.reduce((acc, item) => ({ ...acc, [item[selector]]: item }), {} as Record<T[K], T>);
 }
-
-//   interface Person {
-//     name: string,
-//     age: number
-//     sibling?: Person
-//   }
-
-//   const input: Person[] = [ { name: 'Alice', age: 12 }, { name: 'Bob', age: 27 } ]
-//   const output = toRecord(input, 'name')
