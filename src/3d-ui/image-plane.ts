@@ -18,7 +18,6 @@ export const createImagePlane = (
         asset.texture.api.get(asset.texture.cache, imageUrl),
         option.getOrElseW(() => null),
     );
-    console.log(imgTexture);
 
     const mesh = new Mesh(
         new PlaneGeometry(size[0], size[1]),
@@ -28,7 +27,7 @@ export const createImagePlane = (
             visible: visible,
             color: backgroundColor,
             transparent: true,
-            opacity: 0.5,
+            // opacity: 0.5,
         }),
     );
 

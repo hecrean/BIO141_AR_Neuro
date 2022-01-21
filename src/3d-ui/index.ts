@@ -198,7 +198,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, _) => {
+                onPointerDown: (state, event) => {
+                    isMesh(event.object) ? event.object.material.color.set(new Color('pink')) : () => ({});
                     window.open('https://www.biogenlinc.ch/');
                     return state;
                 },
@@ -209,7 +210,9 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, _) => {
+                onPointerDown: (state, event) => {
+                    isMesh(event.object) ? event.object.material.color.set(new Color('pink')) : () => ({});
+
                     window.open('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
                     return state;
                 },
