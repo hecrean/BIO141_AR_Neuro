@@ -241,9 +241,9 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     leftPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const rightPanel = new Group();
-    setPosition(el.eva.mesh, new Vector3(0, 200 * PIXEL, 0));
+    setPosition(el.eva.mesh, new Vector3(0, 250 * PIXEL, 0));
     setPosition(el.ed.mesh, new Vector3(0, 0, 0));
-    setPosition(el.raph.mesh, new Vector3(0, -200 * PIXEL, 0));
+    setPosition(el.raph.mesh, new Vector3(0, -250 * PIXEL, 0));
     rightPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
     const belowPanel = new Group();
