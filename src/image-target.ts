@@ -3,7 +3,12 @@ import { SceneGraphCtx } from './state';
 import { Vector3, Quaternion } from 'three';
 
 // this is used to keep track of our image targets...
-export type TargetName = 'Eva-Thoma-front' | 'Eduard-Rohrbach-front' | 'Raphael-Bieri-front' | 'business_card';
+export type TargetName =
+    | 'Eva-Thoma-front'
+    | 'Eduard-Rohrbach-front'
+    | 'Raphael-Bieri-front'
+    | 'business_card'
+    | 'r42-business-card';
 
 type Detail = {
     position: { x: number; y: number; z: number };
@@ -37,7 +42,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => 
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
-                case 'business_card': {
+                case 'r42-business-card': {
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
                     root.quaternion.copy(
@@ -60,7 +65,7 @@ export const onImageLostListener = (sceneCtx: SceneGraphCtx): ImageLostMsg => {
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
-                case 'business_card': {
+                case 'r42-business-card': {
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.visible = false;
 
@@ -79,7 +84,7 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): ImageUpdatedMsg
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
-                case 'business_card': {
+                case 'r42-business-card': {
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
                     root.quaternion.copy(

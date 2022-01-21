@@ -82,7 +82,7 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
     return o instanceof Mesh;
 };
 
-const PIXEL = 1.024;
+const PIXEL = 0.0002645833;
 
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // img planes
