@@ -157,6 +157,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const rootSurface = new Group();
     // root surface will be centred at the business card. We replace this with our own image:
+    setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0.1));
     rootSurface.add(el.r42BusinessCard.mesh);
 
     const experience = new Group();
@@ -192,7 +193,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     // grouos:
     setPosition(bios, new Vector3(-1, 0, 0));
-    setPosition(contactMethods, new Vector3(1, 0, 0));
+    setPosition(experience, new Vector3(0, 1, 0));
+    setPosition(contactMethods, new Vector3(0, -0.5, 0));
 
     rootSurface.add(...[bios, contactMethods]);
 
