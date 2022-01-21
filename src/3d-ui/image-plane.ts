@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, PlaneGeometry, MeshBasicMaterial, Color } from 'three';
+import { DoubleSide, Mesh, PlaneGeometry, MeshBasicMaterial, Color, MeshStandardMaterial } from 'three';
 import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts';
 import { pipe } from 'fp-ts/function';
@@ -16,6 +16,10 @@ export const createImagePlane = (
 ) => {
     const imgTexture = pipe(
         asset.texture.api.get(asset.texture.cache, imageUrl),
+        option.map((texture) => {
+            texture.generateMipmaps = false;
+            return texture;
+        }),
         option.getOrElseW(() => null),
     );
 
@@ -27,7 +31,6 @@ export const createImagePlane = (
             visible: visible,
             color: backgroundColor,
             transparent: true,
-            // opacity: 0.5,
         }),
     );
 

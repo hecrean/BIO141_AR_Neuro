@@ -44,12 +44,13 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => 
             switch (detail.name) {
                 case 'r42-business-card': {
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
+                    root.visible = true;
+
                     root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
                     root.quaternion.copy(
                         new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
                     );
                     root.scale.set(detail.scale, detail.scale, detail.scale);
-                    root.visible = true;
                     break;
                 }
 
@@ -59,15 +60,15 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => 
         },
     };
 };
-export const onImageLostListener = (sceneCtx: SceneGraphCtx): ImageLostMsg => {
+export const onImageLostListener = (_: SceneGraphCtx): ImageLostMsg => {
     return {
         event: 'reality.imagelost',
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
-                    const root = sceneCtx.uiComponentHandles.rootSurface.group;
-                    root.visible = false;
+                    // const root = sceneCtx.uiComponentHandles.rootSurface.group;
+                    // root.visible = false;
 
                     break;
                 }
@@ -91,7 +92,7 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): ImageUpdatedMsg
                         new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
                     );
                     root.scale.set(detail.scale, detail.scale, detail.scale);
-                    root.visible = true;
+                    // root.visible = true;
                     break;
                 }
                 default:
