@@ -1,6 +1,5 @@
 import { ImageFoundMsg, ImageLostMsg, ImageUpdatedMsg } from './type';
 import { SceneGraphCtx } from './state';
-import { Vector3, Quaternion } from 'three';
 
 // this is used to keep track of our image targets...
 
@@ -67,11 +66,6 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: Imag
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.visible = true;
 
-                    root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
-                    root.quaternion.copy(
-                        new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
-                    );
-                    root.scale.set(detail.scale, detail.scale, detail.scale);
                     break;
                 }
 
@@ -103,7 +97,7 @@ export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: 
     };
 };
 
-export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageUpdatedMsg => {
+export const onImageUpdatedListener = (_: SceneGraphCtx, imageTargets: ImageTargets): ImageUpdatedMsg => {
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {
@@ -115,13 +109,13 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, imageTargets: Im
                         rotation: detail.rotation,
                         scale: detail.scale,
                     });
-                    const root = sceneCtx.uiComponentHandles.rootSurface.group;
-                    root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
-                    root.quaternion.copy(
-                        new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
-                    );
-                    root.scale.set(detail.scale, detail.scale, detail.scale);
-                    // root.visible = true;
+                    imageTargets[detail.name] = createImageTarget(detail.name, {
+                        position: detail.position,
+                        rotation: detail.rotation,
+                        scale: detail.scale,
+                    });
+
+    
                     break;
                 }
                 default:
