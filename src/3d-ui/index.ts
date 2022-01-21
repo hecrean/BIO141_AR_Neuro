@@ -34,6 +34,11 @@ export type UIElementHandles = {
     imageGallery: UIElement;
     quotation: UIElement;
     auroraAppExplaination: UIElement;
+    ed: UIElement;
+    eva: UIElement;
+    raph: UIElement;
+    btnLinc: UIElement;
+    btnSma: UIElement;
 };
 
 type UIComponent = {
@@ -77,6 +82,8 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
     return o instanceof Mesh;
 };
 
+const PIXEL = 1.024;
+
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // img planes
     const raphelBieriLinkedin = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, [1, 1], true);
@@ -93,6 +100,13 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const quotation = createImagePlane('/img/quotation.png', assetCtx, [1, 1], true);
     const imageGallery = createImagePlane('/img/image-gallery.png', assetCtx, [1, 1], true);
     const auroraAppExplaination = createImagePlane('/img/Aurora-app.png', assetCtx, [1, 1], true);
+
+    const btnLinc = createImagePlane('/img/btn_linc.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
+    const btnSma = createImagePlane('/img/btn_sma.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
+    const ed = createImagePlane('/img/ed.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
+    const eva = createImagePlane('/img/eva.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
+    const raph = createImagePlane('/img/raph.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
+
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1, 1, true);
 
@@ -172,6 +186,31 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: defaultEventHandlers,
             mesh: auroraAppExplaination,
         },
+        eva: {
+            kind: UIKinds.img,
+            api: defaultEventHandlers,
+            mesh: eva,
+        },
+        raph: {
+            kind: UIKinds.img,
+            api: defaultEventHandlers,
+            mesh: raph,
+        },
+        ed: {
+            kind: UIKinds.img,
+            api: defaultEventHandlers,
+            mesh: ed,
+        },
+        btnLinc: {
+            kind: UIKinds.button,
+            api: defaultEventHandlers,
+            mesh: btnLinc,
+        },
+        btnSma: {
+            kind: UIKinds.button,
+            api: defaultEventHandlers,
+            mesh: btnSma,
+        },
     };
 
     return uis;
@@ -185,34 +224,33 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const rootSurface = new Group();
     // root surface will be centred at the business card. We replace this with our own image:
-    setPosition(el.auroraAppExplaination.mesh, new Vector3(0, 0, 0));
-    rootSurface.add(el.auroraAppExplaination.mesh);
+    // setPosition(el.auroraAppExplaination.mesh, new Vector3(0, 0, 0));
+    // rootSurface.add(el.auroraAppExplaination.mesh);
 
     const leftPanel = new Group();
-    setPosition(el.raphelBieriLinkedin.mesh, new Vector3(-1, 0, 0));
-    setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(0, 0, 0));
-    setPosition(el.evaThomaLinkedin.mesh, new Vector3(1, 0, 0));
-    leftPanel.add(...[el.raphelBieriLinkedin.mesh, el.edwardRohrbachLinkedin.mesh, el.evaThomaLinkedin.mesh]);
+    setPosition(el.btnLinc.mesh, new Vector3(0, 180 * PIXEL, 0));
+    setPosition(el.btnSma.mesh, new Vector3(0, -180 * PIXEL, 0));
+    leftPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const rightPanel = new Group();
-    setPosition(el.evaBio.mesh, new Vector3(-1, 0, 0));
-    setPosition(el.eduardBio.mesh, new Vector3(0, 0, 0));
-    setPosition(el.raphaelBio.mesh, new Vector3(1, 0, 0));
-    rightPanel.add(...[el.evaBio.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
+    setPosition(el.eva.mesh, new Vector3(0, 180 * PIXEL, 0));
+    setPosition(el.ed.mesh, new Vector3(0, 0, 0));
+    setPosition(el.raph.mesh, new Vector3(0, -180 * PIXEL, 0));
+    rightPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
     const belowPanel = new Group();
-    setPosition(el.quotation.mesh, new Vector3(-0.5, 0, 0));
-    setPosition(el.imageGallery.mesh, new Vector3(0.5, 0, 0));
-    belowPanel.add(...[el.quotation.mesh, el.imageGallery.mesh]);
+    // setPosition(el.quotation.mesh, new Vector3(-0.5, 0, 0));
+    // setPosition(el.imageGallery.mesh, new Vector3(0.5, 0, 0));
+    // belowPanel.add(...[el.quotation.mesh, el.imageGallery.mesh]);
 
     const abovePanel = new Group();
-    abovePanel.add(el.mainVideo.mesh);
+    // abovePanel.add(el.mainVideo.mesh);
 
     // grouos:
-    setPosition(rightPanel, new Vector3(2, 0, 0));
-    setPosition(leftPanel, new Vector3(-2, 0, 0));
-    setPosition(belowPanel, new Vector3(0, -1, 0));
-    setPosition(abovePanel, new Vector3(0, 1, 0));
+    setPosition(rightPanel, new Vector3(1430 * PIXEL, 0, 0));
+    setPosition(leftPanel, new Vector3(-1430 * PIXEL, 0, 0));
+    setPosition(belowPanel, new Vector3(0, -1024 * PIXEL, 0));
+    setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
 
     rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
 

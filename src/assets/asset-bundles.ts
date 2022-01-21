@@ -23,5 +23,10 @@ export const textureBundle: AssetBundle = {
         '/img/random42-business-card.png',
         '/img/quotation.png',
         '/img/image-gallery.png',
+        '/img/ed.png',
+        '/img/raph.png',
+        '/img/eva.png',
+        '/img/btn_linc.png',
+        '/img/btn_sma.png',
     ],
 };
