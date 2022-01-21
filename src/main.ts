@@ -12,7 +12,6 @@ import {
 import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
-import { lerp } from 'three/src/math/MathUtils';
 import { Vector3, Quaternion } from 'three'
 
 declare const XR8: XR8Type;

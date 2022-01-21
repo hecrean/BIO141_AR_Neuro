@@ -1,6 +1,5 @@
 import { ImageFoundMsg, ImageLostMsg, ImageUpdatedMsg } from './type';
 import { SceneGraphCtx } from './state';
-import { Vector3, Quaternion } from 'three';
 
 // this is used to keep track of our image targets...
 
@@ -98,7 +97,7 @@ export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: 
     };
 };
 
-export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageUpdatedMsg => {
+export const onImageUpdatedListener = (_: SceneGraphCtx, imageTargets: ImageTargets): ImageUpdatedMsg => {
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {
