@@ -5,6 +5,10 @@ import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
 
+function openInNewTab(href: string) {
+    Object.assign(document.createElement('a'), { target: '_blank', href }).click();
+}
+
 enum UIKinds {
     button,
     div,
@@ -119,7 +123,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     isMesh(event.object) ? event.object.material.color.set(new Color('pink')) : () => ({});
-                    window.open('https://www.biogenlinc.ch/', '_blank');
+                    openInNewTab('https://www.biogenlinc.ch/');
                     return state;
                 },
             },
@@ -131,8 +135,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     isMesh(event.object) ? event.object.material.color.set(new Color('pink')) : () => ({});
-
-                    window.open('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html', '_blank');
+                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
                     return state;
                 },
             },
