@@ -75,13 +75,13 @@ const ArPipelineModule = (
 
             //perform lerping here:
             const root = sceneCxt.uiComponentHandles.rootSurface.group;
-
+            const LERP_RATE = 0.4;
             const { x, y, z} = imageTargets['r42-business-card'].transform.position;
             const {x: q1, y:q2, z:q3, w:q4} = imageTargets['r42-business-card'].transform.rotation;
-            root.position.lerp(new Vector3(x,y,z), 0.1)
-            root.quaternion.slerp(new Quaternion(q1,q2,q3,q4), 0.1)
+            root.position.lerp(new Vector3(x,y,z), LERP_RATE)
+            root.quaternion.slerp(new Quaternion(q1,q2,q3,q4), LERP_RATE)
             const scale = imageTargets['r42-business-card'].transform.scale;
-            root.scale.lerp(new Vector3(scale, scale, scale), 0.1)
+            root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE)
 
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
