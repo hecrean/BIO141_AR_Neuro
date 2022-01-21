@@ -44,7 +44,13 @@ const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraP
             // Add objects to the scene and set starting camera position.
 
             XR8.XrController.configure({
-                imageTargets: ['business_card', 'Raphael-Bieri-front', 'Eva-Thoma-front', 'Eduard-Rohrbach-front'],
+                imageTargets: [
+                    'business_card',
+                    'Raphael-Bieri-front',
+                    'Eva-Thoma-front',
+                    'Eduard-Rohrbach-front',
+                    'r42-business-card',
+                ],
             });
 
             // Sync the xr controller's 6DoF position and camera paremeters with our scene.
