@@ -1,6 +1,6 @@
 import { EventHandlers } from '../events/canvas';
 import { InteractionCache, interactionCacheApi } from '../interaction-cache';
-import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Vector3 } from 'three';
+import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Vector3, Color } from 'three';
 import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
@@ -71,10 +71,10 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const raphelBieriLinkedin = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, [1, 1], true);
     const edwardRohrbachLinkedin = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, [1, 1], true);
     const evaThomaLinkedin = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, [1, 1], true);
-    const whatsappIcon = createImagePlane('/img/Whastapp.png', assetCtx, [1, 1], true);
-    const zoomIcon = createImagePlane('/img/Zoom.png', assetCtx, [1, 1], true);
-    const mobileIcon = createImagePlane('/img/Mobile.png', assetCtx, [1, 1], true);
-    const emailIcon = createImagePlane('/img/Email.png', assetCtx, [1, 1], true);
+    const whatsappIcon = createImagePlane('/img/Whastapp.png', assetCtx, [0.2, 0.2], true, new Color('white'));
+    const zoomIcon = createImagePlane('/img/Zoom.png', assetCtx, [0.2, 0.2], true, new Color('white'));
+    const mobileIcon = createImagePlane('/img/Mobile.png', assetCtx, [0.2, 0.2], true, new Color('white'));
+    const emailIcon = createImagePlane('/img/Email.png', assetCtx, [0.2, 0.2], true, new Color('white'));
     const r42BusinessCard = createImagePlane('/img/random42-business-card.png', assetCtx, [1, 1], true);
     const evaBio = createImagePlane('/img/Eva-Bio.png', assetCtx, [1, 1], true);
     const eduardBio = createImagePlane('/img/Eduard-Bio.png', assetCtx, [1, 1], true);
@@ -159,18 +159,25 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     // root surface will be centred at the business card. We replace this with our own image:
     rootSurface.add(el.r42BusinessCard.mesh);
 
-    const bios = new Group();
+    const experience = new Group();
     // top-right
     setPosition(el.raphelBieriLinkedin.mesh, new Vector3(0.5, 0.5, 0));
     // top-left
     setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(-0.5, 0.5, 0));
     // bottom-right
     setPosition(el.evaThomaLinkedin.mesh, new Vector3(0.5, -0.5, 0));
-    // bottom-left
-    setPosition(el.mainVideo.mesh, new Vector3(-0.5, -0.5, 0));
-    bios.add(
+    experience.add(
         ...[el.raphelBieriLinkedin.mesh, el.edwardRohrbachLinkedin.mesh, el.evaThomaLinkedin.mesh, el.mainVideo.mesh],
     );
+
+    const bios = new Group();
+    // top-right
+    setPosition(el.evaBio.mesh, new Vector3(0, 0.4, 0));
+    // top-left
+    setPosition(el.eduardBio.mesh, new Vector3(0, 0, 0));
+    // bottom-right
+    setPosition(el.raphaelBio.mesh, new Vector3(0, -0.4, 0));
+    experience.add(...[el.evaBio.mesh, el.edwardRohrbachLinkedin.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
 
     const contactMethods = new Group();
     // left
