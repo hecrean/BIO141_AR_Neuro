@@ -224,8 +224,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const rootSurface = new Group();
     // root surface will be centred at the business card. We replace this with our own image:
-    // setPosition(el.auroraAppExplaination.mesh, new Vector3(0, 0, 0));
-    // rootSurface.add(el.auroraAppExplaination.mesh);
+    setPosition(el.auroraAppExplaination.mesh, new Vector3(0, 0, 0));
+    rootSurface.add(el.auroraAppExplaination.mesh);
 
     const leftPanel = new Group();
     setPosition(el.btnLinc.mesh, new Vector3(0, 180 * PIXEL, 0));
