@@ -160,24 +160,32 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     rootSurface.add(el.r42BusinessCard.mesh);
 
     const bios = new Group();
-    setPosition(el.raphelBieriLinkedin.mesh, new Vector3(1, 1, 0));
-    setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(-1, 1, 0));
-    setPosition(el.evaThomaLinkedin.mesh, new Vector3(1, -1, 0));
-    setPosition(el.mainVideo.mesh, new Vector3(-1, -1, 0));
+    // top-right
+    setPosition(el.raphelBieriLinkedin.mesh, new Vector3(0.5, 0.5, 0));
+    // top-left
+    setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(-0.5, 0.5, 0));
+    // bottom-right
+    setPosition(el.evaThomaLinkedin.mesh, new Vector3(0.5, -0.5, 0));
+    // bottom-left
+    setPosition(el.mainVideo.mesh, new Vector3(-0.5, -0.5, 0));
     bios.add(
         ...[el.raphelBieriLinkedin.mesh, el.edwardRohrbachLinkedin.mesh, el.evaThomaLinkedin.mesh, el.mainVideo.mesh],
     );
 
     const contactMethods = new Group();
-    setPosition(el.zoomIcon.mesh, new Vector3(-1.5, 0, 0));
-    setPosition(el.mobileIcon.mesh, new Vector3(-0.5, 0, 0));
-    setPosition(el.emailIcon.mesh, new Vector3(0.5, 0, 0));
-    setPosition(el.whatsappIcon.mesh, new Vector3(1.5, 0, 0));
+    // left
+    setPosition(el.zoomIcon.mesh, new Vector3(-0.6, 0, 0));
+    // mid-left
+    setPosition(el.mobileIcon.mesh, new Vector3(-0.2, 0, 0));
+    // mid-right
+    setPosition(el.emailIcon.mesh, new Vector3(0.4, 0, 0));
+    // right
+    setPosition(el.whatsappIcon.mesh, new Vector3(0.8, 0, 0));
     contactMethods.add(...[el.zoomIcon.mesh, el.mobileIcon.mesh, el.emailIcon.mesh, el.whatsappIcon.mesh]);
 
     // grouos:
-    setPosition(bios, new Vector3(-3, 0, 0));
-    setPosition(contactMethods, new Vector3(3, 0, 0));
+    setPosition(bios, new Vector3(-1, 0, 0));
+    setPosition(contactMethods, new Vector3(1, 0, 0));
 
     rootSurface.add(...[bios, contactMethods]);
 
