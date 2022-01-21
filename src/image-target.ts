@@ -57,6 +57,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: Imag
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
+                    console.log(imageTargets[detail.name]);
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.visible = true;
 
@@ -81,6 +82,9 @@ export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: 
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
+                    console.log(imageTargets[detail.name]);
+                    console.log(sceneGraphCtx);
+
                     // const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     // root.visible = false;
 
@@ -93,13 +97,14 @@ export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: 
     };
 };
 
-export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, _: ImageTargets): ImageUpdatedMsg => {
+export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageUpdatedMsg => {
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
+                    console.log(imageTargets[detail.name]);
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
                     root.quaternion.copy(

@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, PlaneGeometry, MeshBasicMaterial, Color, MeshStandardMaterial } from 'three';
+import { DoubleSide, Mesh, PlaneGeometry, MeshBasicMaterial, Color } from 'three';
 import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts';
 import { pipe } from 'fp-ts/function';
