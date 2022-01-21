@@ -176,9 +176,9 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     // abovePanel.add(el.mainVideo.mesh);
 
     // grouos:
-    setPosition(rightPanel, new Vector3(2100 * PIXEL, 0, 0));
+    setPosition(rightPanel, new Vector3(2100 * PIXEL, -612 * PIXEL, 0));
     setPosition(leftPanel, new Vector3(-1430 * PIXEL, 0, 0));
-    setPosition(belowPanel, new Vector3(0, -1200 * PIXEL, 0));
+    setPosition(belowPanel, new Vector3(0, -1300 * PIXEL, 0));
     setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
 
     rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
