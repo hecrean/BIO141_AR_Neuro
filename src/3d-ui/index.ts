@@ -31,6 +31,8 @@ export type UIElementHandles = {
     eduardBio: UIElement;
     raphaelBio: UIElement;
     mainVideo: UIElement;
+    imageGallery: UIElement;
+    quotation: UIElement;
 };
 
 type UIComponent = {
@@ -79,6 +81,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const evaBio = createImagePlane('/img/Eva-Bio.png', assetCtx, [1, 1], true);
     const eduardBio = createImagePlane('/img/Eduard-Bio.png', assetCtx, [1, 1], true);
     const raphaelBio = createImagePlane('/img/Raphael-Bio.png', assetCtx, [1, 1], true);
+    const quotation = createImagePlane('/img/quotation.png', assetCtx, [1, 1], true);
+    const imageGallery = createImagePlane('/img/image-gallery.png', assetCtx, [1, 1], true);
 
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1, 1, true);
@@ -144,6 +148,16 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: defaultEventHandlers,
             mesh: raphaelBio,
         },
+        imageGallery: {
+            kind: UIKinds.div,
+            api: defaultEventHandlers,
+            mesh: imageGallery,
+        },
+        quotation: {
+            kind: UIKinds.div,
+            api: defaultEventHandlers,
+            mesh: quotation,
+        },
     };
 
     return uis;
@@ -160,43 +174,34 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0.1));
     rootSurface.add(el.r42BusinessCard.mesh);
 
-    const experience = new Group();
-    // top-right
-    setPosition(el.raphelBieriLinkedin.mesh, new Vector3(0.5, 0.5, 0));
-    // top-left
-    setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(-0.5, 0.5, 0));
-    // bottom-right
-    setPosition(el.evaThomaLinkedin.mesh, new Vector3(0.5, -0.5, 0));
-    experience.add(
+    const leftPanel = new Group();
+    setPosition(el.raphelBieriLinkedin.mesh, new Vector3(-1, 0, 0));
+    setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(0, 0, 0));
+    setPosition(el.evaThomaLinkedin.mesh, new Vector3(1, 0, 0));
+    leftPanel.add(
         ...[el.raphelBieriLinkedin.mesh, el.edwardRohrbachLinkedin.mesh, el.evaThomaLinkedin.mesh, el.mainVideo.mesh],
     );
 
-    const bios = new Group();
+    const rightPanel = new Group();
     // top-right
-    setPosition(el.evaBio.mesh, new Vector3(0, 0.4, 0));
+    setPosition(el.evaBio.mesh, new Vector3(-1, 0, 0));
     // top-left
     setPosition(el.eduardBio.mesh, new Vector3(0, 0, 0));
     // bottom-right
-    setPosition(el.raphaelBio.mesh, new Vector3(0, -0.4, 0));
-    bios.add(...[el.evaBio.mesh, el.edwardRohrbachLinkedin.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
+    setPosition(el.raphaelBio.mesh, new Vector3(1, 0, 0));
+    rightPanel.add(...[el.evaBio.mesh, el.edwardRohrbachLinkedin.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
 
-    const contactMethods = new Group();
-    // left
-    setPosition(el.zoomIcon.mesh, new Vector3(-0.6, 0, 0));
-    // mid-left
-    setPosition(el.mobileIcon.mesh, new Vector3(-0.2, 0, 0));
-    // mid-right
-    setPosition(el.emailIcon.mesh, new Vector3(0.4, 0, 0));
-    // right
-    setPosition(el.whatsappIcon.mesh, new Vector3(0.8, 0, 0));
-    contactMethods.add(...[el.zoomIcon.mesh, el.mobileIcon.mesh, el.emailIcon.mesh, el.whatsappIcon.mesh]);
+    const belowPanel = new Group();
+    setPosition(el.quotation.mesh, new Vector3(-0.5, 0, 0));
+    setPosition(el.imageGallery.mesh, new Vector3(0.5, 0, 0));
+    belowPanel.add(...[el.quotation.mesh, el.imageGallery.mesh]);
 
     // grouos:
-    setPosition(bios, new Vector3(-1, 0, 0));
-    setPosition(experience, new Vector3(0, 1, 0));
-    setPosition(contactMethods, new Vector3(0, -0.5, 0));
+    setPosition(rightPanel, new Vector3(2, 0, 0));
+    setPosition(leftPanel, new Vector3(-2, 0, 0));
+    setPosition(belowPanel, new Vector3(0, -1, 0));
 
-    rootSurface.add(...[bios, contactMethods, experience]);
+    rootSurface.add(...[leftPanel, rightPanel, belowPanel]);
 
     return {
         rootSurface: { name: 'rootSurface', group: rootSurface },
