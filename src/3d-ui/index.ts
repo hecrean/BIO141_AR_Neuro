@@ -156,6 +156,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     };
 
     const rootSurface = new Group();
+    // root surface will be centred at the business card. We replace this with our own image:
+    rootSurface.add(el.r42BusinessCard.mesh);
 
     const bios = new Group();
     setPosition(el.raphelBieriLinkedin.mesh, new Vector3(1, 1, 0));
