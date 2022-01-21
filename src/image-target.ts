@@ -67,11 +67,6 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: Imag
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.visible = true;
 
-                    root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
-                    root.quaternion.copy(
-                        new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
-                    );
-                    root.scale.set(detail.scale, detail.scale, detail.scale);
                     break;
                 }
 
@@ -115,13 +110,13 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, imageTargets: Im
                         rotation: detail.rotation,
                         scale: detail.scale,
                     });
-                    const root = sceneCtx.uiComponentHandles.rootSurface.group;
-                    root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
-                    root.quaternion.copy(
-                        new Quaternion(detail.rotation.x, detail.rotation.y, detail.rotation.z, detail.rotation.w),
-                    );
-                    root.scale.set(detail.scale, detail.scale, detail.scale);
-                    // root.visible = true;
+                    imageTargets[detail.name] = createImageTarget(detail.name, {
+                        position: detail.position,
+                        rotation: detail.rotation,
+                        scale: detail.scale,
+                    });
+
+    
                     break;
                 }
                 default:

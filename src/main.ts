@@ -12,6 +12,8 @@ import {
 import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
+import { lerp } from 'three/src/math/MathUtils';
+import { Vector3, Quaternion } from 'three'
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
@@ -71,7 +73,17 @@ const ArPipelineModule = (
             const {
                 /*scene, camera, renderer, cameraTexture*/
             } = XR8.Threejs.xrScene();
-            //updateScene(scene, camera, renderer)
+
+            //perform lerping here:
+            const root = sceneCxt.uiComponentHandles.rootSurface.group;
+
+            const { x, y, z} = imageTargets['r42-business-card'].transform.position;
+            const {x: q1, y:q2, z:q3, w:q4} = imageTargets['r42-business-card'].transform.rotation;
+            root.position.lerp(new Vector3(x,y,z), 0.1)
+            root.quaternion.slerp(new Quaternion(q1,q2,q3,q4), 0.1)
+            const scale = imageTargets['r42-business-card'].transform.scale;
+            root.scale.lerp(new Vector3(scale, scale, scale), 0.1)
+
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
         // updates can be applied at an appropriate synchronized point in the rendering cycle.
