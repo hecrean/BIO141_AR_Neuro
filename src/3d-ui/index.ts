@@ -178,7 +178,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(el.eduardBio.mesh, new Vector3(0, 0, 0));
     // bottom-right
     setPosition(el.raphaelBio.mesh, new Vector3(0, -0.4, 0));
-    experience.add(...[el.evaBio.mesh, el.edwardRohrbachLinkedin.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
+    bios.add(...[el.evaBio.mesh, el.edwardRohrbachLinkedin.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
 
     const contactMethods = new Group();
     // left
@@ -196,7 +196,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(experience, new Vector3(0, 1, 0));
     setPosition(contactMethods, new Vector3(0, -0.5, 0));
 
-    rootSurface.add(...[bios, contactMethods]);
+    rootSurface.add(...[bios, contactMethods, experience]);
 
     return {
         rootSurface: { name: 'rootSurface', group: rootSurface },
