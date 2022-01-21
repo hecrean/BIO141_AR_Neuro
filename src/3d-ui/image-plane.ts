@@ -16,10 +16,6 @@ export const createImagePlane = (
 ) => {
     const imgTexture = pipe(
         asset.texture.api.get(asset.texture.cache, imageUrl),
-        option.map((texture) => {
-            texture.generateMipmaps = false;
-            return texture;
-        }),
         option.getOrElseW(() => null),
     );
 
