@@ -169,16 +169,16 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     const abovePanel = new Group();
 
     const rightPanel = new Group();
-    setPosition(el.eva.mesh, new Vector3(0, 400 * PIXEL, 0));
+    setPosition(el.eva.mesh, new Vector3(0, 700 * PIXEL, 0));
     setPosition(el.ed.mesh, new Vector3(0, 0, 0));
-    setPosition(el.raph.mesh, new Vector3(0, -400 * PIXEL, 0));
+    setPosition(el.raph.mesh, new Vector3(0, -700 * PIXEL, 0));
     rightPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
     const leftPanel = new Group();
     // abovePanel.add(el.mainVideo.mesh);
 
     // grouos:
-    setPosition(rightPanel, new Vector3(1800 * PIXEL, 0, 0));
+    setPosition(rightPanel, new Vector3(2100 * PIXEL, 0, 0));
     setPosition(leftPanel, new Vector3(-1430 * PIXEL, 0, 0));
     setPosition(belowPanel, new Vector3(0, -1200 * PIXEL, 0));
     setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
