@@ -1,5 +1,1 @@
-8th-wall-template
-
-> resource map with all required resources;
-> load resources asynchronously, and cache them
-> subsequently load all resources from the cache
+![alt text](https://github.com/hecrean/BIO141_AR_Neuro/tree/main/public/img/instructions.png?raw=true)
