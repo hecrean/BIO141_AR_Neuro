@@ -2,7 +2,13 @@ import './style.css';
 import { textureBundle } from './assets/asset-bundles';
 import { AssetsCtx, initAssetCtx, loadAssetBundle } from './assets';
 import type { CameraPipelineModule, XR8 as XR8Type, XRExtras as XRExtrasType } from './type';
-import { onImageFoundListener, onImageLostListener, onImageUpdatedListener } from './image-target';
+import {
+    ImageTargets,
+    initImageTargets,
+    onImageFoundListener,
+    onImageLostListener,
+    onImageUpdatedListener,
+} from './image-target';
 import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
@@ -18,7 +24,11 @@ const responseToInput = (input: Input, state: State) => {
 };
 
 /// Our ArPipelineModule :
-const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraPipelineModule => {
+const ArPipelineModule = (
+    sceneCxt: SceneGraphCtx,
+    assetCtx: AssetsCtx,
+    imageTargets: ImageTargets,
+): CameraPipelineModule => {
     // define variables
 
     return {
@@ -37,20 +47,14 @@ const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraP
 
             const renderCtx: RenderCxt = { scene, camera, gl: renderer };
 
-            const state = initState(renderCtx, sceneCxt, assetCtx);
+            const state = initState(renderCtx, sceneCxt, assetCtx, imageTargets);
 
             input$.subscribe((input) => responseToInput(input, state));
 
             // Add objects to the scene and set starting camera position.
 
             XR8.XrController.configure({
-                imageTargets: [
-                    'business_card',
-                    'Raphael-Bieri-front',
-                    'Eva-Thoma-front',
-                    'Eduard-Rohrbach-front',
-                    'r42-business-card',
-                ],
+                imageTargets: ['r42-business-card'],
             });
 
             // Sync the xr controller's 6DoF position and camera paremeters with our scene.
@@ -71,11 +75,15 @@ const ArPipelineModule = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx): CameraP
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
         // updates can be applied at an appropriate synchronized point in the rendering cycle.
-        listeners: [onImageUpdatedListener(sceneCxt), onImageFoundListener(sceneCxt), onImageLostListener(sceneCxt)],
+        listeners: [
+            onImageUpdatedListener(sceneCxt, imageTargets),
+            onImageFoundListener(sceneCxt, imageTargets),
+            onImageLostListener(sceneCxt, imageTargets),
+        ],
     };
 };
 
-const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx) => () => {
+const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx, imageTargets: ImageTargets) => () => {
     XR8.addCameraPipelineModules([
         // Add camera pipeline modules.
         // Existing pipeline modules.
@@ -88,7 +96,7 @@ const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx) => () => {
         XRExtras.Loading.pipelineModule(), // Manages the loading screen on startup.
         XRExtras.RuntimeError.pipelineModule(), // Shows an error image on runtime error.
         // Custom pipeline modules.
-        ArPipelineModule(sceneCxt, assetCtx),
+        ArPipelineModule(sceneCxt, assetCtx, imageTargets),
     ]);
 
     // Open the camera and start running the camera run loop.
@@ -109,7 +117,8 @@ const runAR = async () => {
     console.log('bundles', bundlesLoaded);
     const sceneCxt = initSceneGraphCtx(assetCtx);
     console.log('sceneCxt', sceneCxt);
-    XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx) });
+    const imageTargets = initImageTargets();
+    XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx, imageTargets) });
 };
 
 runAR();

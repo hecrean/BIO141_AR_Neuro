@@ -3,20 +3,34 @@ import { SceneGraphCtx } from './state';
 import { Vector3, Quaternion } from 'three';
 
 // this is used to keep track of our image targets...
-export type TargetName =
-    | 'Eva-Thoma-front'
-    | 'Eduard-Rohrbach-front'
-    | 'Raphael-Bieri-front'
-    | 'business_card'
-    | 'r42-business-card';
 
-type Detail = {
+export type TargetName =
+    // | 'Eva-Thoma-front'
+    // | 'Eduard-Rohrbach-front'
+    // | 'Raphael-Bieri-front'
+    // | 'business_card'
+    'r42-business-card';
+
+type Transform = {
     position: { x: number; y: number; z: number };
     rotation: { x: number; y: number; z: number; w: number };
     scale: number;
 };
+export const initTransform = () => ({
+    position: { x: 0, y: 0, z: 0 },
+    rotation: { x: 0, y: 0, z: 0, w: 0 },
+    scale: 0,
+});
 
-const log = (name: string, detail: Detail) => {
+type ImageTarget<T extends TargetName> = { tag: T; transform: Transform };
+
+export type ImageTargets = { [T in TargetName]: ImageTarget<T> };
+
+export const initImageTargets = (): ImageTargets => ({
+    'r42-business-card': { tag: 'r42-business-card', transform: initTransform() },
+});
+
+const log = (name: string, detail: Transform) => {
     console.log(`handling event ${name}: details: ${JSON.stringify(detail)}`);
 };
 
@@ -36,7 +50,7 @@ const log = (name: string, detail: Detail) => {
 //     return { position: r, rotation: q, scale: s };
 // };
 
-export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => {
+export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageFoundMsg => {
     return {
         event: 'reality.imagefound',
         process: ({ name, detail }) => {
@@ -60,7 +74,7 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx): ImageFoundMsg => 
         },
     };
 };
-export const onImageLostListener = (_: SceneGraphCtx): ImageLostMsg => {
+export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageLostMsg => {
     return {
         event: 'reality.imagelost',
         process: ({ name, detail }) => {
@@ -79,7 +93,7 @@ export const onImageLostListener = (_: SceneGraphCtx): ImageLostMsg => {
     };
 };
 
-export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx): ImageUpdatedMsg => {
+export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, _: ImageTargets): ImageUpdatedMsg => {
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {

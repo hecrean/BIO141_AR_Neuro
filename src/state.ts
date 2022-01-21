@@ -3,6 +3,7 @@ import { registerUi, initUiElements, UIComponentHandles, UIElementHandles, initU
 import { AssetsCtx } from './assets';
 import { interactionCache, InteractionCache } from './interaction-cache';
 import { DirectionalLight, AmbientLight } from 'three';
+import { ImageTargets } from 'image-target';
 
 export type RenderCxt = {
     scene: THREE.Scene;
@@ -35,9 +36,14 @@ export const initSceneGraphCtx = (assetCtx: AssetsCtx): SceneGraphCtx => {
     return sceneCtx;
 };
 
-export type State = { sceneCtx: SceneGraphCtx; assetCtx: AssetsCtx; renderCtx: RenderCxt };
+export type State = { sceneCtx: SceneGraphCtx; assetCtx: AssetsCtx; renderCtx: RenderCxt; imageTargets: ImageTargets };
 
-export const initState = (renderCtx: RenderCxt, sceneCtx: SceneGraphCtx, assetCtx: AssetsCtx): State => {
+export const initState = (
+    renderCtx: RenderCxt,
+    sceneCtx: SceneGraphCtx,
+    assetCtx: AssetsCtx,
+    imageTargets: ImageTargets,
+): State => {
     // light
     const directionalLight1 = new DirectionalLight(0xffffff, 1);
     directionalLight1.position.set(1, 4.3, 2.5);
@@ -52,5 +58,5 @@ export const initState = (renderCtx: RenderCxt, sceneCtx: SceneGraphCtx, assetCt
     // components
     renderCtx.scene.add(sceneCtx.uiComponentHandles.rootSurface.group);
 
-    return { renderCtx, sceneCtx, assetCtx };
+    return { renderCtx, sceneCtx, assetCtx, imageTargets };
 };
