@@ -18,6 +18,9 @@ export const createImagePlane = (
         asset.texture.api.get(asset.texture.cache, imageUrl),
         option.getOrElseW(() => null),
     );
+    if (imgTexture) {
+        console.log('img tex is valid');
+    }
 
     const mesh = new Mesh(
         new PlaneGeometry(size[0], size[1]),
