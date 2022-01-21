@@ -86,7 +86,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const zoomIcon = createImagePlane('/img/Zoom.png', assetCtx, [0.2, 0.2], true, new Color('white'));
     const mobileIcon = createImagePlane('/img/Mobile.png', assetCtx, [0.2, 0.2], true, new Color('white'));
     const emailIcon = createImagePlane('/img/Email.png', assetCtx, [0.2, 0.2], true, new Color('white'));
-    const r42BusinessCard = createImagePlane('/img/random42-business-card.png', assetCtx, [1, 1], true);
+    const r42BusinessCard = createImagePlane(
+        '/img/random42-business-card.png',
+        assetCtx,
+        [1636 * PIXEL, 1024 * PIXEL],
+        true,
+    );
     const evaBio = createImagePlane('/img/Eva-Bio.png', assetCtx, [1, 1], true);
     const eduardBio = createImagePlane('/img/Eduard-Bio.png', assetCtx, [1, 1], true);
     const raphaelBio = createImagePlane('/img/Raphael-Bio.png', assetCtx, [1, 1], true);
@@ -241,8 +246,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const rootSurface = new Group();
     // root surface will be centred at the business card. We replace this with our own image:
-    setPosition(el.auroraAppExplaination.mesh, new Vector3(0, 0, 0));
-    rootSurface.add(el.auroraAppExplaination.mesh);
+    setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0));
+    rootSurface.add(el.r42BusinessCard.mesh);
 
     const leftPanel = new Group();
     setPosition(el.btnLinc.mesh, new Vector3(0, 180 * PIXEL, 0));
