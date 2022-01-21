@@ -52,8 +52,15 @@ export type UIComponentHandles = {
 
 export const defaultEventHandlers: EventHandlers = {
     onPointerEnter: (state, _) => state,
-    onPointerDown: (state, _) => state,
-    onPointerUp: (state, _) => state,
+    onPointerDown: (state, event) => {
+        isMesh(event.object) ? event.object.material.color.set(new Color('red')) : () => ({});
+        return state;
+    },
+    onPointerUp: (state, event) => {
+        isMesh(event.object) ? event.object.material.color.set(new Color('blue')) : () => ({});
+
+        return state;
+    },
     onPointerOver: (state, _) => state,
     onPointerOut: (state, _) => state,
     onPointerLeave: (state, _) => state,
