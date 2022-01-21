@@ -24,6 +24,8 @@ export const initTransform = () => ({
 
 type ImageTarget<T extends TargetName> = { tag: T; transform: Transform };
 
+const createImageTarget = (tag: TargetName, transform: Transform) => ({ tag, transform });
+
 export type ImageTargets = { [T in TargetName]: ImageTarget<T> };
 
 export const initImageTargets = (): ImageTargets => ({
@@ -57,7 +59,11 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: Imag
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
-                    console.log(imageTargets[detail.name]);
+                    imageTargets[detail.name] = createImageTarget(detail.name, {
+                        position: detail.position,
+                        rotation: detail.rotation,
+                        scale: detail.scale,
+                    });
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.visible = true;
 
@@ -104,7 +110,11 @@ export const onImageUpdatedListener = (sceneCtx: SceneGraphCtx, imageTargets: Im
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
-                    console.log(imageTargets[detail.name]);
+                    imageTargets[detail.name] = createImageTarget(detail.name, {
+                        position: detail.position,
+                        rotation: detail.rotation,
+                        scale: detail.scale,
+                    });
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.position.copy(new Vector3(detail.position.x, detail.position.y, detail.position.z));
                     root.quaternion.copy(

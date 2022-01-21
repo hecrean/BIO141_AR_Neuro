@@ -19,21 +19,8 @@ type UIElement = {
 };
 
 export type UIElementHandles = {
-    raphelBieriLinkedin: UIElement;
-    edwardRohrbachLinkedin: UIElement;
-    evaThomaLinkedin: UIElement;
-    whatsappIcon: UIElement;
-    zoomIcon: UIElement;
-    mobileIcon: UIElement;
-    emailIcon: UIElement;
     r42BusinessCard: UIElement;
-    evaBio: UIElement;
-    eduardBio: UIElement;
-    raphaelBio: UIElement;
     mainVideo: UIElement;
-    imageGallery: UIElement;
-    quotation: UIElement;
-    auroraAppExplaination: UIElement;
     ed: UIElement;
     eva: UIElement;
     raph: UIElement;
@@ -79,28 +66,14 @@ const PIXEL = 0.0009765;
 
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // img planes
-    const raphelBieriLinkedin = createImagePlane('/img/Raphael-Bieri-alt.png', assetCtx, [1, 1], true);
-    const edwardRohrbachLinkedin = createImagePlane('/img/Eduard-Rohrbach-alt.png', assetCtx, [1, 1], true);
-    const evaThomaLinkedin = createImagePlane('/img/Eva-Thoma-alt.png', assetCtx, [1, 1], true);
-    const whatsappIcon = createImagePlane('/img/Whastapp.png', assetCtx, [0.2, 0.2], true, new Color('white'));
-    const zoomIcon = createImagePlane('/img/Zoom.png', assetCtx, [0.2, 0.2], true, new Color('white'));
-    const mobileIcon = createImagePlane('/img/Mobile.png', assetCtx, [0.2, 0.2], true, new Color('white'));
-    const emailIcon = createImagePlane('/img/Email.png', assetCtx, [0.2, 0.2], true, new Color('white'));
     const r42BusinessCard = createImagePlane(
         '/img/random42-business-card.png',
         assetCtx,
         [1636 * PIXEL, 1024 * PIXEL],
         true,
     );
-    const evaBio = createImagePlane('/img/Eva-Bio.png', assetCtx, [1, 1], true);
-    const eduardBio = createImagePlane('/img/Eduard-Bio.png', assetCtx, [1, 1], true);
-    const raphaelBio = createImagePlane('/img/Raphael-Bio.png', assetCtx, [1, 1], true);
-    const quotation = createImagePlane('/img/quotation.png', assetCtx, [1, 1], true);
-    const imageGallery = createImagePlane('/img/image-gallery.png', assetCtx, [1, 1], true);
-    const auroraAppExplaination = createImagePlane('/img/Aurora-app.png', assetCtx, [1, 1], true);
-
-    const btnLinc = createImagePlane('/img/btn_linc.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
-    const btnSma = createImagePlane('/img/btn_sma.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
+    const btnLinc = createImagePlane('/img/btn_linc.png', assetCtx, [2 * 640 * PIXEL, 2 * 240 * PIXEL], true);
+    const btnSma = createImagePlane('/img/btn_sma.png', assetCtx, [2 * 640 * PIXEL, 2 * 240 * PIXEL], true);
     const ed = createImagePlane('/img/ed.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
     const eva = createImagePlane('/img/eva.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
     const raph = createImagePlane('/img/raph.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
@@ -109,11 +82,6 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
 
     const uis: UIElementHandles = {
-        evaThomaLinkedin: {
-            kind: UIKinds.img,
-            api: defaultEventHandlers,
-            mesh: evaThomaLinkedin,
-        },
         mainVideo: {
             kind: UIKinds.video,
             api: {
@@ -125,70 +93,10 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             },
             mesh: mainVideo.mesh,
         },
-        edwardRohrbachLinkedin: {
-            kind: UIKinds.img,
-            api: defaultEventHandlers,
-            mesh: edwardRohrbachLinkedin,
-        },
-        raphelBieriLinkedin: {
-            kind: UIKinds.img,
-            api: defaultEventHandlers,
-            mesh: raphelBieriLinkedin,
-        },
-        whatsappIcon: {
-            kind: UIKinds.button,
-            api: defaultEventHandlers,
-            mesh: whatsappIcon,
-        },
-        zoomIcon: {
-            kind: UIKinds.button,
-            api: defaultEventHandlers,
-            mesh: zoomIcon,
-        },
-        mobileIcon: {
-            kind: UIKinds.button,
-            api: defaultEventHandlers,
-            mesh: mobileIcon,
-        },
-        emailIcon: {
-            kind: UIKinds.button,
-            api: defaultEventHandlers,
-            mesh: emailIcon,
-        },
         r42BusinessCard: {
             kind: UIKinds.img,
             api: defaultEventHandlers,
             mesh: r42BusinessCard,
-        },
-        evaBio: {
-            kind: UIKinds.div,
-            api: defaultEventHandlers,
-            mesh: evaBio,
-        },
-        eduardBio: {
-            kind: UIKinds.div,
-            api: defaultEventHandlers,
-            mesh: eduardBio,
-        },
-        raphaelBio: {
-            kind: UIKinds.div,
-            api: defaultEventHandlers,
-            mesh: raphaelBio,
-        },
-        imageGallery: {
-            kind: UIKinds.div,
-            api: defaultEventHandlers,
-            mesh: imageGallery,
-        },
-        quotation: {
-            kind: UIKinds.div,
-            api: defaultEventHandlers,
-            mesh: quotation,
-        },
-        auroraAppExplaination: {
-            kind: UIKinds.div,
-            api: defaultEventHandlers,
-            mesh: auroraAppExplaination,
         },
         eva: {
             kind: UIKinds.img,

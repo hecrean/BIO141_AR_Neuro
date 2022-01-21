@@ -3,6 +3,10 @@ import { Vector2 } from 'three';
 import { IntersectionEvent, CanvasEvent, CanvasEventName } from './events/canvas';
 import { SceneGraphCtx, RenderCxt } from './state';
 
+/** Customise loading  */
+
+/*<-------------->*/
+
 export const initRaycaster = () => {
     const raycaster = new THREE.Raycaster();
 
