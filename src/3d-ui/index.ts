@@ -262,8 +262,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     abovePanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
     const rightPanel = new Group();
-    setPosition(el.mainVideo.mesh, new Vector3(0, 0, 0));
-    rightPanel.add(el.mainVideo.mesh);
+    // setPosition(el.mainVideo.mesh, new Vector3(0, 0, 0));
+    // rightPanel.add(el.mainVideo.mesh);
 
     const leftPanel = new Group();
     // abovePanel.add(el.mainVideo.mesh);
