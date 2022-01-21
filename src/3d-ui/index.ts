@@ -78,9 +78,9 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     );
     const btnLinc = createImagePlane('/img/btn_linc.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
     const btnSma = createImagePlane('/img/btn_sma.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
-    const ed = createImagePlane('/img/ed.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
-    const eva = createImagePlane('/img/eva.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
-    const raph = createImagePlane('/img/raph.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
+    const ed = createImagePlane('/img/ed.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
+    const eva = createImagePlane('/img/eva.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
+    const raph = createImagePlane('/img/raph.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
 
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
@@ -169,16 +169,16 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     const abovePanel = new Group();
 
     const rightPanel = new Group();
-    setPosition(el.eva.mesh, new Vector3(0, 250 * PIXEL, 0));
+    setPosition(el.eva.mesh, new Vector3(0, 400 * PIXEL, 0));
     setPosition(el.ed.mesh, new Vector3(0, 0, 0));
-    setPosition(el.raph.mesh, new Vector3(0, -250 * PIXEL, 0));
+    setPosition(el.raph.mesh, new Vector3(0, -400 * PIXEL, 0));
     rightPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
     const leftPanel = new Group();
     // abovePanel.add(el.mainVideo.mesh);
 
     // grouos:
-    setPosition(rightPanel, new Vector3(1430 * PIXEL, 0, 0));
+    setPosition(rightPanel, new Vector3(1800 * PIXEL, 0, 0));
     setPosition(leftPanel, new Vector3(-1430 * PIXEL, 0, 0));
     setPosition(belowPanel, new Vector3(0, -1200 * PIXEL, 0));
     setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
