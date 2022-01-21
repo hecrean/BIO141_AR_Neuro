@@ -76,8 +76,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
         [1636 * PIXEL, 1024 * PIXEL],
         true,
     );
-    const btnLinc = createImagePlane('/img/btn_linc.png', assetCtx, [2 * 640 * PIXEL, 2 * 240 * PIXEL], true);
-    const btnSma = createImagePlane('/img/btn_sma.png', assetCtx, [2 * 640 * PIXEL, 2 * 240 * PIXEL], true);
+    const btnLinc = createImagePlane('/img/btn_linc.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
+    const btnSma = createImagePlane('/img/btn_sma.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
     const ed = createImagePlane('/img/ed.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
     const eva = createImagePlane('/img/eva.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
     const raph = createImagePlane('/img/raph.png', assetCtx, [640 * PIXEL, 240 * PIXEL], true);
@@ -158,23 +158,21 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     const rootSurface = new Group();
     rootSurface.visible = false;
     // root surface will be centred at the business card. We replace this with our own image:
-    setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0));
-    rootSurface.add(el.r42BusinessCard.mesh);
+    // setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0));
+    // rootSurface.add(el.r42BusinessCard.mesh);
 
     const belowPanel = new Group();
-    setPosition(el.btnLinc.mesh, new Vector3(0, 220 * PIXEL, 0));
-    setPosition(el.btnSma.mesh, new Vector3(0, -220 * PIXEL, 0));
+    setPosition(el.btnLinc.mesh, new Vector3(0, 340 * PIXEL, 0));
+    setPosition(el.btnSma.mesh, new Vector3(0, -340 * PIXEL, 0));
     belowPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const abovePanel = new Group();
+
+    const rightPanel = new Group();
     setPosition(el.eva.mesh, new Vector3(0, 250 * PIXEL, 0));
     setPosition(el.ed.mesh, new Vector3(0, 0, 0));
     setPosition(el.raph.mesh, new Vector3(0, -250 * PIXEL, 0));
-    abovePanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
-
-    const rightPanel = new Group();
-    // setPosition(el.mainVideo.mesh, new Vector3(0, 0, 0));
-    // rightPanel.add(el.mainVideo.mesh);
+    rightPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
     const leftPanel = new Group();
     // abovePanel.add(el.mainVideo.mesh);
