@@ -1,1 +1,1 @@
-![alt text](https://github.com/hecrean/BIO141_AR_Neuro/tree/main/public/img/instructions.png?raw=true)
+![alt text](https://github.com/hecrean/BIO141_AR_Neuro/tree/main/public/img/Instructions.png?raw=true)
