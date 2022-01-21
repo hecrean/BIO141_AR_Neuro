@@ -15,11 +15,9 @@ interface VideoPlaneHandlers {
 export const createVideoPlane = (videoUrl: string, width: number, height: number, visible: boolean): VideoPlane => {
     const videoEl = document.createElement('video');
     videoEl.src = videoUrl;
-    videoEl.setAttribute('preload', 'auto');
-    videoEl.setAttribute('loop', '');
-    videoEl.setAttribute('muted', '');
-    videoEl.setAttribute('playsinline', '');
-    videoEl.setAttribute('webkit-playsinline', '');
+    videoEl.crossOrigin = 'Anonymous';
+    videoEl.loop = true;
+    videoEl.play();
 
     const texture = new VideoTexture(videoEl);
     texture.minFilter = LinearFilter;

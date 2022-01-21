@@ -192,16 +192,11 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(el.raphelBieriLinkedin.mesh, new Vector3(-1, 0, 0));
     setPosition(el.edwardRohrbachLinkedin.mesh, new Vector3(0, 0, 0));
     setPosition(el.evaThomaLinkedin.mesh, new Vector3(1, 0, 0));
-    leftPanel.add(
-        ...[el.raphelBieriLinkedin.mesh, el.edwardRohrbachLinkedin.mesh, el.evaThomaLinkedin.mesh, el.mainVideo.mesh],
-    );
+    leftPanel.add(...[el.raphelBieriLinkedin.mesh, el.edwardRohrbachLinkedin.mesh, el.evaThomaLinkedin.mesh]);
 
     const rightPanel = new Group();
-    // top-right
     setPosition(el.evaBio.mesh, new Vector3(-1, 0, 0));
-    // top-left
     setPosition(el.eduardBio.mesh, new Vector3(0, 0, 0));
-    // bottom-right
     setPosition(el.raphaelBio.mesh, new Vector3(1, 0, 0));
     rightPanel.add(...[el.evaBio.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
 
@@ -210,12 +205,16 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(el.imageGallery.mesh, new Vector3(0.5, 0, 0));
     belowPanel.add(...[el.quotation.mesh, el.imageGallery.mesh]);
 
+    const abovePanel = new Group();
+    abovePanel.add(el.mainVideo.mesh);
+
     // grouos:
     setPosition(rightPanel, new Vector3(2, 0, 0));
     setPosition(leftPanel, new Vector3(-2, 0, 0));
     setPosition(belowPanel, new Vector3(0, -1, 0));
+    setPosition(abovePanel, new Vector3(0, 1, 0));
 
-    rootSurface.add(...[leftPanel, rightPanel, belowPanel]);
+    rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
 
     return {
         rootSurface: { name: 'rootSurface', group: rootSurface },
