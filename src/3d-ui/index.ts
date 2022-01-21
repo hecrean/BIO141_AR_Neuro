@@ -162,8 +162,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     rootSurface.add(el.r42BusinessCard.mesh);
 
     const belowPanel = new Group();
-    setPosition(el.btnLinc.mesh, new Vector3(0, 180 * PIXEL, 0));
-    setPosition(el.btnSma.mesh, new Vector3(0, -180 * PIXEL, 0));
+    setPosition(el.btnLinc.mesh, new Vector3(0, 220 * PIXEL, 0));
+    setPosition(el.btnSma.mesh, new Vector3(0, -220 * PIXEL, 0));
     belowPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const abovePanel = new Group();
@@ -182,7 +182,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     // grouos:
     setPosition(rightPanel, new Vector3(1430 * PIXEL, 0, 0));
     setPosition(leftPanel, new Vector3(-1430 * PIXEL, 0, 0));
-    setPosition(belowPanel, new Vector3(0, -1024 * PIXEL, 0));
+    setPosition(belowPanel, new Vector3(0, -1200 * PIXEL, 0));
     setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
 
     rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
