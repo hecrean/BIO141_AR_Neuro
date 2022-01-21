@@ -26,7 +26,9 @@ export const createImagePlane = (
             side: DoubleSide,
             map: imgTexture,
             visible: visible,
-            color: backgroundColor,
+            color: backgroundColor ? backgroundColor : 0xff0000,
+            transparent: true,
+            opacity: 0.5,
         }),
     );
 
