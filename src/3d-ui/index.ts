@@ -264,6 +264,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const belowPanel = new Group();
     setPosition(el.mainVideo.mesh, new Vector3(0, 0, 0));
+    belowPanel.add(el.mainVideo.mesh);
 
     const abovePanel = new Group();
     // abovePanel.add(el.mainVideo.mesh);
