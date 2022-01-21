@@ -82,7 +82,8 @@ export const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMater
     return o instanceof Mesh;
 };
 
-const PIXEL = 0.0002645833;
+// const PIXEL = 0.0002645833;
+const PIXEL = 0.0009765;
 
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // img planes
@@ -221,6 +222,9 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
         m.position.set(x, y, z);
         return m;
     };
+
+    // When the image target is found, we calculate the ration betwee { size of image on server : size of image viewed through camera}
+    // We use this ratio to resize the root surface group (and consequently all its children)
 
     const rootSurface = new Group();
     // root surface will be centred at the business card. We replace this with our own image:
