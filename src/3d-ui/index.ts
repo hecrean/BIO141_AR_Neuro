@@ -33,6 +33,7 @@ export type UIElementHandles = {
     mainVideo: UIElement;
     imageGallery: UIElement;
     quotation: UIElement;
+    auroraAppExplaination: UIElement;
 };
 
 type UIComponent = {
@@ -46,8 +47,16 @@ export type UIComponentHandles = {
 
 export const defaultEventHandlers: EventHandlers = {
     onPointerEnter: (state, _) => state,
-    onPointerUp: (state, _) => state,
-    onPointerDown: (state, _) => state,
+    onPointerDown: (state, intersectionEv) => {
+        isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('yellow') : () => ({});
+
+        return state;
+    },
+    onPointerUp: (state, intersectionEv) => {
+        isMesh(intersectionEv.object) ? intersectionEv.object.material.color.set('blue') : () => ({});
+
+        return state;
+    },
     onPointerOver: (state, _) => state,
     onPointerOut: (state, _) => state,
     onPointerLeave: (state, _) => state,
@@ -83,7 +92,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const raphaelBio = createImagePlane('/img/Raphael-Bio.png', assetCtx, [1, 1], true);
     const quotation = createImagePlane('/img/quotation.png', assetCtx, [1, 1], true);
     const imageGallery = createImagePlane('/img/image-gallery.png', assetCtx, [1, 1], true);
-
+    const auroraAppExplaination = createImagePlane('/img/Aurora-app.png', assetCtx, [1, 1], true);
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1, 1, true);
 
@@ -158,6 +167,11 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: defaultEventHandlers,
             mesh: quotation,
         },
+        auroraAppExplaination: {
+            kind: UIKinds.div,
+            api: defaultEventHandlers,
+            mesh: auroraAppExplaination,
+        },
     };
 
     return uis;
@@ -171,8 +185,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const rootSurface = new Group();
     // root surface will be centred at the business card. We replace this with our own image:
-    setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0.1));
-    rootSurface.add(el.r42BusinessCard.mesh);
+    setPosition(el.auroraAppExplaination.mesh, new Vector3(0, 0, 0));
+    rootSurface.add(el.auroraAppExplaination.mesh);
 
     const leftPanel = new Group();
     setPosition(el.raphelBieriLinkedin.mesh, new Vector3(-1, 0, 0));
@@ -189,7 +203,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(el.eduardBio.mesh, new Vector3(0, 0, 0));
     // bottom-right
     setPosition(el.raphaelBio.mesh, new Vector3(1, 0, 0));
-    rightPanel.add(...[el.evaBio.mesh, el.edwardRohrbachLinkedin.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
+    rightPanel.add(...[el.evaBio.mesh, el.eduardBio.mesh, el.raphaelBio.mesh]);
 
     const belowPanel = new Group();
     setPosition(el.quotation.mesh, new Vector3(-0.5, 0, 0));
