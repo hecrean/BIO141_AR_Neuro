@@ -59,11 +59,11 @@ export const defaultEventHandlers: EventHandlers = {
     onPointerLeave: (state, _) => state,
     onPointerMove: (state, _) => state,
     onPointerCancel: (state, _) => state,
-    onTouchStart: ({ renderCtx, sceneCtx, assetCtx }, intersectionEv) => {
+    onTouchStart: ({ renderCtx, sceneCtx, assetCtx, imageTargets }, intersectionEv) => {
         //Prevent the browser from processing emulated mouse events.
         intersectionEv.nativeEvent.event.preventDefault();
 
-        return { renderCtx, sceneCtx, assetCtx };
+        return { renderCtx, sceneCtx, assetCtx, imageTargets };
     },
     onTouchMove: (state, _) => state,
     onTouchEnd: (state, _) => state,
