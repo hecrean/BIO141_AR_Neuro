@@ -6,11 +6,12 @@ import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
 
 function openInNewTab(href: string) {
-    const link = document.createElement('a');
-    document.body.append(link)
-    Object.assign(link, { target: '_blank', href })
-    link.click();
-    link.remove()
+    // const link = document.createElement('a');
+    // document.body.append(link)
+    // Object.assign(link, { target: '_blank', href })
+    // link.click();
+    // link.remove()
+    window.location.href = href;
 }
 
 enum UIKinds {
