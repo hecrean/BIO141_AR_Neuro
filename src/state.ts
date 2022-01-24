@@ -4,7 +4,6 @@ import { AssetsCtx } from './assets';
 import { interactionCache, InteractionCache } from './interaction-cache';
 import { DirectionalLight, AmbientLight } from 'three';
 import { ImageTargets } from 'image-target';
-import { DragControls } from 'three/examples/jsm/controls/DragControls'
 
 
 export type RenderCxt = {
@@ -59,7 +58,7 @@ export const initState = (
 
     // components
     renderCtx.scene.add(sceneCtx.uiComponentHandles.rootSurface.group);
-    new DragControls(renderCtx.scene.children, renderCtx.camera)
+
 
 
     return { renderCtx, sceneCtx, assetCtx, imageTargets };
