@@ -1,4 +1,4 @@
-import { Object3D, Mesh, BufferGeometry, MeshStandardMaterial, MeshBasicMaterial } from "three";
+import { Object3D, Mesh, BufferGeometry, MeshStandardMaterial  } from "three";
 export type RecordableKeys<T> = {
     // for each key in T
     [K in keyof T]: T[K] extends string | number | symbol
