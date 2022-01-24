@@ -9,6 +9,7 @@ export const textureBundle: AssetBundle = {
         '/img/eva.png',
         '/img/btn_linc.png',
         '/img/btn_sma.png',
+        '/img/play-wireframe.png'
     ],
 };
 

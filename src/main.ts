@@ -73,6 +73,7 @@ const ArPipelineModule = (
                 /*scene, camera, renderer, cameraTexture*/
             } = XR8.Threejs.xrScene();
 
+            // lerp view to image target
             const rootHandle = sceneCxt.uiComponentHandles.rootSurface.group;
             const LERP_RATE = 0.4;
             const { x, y, z} = imageTargets['r42-business-card'].transform.position;
@@ -85,7 +86,7 @@ const ArPipelineModule = (
             //rotate model
             const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
             const ROTATION_RATE =  0.2 * 2 * Math.PI * 1/60
-            neuronHandle.mesh.rotateX(ROTATION_RATE)
+            neuronHandle.mesh.rotateY(ROTATION_RATE)
 
 
         },

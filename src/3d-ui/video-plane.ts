@@ -17,6 +17,7 @@ export const createVideoPlane = (videoUrl: string, width: number, height: number
     videoEl.src = videoUrl;
     videoEl.crossOrigin = 'Anonymous';
     videoEl.loop = true;
+    videoEl.poster = '/play-wireframe.png'
 
     const texture = new VideoTexture(videoEl);
     texture.minFilter = LinearFilter;
