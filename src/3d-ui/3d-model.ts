@@ -13,6 +13,7 @@ const load3DModelFromFile = (gltf: GLTF) => {
            model.push(child)
         }
     })
+    console.log('model', model)
     return model;
 }
 
