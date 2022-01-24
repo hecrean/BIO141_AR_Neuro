@@ -1,6 +1,6 @@
 import { EventHandlers } from '../events/canvas';
 import { InteractionCache, interactionCacheApi } from '../interaction-cache';
-import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Vector3 } from 'three';
+import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Vector3, Color } from 'three';
 import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
@@ -143,10 +143,20 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, _) => {
+                onPointerDown: (state, event) => {
+                    if(isMesh(event.object)){
+                        event.object.material.color = new Color('blue')
+                    }
+                    
                     openInNewTab('https://www.biogenlinc.ch/');
                     return state;
                 },
+                onPointerUp: (state, event) => {
+                    if(isMesh(event.object)){
+                        event.object.material.color = new  Color(0xffffff) 
+                    }
+                    return state;
+                }
             },
             mesh: btnLinc,
         },
@@ -154,10 +164,19 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, _) => {
+                onPointerDown: (state, event) => {
+                    if(isMesh(event.object)){
+                        event.object.material.color = new Color('blue')
+                    }
                     openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
                     return state;
                 },
+                onPointerUp: (state, event) => {
+                    if(isMesh(event.object)){
+                        event.object.material.color = new  Color(0xffffff) 
+                    }
+                    return state;
+                }
             },
             mesh: btnSma,
         },
