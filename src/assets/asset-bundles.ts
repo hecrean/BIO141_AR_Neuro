@@ -15,6 +15,6 @@ export const textureBundle: AssetBundle = {
 export const gltfBundle: AssetBundle = {
     tag: 'gltf',
     urls: [
-        'gltf/18_Neuron.glb'
+        '/gltf/18_Neuron.glb'
     ]
 }
