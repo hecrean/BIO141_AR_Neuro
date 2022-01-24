@@ -17,7 +17,7 @@ export const createVideoPlane = (videoUrl: string, width: number, height: number
     videoEl.src = videoUrl;
     videoEl.crossOrigin = 'Anonymous';
     videoEl.loop = true;
-    videoEl.poster = 'https://endlessicons.com/wp-content/uploads/2013/05/play-icon-614x460.png'
+    videoEl.poster = '/img/uv-map.png'
     videoEl.controls = false;
 
     const texture = new VideoTexture(videoEl);
