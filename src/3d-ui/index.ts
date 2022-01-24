@@ -6,6 +6,7 @@ import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
 import { create3DModel } from './3d-model'
 
+
 function openInNewTab(href: string) {
     // const link = document.createElement('a');
     // document.body.append(link)
@@ -163,7 +164,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
         neuronModel: {
             kind: UIKinds.model,
             api: {
-                ...defaultEventHandlers
+                ...defaultEventHandlers,
+                
             },
             mesh: groupifyMeshes(neuron)
         }
@@ -195,6 +197,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const abovePanel = new Group();
     abovePanel.add(el.neuronModel.mesh)    
+
 
     const rightPanel = new Group();
     setPosition(el.eva.mesh, new Vector3(0, 740 * PIXEL, 0));
