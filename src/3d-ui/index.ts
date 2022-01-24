@@ -92,6 +92,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
 
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
+    console.log(mainVideo)
 
     // 3d-models
     const neuron = create3DModel('/gltf/18_Neuron.glb', assetCtx);
@@ -193,7 +194,6 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     belowPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const abovePanel = new Group();
-    console.log('neuron', el.neuronModel.mesh)
     abovePanel.add(el.neuronModel.mesh)    
 
     const rightPanel = new Group();
@@ -212,6 +212,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
 
     rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
+    console.log('root surface', rootSurface)
 
 
 
