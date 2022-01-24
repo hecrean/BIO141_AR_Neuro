@@ -1,3 +1,4 @@
+import { Object3D, Mesh, BufferGeometry, MeshStandardMaterial, MeshBasicMaterial } from "three";
 export type RecordableKeys<T> = {
     // for each key in T
     [K in keyof T]: T[K] extends string | number | symbol
@@ -13,3 +14,8 @@ export function toRecord<T extends { [P in RecordableKeys<T>]: string | number |
 ): Record<T[K], T> {
     return array.reduce((acc, item) => ({ ...acc, [item[selector]]: item }), {} as Record<T[K], T>);
 }
+
+
+export const isMeshWithStandardMaterial = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMaterial> => {
+  return o instanceof Mesh;
+};

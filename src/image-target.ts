@@ -65,7 +65,6 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: Imag
                     });
                     const root = sceneCtx.uiComponentHandles.rootSurface.group;
                     root.visible = true;
-
                     break;
                 }
 
@@ -84,10 +83,6 @@ export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: 
                 case 'r42-business-card': {
                     console.log(imageTargets[detail.name]);
                     console.log(sceneGraphCtx);
-
-                    // const root = sceneCtx.uiComponentHandles.rootSurface.group;
-                    // root.visible = false;
-
                     break;
                 }
                 default:
@@ -109,13 +104,7 @@ export const onImageUpdatedListener = (_: SceneGraphCtx, imageTargets: ImageTarg
                         rotation: detail.rotation,
                         scale: detail.scale,
                     });
-                    imageTargets[detail.name] = createImageTarget(detail.name, {
-                        position: detail.position,
-                        rotation: detail.rotation,
-                        scale: detail.scale,
-                    });
-
-    
+         
                     break;
                 }
                 default:

@@ -4,6 +4,7 @@ import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Vector3 } 
 import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
+import { create3DModel } from './3d-model'
 
 function openInNewTab(href: string) {
     // const link = document.createElement('a');
@@ -19,22 +20,24 @@ enum UIKinds {
     div,
     img,
     video,
+    model
 }
 
-type UIElement = {
+type UIElement<T extends Object3D> = {
     kind: UIKinds;
     api: EventHandlers;
-    mesh: Mesh;
+    mesh: T;
 };
 
 export type UIElementHandles = {
-    r42BusinessCard: UIElement;
-    mainVideo: UIElement;
-    ed: UIElement;
-    eva: UIElement;
-    raph: UIElement;
-    btnLinc: UIElement;
-    btnSma: UIElement;
+    r42BusinessCard: UIElement<Mesh>;
+    mainVideo: UIElement<Mesh>;
+    ed: UIElement<Mesh>;
+    eva: UIElement<Mesh>;
+    raph: UIElement<Mesh>;
+    btnLinc: UIElement<Mesh>;
+    btnSma: UIElement<Mesh>;
+    neuronModel: UIElement<Group>;
 };
 
 type UIComponent = {
@@ -90,6 +93,18 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
 
+    // 3d-models
+    const neuron = create3DModel('/gltf/18_Neuron.glb', assetCtx);
+    const groupifyMeshes = (meshes: Array<Mesh>) => {
+        const group = new Group()
+        meshes.forEach((mesh) => {
+            group.add(mesh)
+        })
+        return group;
+    }
+
+
+
     const uis: UIElementHandles = {
         mainVideo: {
             kind: UIKinds.video,
@@ -144,6 +159,13 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             },
             mesh: btnSma,
         },
+        neuronModel: {
+            kind: UIKinds.model,
+            api: {
+                ...defaultEventHandlers
+            },
+            mesh: groupifyMeshes(neuron)
+        }
     };
 
     return uis;
@@ -164,12 +186,14 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     // setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0));
     // rootSurface.add(el.r42BusinessCard.mesh);
 
+
     const belowPanel = new Group();
     setPosition(el.btnLinc.mesh, new Vector3(0, 340 * PIXEL, 0));
     setPosition(el.btnSma.mesh, new Vector3(0, -340 * PIXEL, 0));
     belowPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const abovePanel = new Group();
+    abovePanel.add(el.neuronModel.mesh)    
 
     const rightPanel = new Group();
     setPosition(el.eva.mesh, new Vector3(0, 740 * PIXEL, 0));
@@ -187,6 +211,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
 
     rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
+
+
 
     return {
         rootSurface: { name: 'rootSurface', group: rootSurface },

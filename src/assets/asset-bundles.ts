@@ -11,3 +11,10 @@ export const textureBundle: AssetBundle = {
         '/img/btn_sma.png',
     ],
 };
+
+export const gltfBundle: AssetBundle = {
+    tag: 'gltf',
+    urls: [
+        'gltf/18_Neuron.glb'
+    ]
+}

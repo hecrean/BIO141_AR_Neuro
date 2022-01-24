@@ -1,5 +1,5 @@
 import './style.css';
-import { textureBundle } from './assets/asset-bundles';
+import { textureBundle, gltfBundle } from './assets/asset-bundles';
 import { AssetsCtx, initAssetCtx, loadAssetBundle } from './assets';
 import type { CameraPipelineModule, XR8 as XR8Type, XRExtras as XRExtrasType } from './type';
 import {
@@ -121,14 +121,17 @@ const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx, imageTargets: 
 // Show loading screen before the full XR library has been loaded.
 const runAR = async () => {
     const assetCtx = initAssetCtx();
-    const bundlesLoaded = await loadAssetBundle<'texture'>(
+    await loadAssetBundle<'texture'>(
         assetCtx.texture.api,
         assetCtx.texture.cache,
         textureBundle,
     )();
-    console.log('bundles', bundlesLoaded);
+    await loadAssetBundle<'gltf'>(
+        assetCtx.gltf.api,
+        assetCtx.gltf.cache,
+        gltfBundle
+    )()
     const sceneCxt = initSceneGraphCtx(assetCtx);
-    console.log('sceneCxt', sceneCxt);
     const imageTargets = initImageTargets();
     XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx, imageTargets) });
 };
