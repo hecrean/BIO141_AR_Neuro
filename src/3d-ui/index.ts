@@ -193,6 +193,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     belowPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const abovePanel = new Group();
+    console.log('neuron', el.neuronModel.mesh)
     abovePanel.add(el.neuronModel.mesh)    
 
     const rightPanel = new Group();
