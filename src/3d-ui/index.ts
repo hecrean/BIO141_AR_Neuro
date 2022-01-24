@@ -203,7 +203,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     rightPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
     const leftPanel = new Group();
-    abovePanel.add(el.mainVideo.mesh);
+    leftPanel.add(el.mainVideo.mesh);
 
     // grouos:
     setPosition(rightPanel, new Vector3(2100 * PIXEL, -612 * PIXEL, 0));
