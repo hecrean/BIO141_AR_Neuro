@@ -12,10 +12,28 @@ import {
 import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
-import { Vector3, Quaternion } from 'three'
+import { Vector3, Quaternion } from 'three';
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
+
+let inDom = false;
+const observer = new MutationObserver(() => {
+    if (document.querySelector('.prompt-box-8w')) {
+        if (!inDom) {
+            document.querySelector(
+                '.prompt-box-8w p',
+            )!.innerHTML = /*html*/ `<strong> A Random42 experience </strong><br/><br/>Press Approve to continue.`;
+            document.querySelector('.prompt-button-8w')!.innerHTML = /*html*/ `Deny`;
+            document.querySelector('.button-primary-8w')!.innerHTML = /*html*/ `Approve`;
+        }
+        inDom = true;
+    } else if (inDom) {
+        inDom = false;
+        observer.disconnect();
+    }
+});
+observer.observe(document.body, { childList: true });
 
 // update
 const responseToInput = (input: Input, state: State) => {
@@ -76,19 +94,17 @@ const ArPipelineModule = (
             // lerp view to image target
             const rootHandle = sceneCxt.uiComponentHandles.rootSurface.group;
             const LERP_RATE = 0.4;
-            const { x, y, z} = imageTargets['r42-business-card'].transform.position;
-            const {x: q1, y:q2, z:q3, w:q4} = imageTargets['r42-business-card'].transform.rotation;
-            rootHandle.position.lerp(new Vector3(x,y,z), LERP_RATE)
-            rootHandle.quaternion.slerp(new Quaternion(q1,q2,q3,q4), LERP_RATE)
+            const { x, y, z } = imageTargets['r42-business-card'].transform.position;
+            const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
+            rootHandle.position.lerp(new Vector3(x, y, z), LERP_RATE);
+            rootHandle.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
             const scale = imageTargets['r42-business-card'].transform.scale;
-            rootHandle.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE)
+            rootHandle.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
 
             //rotate model
             const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
-            const ROTATION_RATE =  0.2 * 2 * Math.PI * 1/60
-            neuronHandle.mesh.rotateY(ROTATION_RATE)
-
-
+            const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
+            neuronHandle.mesh.rotateY(ROTATION_RATE);
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
         // updates can be applied at an appropriate synchronized point in the rendering cycle.
@@ -126,19 +142,16 @@ const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx, imageTargets: 
 // Show loading screen before the full XR library has been loaded.
 const runAR = async () => {
     const assetCtx = initAssetCtx();
-    await loadAssetBundle<'texture'>(
-        assetCtx.texture.api,
-        assetCtx.texture.cache,
-        textureBundle,
-    )();
-    await loadAssetBundle<'gltf'>(
-        assetCtx.gltf.api,
-        assetCtx.gltf.cache,
-        gltfBundle
-    )()
+    await loadAssetBundle<'texture'>(assetCtx.texture.api, assetCtx.texture.cache, textureBundle)();
+    await loadAssetBundle<'gltf'>(assetCtx.gltf.api, assetCtx.gltf.cache, gltfBundle)();
     const sceneCxt = initSceneGraphCtx(assetCtx);
     const imageTargets = initImageTargets();
     XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx, imageTargets) });
+
+    const loadImage = document.getElementById('loadImage') as HTMLImageElement;
+    if (loadImage) {
+        loadImage.src = 'img/my-custom-image.png';
+    }
 };
 
 runAR();

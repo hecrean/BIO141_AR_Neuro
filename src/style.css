@@ -11,17 +11,46 @@ canvas {
     height: 100%;
 }
 
-#splashimage {
+#spashImage {
+    z-index: 998;
+    height: 100%;
+    background-image: url('/public/img/uv-map.png');
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
 #start {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    bottom: 5vh;
+    left: 25vh;
+    background-color: #AD50FF;
+    border: 0.2em solid white;
+    text-align: center;
+    color: #FFF;
+    border-radius: 100px;
 }
 
-.prompt-box-8w {
-}
 
-.prompt-buttom-8w {
-}
-
-.button-primary-8w {
-}
+#requestingCameraPermissions {
+    color: black;
+    background-color: white;
+  }
+  #requestingCameraIcon {
+    /* This changes the image from white to black */
+    filter: invert(1);
+  }
+  
+  .prompt-box-8w {
+    background-color: white;
+    color: #00FF00;
+  }
+  .prompt-button-8w {
+    background-color: #0000FF;
+  }
+  
+  .button-primary-8w {
+    background-color: #7611B7;
+  }
