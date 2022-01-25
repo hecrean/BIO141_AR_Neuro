@@ -32,6 +32,7 @@ type UIElement<T extends Object3D> = {
 export type UIElementHandles = {
     r42BusinessCard: UIElement<Mesh>;
     mainVideo: UIElement<Mesh>;
+    mainVideoPoster: UIElement<Mesh>;
     ed: UIElement<Mesh>;
     eva: UIElement<Mesh>;
     raph: UIElement<Mesh>;
@@ -91,7 +92,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const raph = createImagePlane('/img/raph.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
 
     // video planes
-    const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
+    const mainVideoPoster = createImagePlane('/img/play-wireframe', assetCtx, [1820 * PIXEL, 1024 * PIXEL], true);
+    const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, false);
     console.log(mainVideo);
 
     // 3d-models
@@ -107,14 +109,22 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const uis: UIElementHandles = {
         mainVideo: {
             kind: UIKinds.video,
+            api: defaultEventHandlers,
+            mesh: mainVideo.mesh,
+        },
+        mainVideoPoster: {
+            kind: UIKinds.img,
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, _) => {
+                    state.sceneCtx.uiElementHandles.mainVideo.mesh.visible = true;
                     mainVideo.videoEl.play();
+                    state.sceneCtx.uiElementHandles.mainVideoPoster.mesh.visible = false;
+
                     return state;
                 },
             },
-            mesh: mainVideo.mesh,
+            mesh: mainVideoPoster,
         },
         r42BusinessCard: {
             kind: UIKinds.img,
@@ -220,6 +230,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const leftPanel = new Group();
     leftPanel.add(el.mainVideo.mesh);
+    leftPanel.add(el.mainVideoPoster.mesh);
 
     // grouos:
     setPosition(rightPanel, new Vector3(2100 * PIXEL, -612 * PIXEL, 0));

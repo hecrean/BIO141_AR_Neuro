@@ -9,13 +9,11 @@ export const textureBundle: AssetBundle = {
         '/img/eva.png',
         '/img/btn_linc.png',
         '/img/btn_sma.png',
-        '/img/play-wireframe.png'
+        '/img/play-wireframe.png',
     ],
 };
 
 export const gltfBundle: AssetBundle = {
     tag: 'gltf',
-    urls: [
-        '/gltf/18_Neuron.glb'
-    ]
-}
+    urls: ['/gltf/18_Neuron.glb'],
+};
