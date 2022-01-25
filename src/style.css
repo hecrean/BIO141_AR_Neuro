@@ -11,17 +11,23 @@ canvas {
     height: 100%;
 }
 
-#splashimage {
+#requestingCameraPermissions {
+    color: black;
+    background-color: white;
 }
-
-#start {
+#requestingCameraIcon {
+    /* This changes the image from white to black */
+    filter: invert(1);
 }
 
 .prompt-box-8w {
+    background-color: white;
+    color: #00ff00;
 }
-
-.prompt-buttom-8w {
+.prompt-button-8w {
+    background-color: #0000ff;
 }
 
 .button-primary-8w {
+    background-color: #7611b7;
 }
