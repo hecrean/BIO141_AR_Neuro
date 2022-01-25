@@ -93,7 +93,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
 
     // video planes
     const mainVideoPoster = createImagePlane('/img/play-wireframe', assetCtx, [1820 * PIXEL, 1024 * PIXEL], true);
-    const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, false);
+    const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
     console.log(mainVideo);
 
     // 3d-models
@@ -117,9 +117,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, _) => {
-                    state.sceneCtx.uiElementHandles.mainVideo.mesh.visible = true;
+                    state.renderCtx.scene.remove(state.sceneCtx.uiElementHandles.mainVideoPoster.mesh);
                     mainVideo.videoEl.play();
-                    state.sceneCtx.uiElementHandles.mainVideoPoster.mesh.visible = false;
 
                     return state;
                 },
@@ -230,6 +229,8 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
 
     const leftPanel = new Group();
     leftPanel.add(el.mainVideo.mesh);
+    setPosition(el.mainVideo.mesh, new Vector3(0, 0, -0.1));
+
     leftPanel.add(el.mainVideoPoster.mesh);
 
     // grouos:
