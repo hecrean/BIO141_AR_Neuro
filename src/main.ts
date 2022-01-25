@@ -150,7 +150,7 @@ const runAR = async () => {
 
     const loadImage = document.getElementById('loadImage') as HTMLImageElement;
     if (loadImage) {
-        loadImage.src = 'img/my-custom-image.png';
+        loadImage.src = 'img/r42.png';
     }
 };
 
