@@ -20,16 +20,20 @@ canvas {
     filter: invert(1);
 }
 
-.prompt-box-8w {
+#loadBackground {
     background-color: rgb(74, 166, 220);
-    color: rgb(253, 253, 253);
+}
+
+.prompt-box-8w {
+    background-color: rgb(74, 166, 220) !important;
+    color: rgb(253, 253, 253) !important;
 }
 .prompt-button-8w {
-    color: rgb(74, 166, 220);
-    background-color: rgb(253, 253, 253);
+    color: rgb(74, 166, 220) !important;
+    background-color: rgb(253, 253, 253) !important;
 }
 
 .button-primary-8w {
-    color: rgb(74, 166, 220);
-    background-color: rgb(253, 253, 253);
+    color: rgb(74, 166, 220) !important;
+    background-color: rgb(253, 253, 253) !important;
 }
