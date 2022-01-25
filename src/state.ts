@@ -5,7 +5,6 @@ import { interactionCache, InteractionCache } from './interaction-cache';
 import { DirectionalLight, AmbientLight } from 'three';
 import { ImageTargets } from 'image-target';
 
-
 export type RenderCxt = {
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera;
@@ -58,8 +57,6 @@ export const initState = (
 
     // components
     renderCtx.scene.add(sceneCtx.uiComponentHandles.rootSurface.group);
-
-
 
     return { renderCtx, sceneCtx, assetCtx, imageTargets };
 };

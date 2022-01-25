@@ -12,8 +12,8 @@ canvas {
 }
 
 #requestingCameraPermissions {
-    color: black;
-    background-color: white;
+    background-color: rgb(74, 166, 220);
+    color: rgb(253, 253, 253);
 }
 #requestingCameraIcon {
     /* This changes the image from white to black */
@@ -21,13 +21,15 @@ canvas {
 }
 
 .prompt-box-8w {
-    background-color: white;
-    color: #00ff00;
+    background-color: rgb(74, 166, 220);
+    color: rgb(253, 253, 253);
 }
 .prompt-button-8w {
-    background-color: #0000ff;
+    color: rgb(74, 166, 220);
+    background-color: rgb(253, 253, 253);
 }
 
 .button-primary-8w {
-    background-color: #7611b7;
+    color: rgb(74, 166, 220);
+    background-color: rgb(253, 253, 253);
 }
