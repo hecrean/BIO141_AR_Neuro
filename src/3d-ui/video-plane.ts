@@ -17,7 +17,7 @@ export const createVideoPlane = (videoUrl: string, width: number, height: number
     videoEl.src = videoUrl;
     videoEl.crossOrigin = 'Anonymous';
     videoEl.loop = true;
-    videoEl.poster = '/img/uv-map.png'
+    videoEl.poster = 'https://caples.org/images/video-play-button.png';
     videoEl.controls = false;
 
     const texture = new VideoTexture(videoEl);

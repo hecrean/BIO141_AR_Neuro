@@ -4,8 +4,7 @@ import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Vector3, C
 import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
-import { create3DModel } from './3d-model'
-
+import { create3DModel } from './3d-model';
 
 function openInNewTab(href: string) {
     // const link = document.createElement('a');
@@ -21,7 +20,7 @@ enum UIKinds {
     div,
     img,
     video,
-    model
+    model,
 }
 
 type UIElement<T extends Object3D> = {
@@ -93,19 +92,17 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
 
     // video planes
     const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
-    console.log(mainVideo)
+    console.log(mainVideo);
 
     // 3d-models
     const neuron = create3DModel('/gltf/18_Neuron.glb', assetCtx);
     const groupifyMeshes = (meshes: Array<Mesh>) => {
-        const group = new Group()
+        const group = new Group();
         meshes.forEach((mesh) => {
-            group.add(mesh)
-        })
+            group.add(mesh);
+        });
         return group;
-    }
-
-
+    };
 
     const uis: UIElementHandles = {
         mainVideo: {
@@ -144,19 +141,19 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    if(isMesh(event.object)){
-                        event.object.material.color = new Color('blue')
+                    if (isMesh(event.object)) {
+                        event.object.material.color = new Color('blue');
                     }
-                    
+
                     openInNewTab('https://www.biogenlinc.ch/');
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    if(isMesh(event.object)){
-                        event.object.material.color = new  Color(0xffffff) 
+                    if (isMesh(event.object)) {
+                        event.object.material.color = new Color(0xffffff);
                     }
                     return state;
-                }
+                },
             },
             mesh: btnLinc,
         },
@@ -165,18 +162,18 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    if(isMesh(event.object)){
-                        event.object.material.color = new Color('blue')
+                    if (isMesh(event.object)) {
+                        event.object.material.color = new Color('blue');
                     }
                     openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    if(isMesh(event.object)){
-                        event.object.material.color = new  Color(0xffffff) 
+                    if (isMesh(event.object)) {
+                        event.object.material.color = new Color(0xffffff);
                     }
                     return state;
-                }
+                },
             },
             mesh: btnSma,
         },
@@ -184,10 +181,9 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.model,
             api: {
                 ...defaultEventHandlers,
-                
             },
-            mesh: groupifyMeshes(neuron)
-        }
+            mesh: groupifyMeshes(neuron),
+        },
     };
 
     return uis;
@@ -208,15 +204,13 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     // setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0));
     // rootSurface.add(el.r42BusinessCard.mesh);
 
-
     const belowPanel = new Group();
     setPosition(el.btnLinc.mesh, new Vector3(0, 340 * PIXEL, 0));
     setPosition(el.btnSma.mesh, new Vector3(0, -340 * PIXEL, 0));
     belowPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
     const abovePanel = new Group();
-    abovePanel.add(el.neuronModel.mesh)    
-
+    abovePanel.add(el.neuronModel.mesh);
 
     const rightPanel = new Group();
     setPosition(el.eva.mesh, new Vector3(0, 740 * PIXEL, 0));
@@ -234,9 +228,7 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
 
     rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
-    console.log('root surface', rootSurface)
-
-
+    console.log('root surface', rootSurface);
 
     return {
         rootSurface: { name: 'rootSurface', group: rootSurface },
