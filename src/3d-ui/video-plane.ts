@@ -24,18 +24,11 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
     videoEl.poster = 'https://caples.org/images/video-play-button.png';
     videoEl.controls = false;
 
-    // const videoTexture = new VideoTexture(videoEl);
-    // videoTexture.minFilter = LinearFilter;
-    // videoTexture.magFilter = LinearFilter;
-    // videoTexture.format = RGBFormat;
-
     const posterTexture = pipe(
         asset.texture.api.get(asset.texture.cache, posterUrl),
         option.getOrElseW(() => null),
     );
   
-
-
     const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture, visible: visible }));
 
     return {
@@ -47,7 +40,12 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
 
 export const videoPlaneHandlers: VideoPlaneHandlers = {
     play: (surface: VideoPlane) => {
-        surface.mesh.material.map =  new VideoTexture(surface.videoEl)
+        
+        const videoTexture = new VideoTexture(surface.videoEl);
+        videoTexture.minFilter = LinearFilter;
+        videoTexture.magFilter = LinearFilter;
+        videoTexture.format = RGBFormat;
+        surface.mesh.material.map =  videoTexture
         surface.videoEl.play();
     },
     pause: (surface: VideoPlane) => {
