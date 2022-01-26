@@ -8,6 +8,7 @@ import { option } from 'fp-ts'
 export type VideoPlane = {
     videoEl: HTMLVideoElement;
     posterTexture: Texture | null;
+    videoTexture: VideoTexture;
     mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
 };
 
@@ -28,28 +29,31 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
         asset.texture.api.get(asset.texture.cache, posterUrl),
         option.getOrElseW(() => null),
     );
+
+    const videoTexture = new VideoTexture(videoEl);
+        videoTexture.minFilter = LinearFilter;
+        videoTexture.magFilter = LinearFilter;
+        videoTexture.format = RGBFormat;
   
     const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture, visible: visible }));
 
     return {
         videoEl,
         posterTexture,
+        videoTexture,
         mesh,
     };
 };
 
 export const videoPlaneHandlers: VideoPlaneHandlers = {
     play: (surface: VideoPlane) => {
-        
-        const videoTexture = new VideoTexture(surface.videoEl);
-        videoTexture.minFilter = LinearFilter;
-        videoTexture.magFilter = LinearFilter;
-        videoTexture.format = RGBFormat;
-        surface.mesh.material.map = videoTexture
+        surface.mesh.material.map = surface.videoTexture;
         surface.mesh.material.needsUpdate = true;
         surface.videoEl.play();
     },
     pause: (surface: VideoPlane) => {
+        surface.mesh.material.map = surface.posterTexture;
+        surface.mesh.material.needsUpdate = true;
         surface.videoEl.pause();
     },
 };
