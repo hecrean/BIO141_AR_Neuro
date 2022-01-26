@@ -77,23 +77,23 @@ const PIXEL = 0.0009765;
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // img planes
     const r42BusinessCard = createImagePlane(
-        '/img/random42-business-card.png',
+        './img/random42-business-card.png',
         assetCtx,
         [1636 * PIXEL, 1024 * PIXEL],
         true,
     );
-    const btnLinc = createImagePlane('/img/btn_linc.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
-    const btnSma = createImagePlane('/img/btn_sma.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
-    const ed = createImagePlane('/img/ed.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
-    const eva = createImagePlane('/img/eva.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
-    const raph = createImagePlane('/img/raph.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
+    const btnLinc = createImagePlane('./img/btn_linc.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
+    const btnSma = createImagePlane('./img/btn_sma.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL], true);
+    const ed = createImagePlane('./img/ed.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
+    const eva = createImagePlane('./img/eva.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
+    const raph = createImagePlane('./img/raph.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
 
     // video planes
-    const mainVideo = createVideoPlane(assetCtx, 'mp4/aurora_demo.mp4', '/img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL);
+    const mainVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL);
     console.log(mainVideo);
 
     // 3d-models
-    const neuron = create3DModel('/gltf/18_Neuron.glb', assetCtx);
+    const neuron = create3DModel('./gltf/18_Neuron.glb', assetCtx);
     const groupifyMeshes = (meshes: Array<Mesh>) => {
         const group = new Group();
         meshes.forEach((mesh) => {

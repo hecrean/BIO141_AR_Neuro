@@ -8,6 +8,7 @@ interface AssetMap {
     gltf: { tag: 'gltf'; rawAsset: GLTF; processedAsset: GLTF; loader: GLTFLoader };
     texture: { tag: 'texture'; rawAsset: Texture; processedAsset: Texture; loader: TextureLoader };
     svg: { tag: 'svg'; rawAsset: SVGResult; processedAsset: Array<SVGUnit>; loader: SVGLoader };
+    // mp4: {tag: 'mp4', rawAsset: DataTexture; processedAsset: DataTexture; loader: TextureLoader };
 }
 type Tag = keyof AssetMap;
 type ProcessedAsset<K extends Tag> = AssetMap[K]['processedAsset'];
@@ -37,6 +38,7 @@ export interface AssetsCtx {
     texture: { api: AssetApi<'texture'>; cache: AssetCache<'texture'> };
     svg: { cache: AssetCache<'svg'>; api: AssetApi<'svg'> };
     gltf: { cache: AssetCache<'gltf'>; api: AssetApi<'gltf'> };
+    // mp4: { cache: AssetCache<'mp4'>; api: AssetApi<'mp4'>;}
 }
 
 export const initAssetCtx = (): AssetsCtx => ({
@@ -66,6 +68,32 @@ export const initAssetCtx = (): AssetsCtx => ({
             process: (rawTexture) => rawTexture,
         },
     },
+    // mp4: {
+    //     cache: { log: [], loader: new TextureLoader(), cache: new Map<string, DataTexture>() },
+    //     api: {
+    //         get: ({ cache }, url) => {
+    //             return o.fromNullable(cache.get(url));
+    //         },
+    //         set:
+    //             ({ cache }, key, value) =>
+    //             () =>
+    //                 cache.set(key, value),
+
+    //         load: (cache, url) => {
+    //             const onProgress = (event: ProgressEvent<EventTarget>) => {
+    //                 console.log(event);
+    //             };
+    //             return pipe(
+    //                 te.tryCatch(
+    //                     () => cache.loader.loadAsync(url, onProgress),
+    //                     (reason) => new Error(`${reason}`),
+    //                 ),
+    //             );
+    //         },
+    //         log: (a) => () => console.log(a),
+    //         process: (rawDataTexture) => rawDataTexture,
+    //     },
+    // },
     svg: {
         cache: { log: [], loader: new SVGLoader(), cache: new Map<string, Array<SVGUnit>>() },
         api: {
