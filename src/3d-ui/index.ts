@@ -28,8 +28,9 @@ type UIElement<T extends Object3D> = {
 };
 
 export type UIElementHandles = {
-    r42BusinessCard: UIElement<Mesh>;
-    mainVideo: UIElement<Mesh>;
+    auroraAppInfo: UIElement<Mesh>;
+    auroraVideo: UIElement<Mesh>;
+    edwardWelcomeVideo: UIElement<Mesh>;
     ed: UIElement<Mesh>;
     eva: UIElement<Mesh>;
     raph: UIElement<Mesh>;
@@ -76,7 +77,7 @@ const PIXEL = 0.0009765;
 
 export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     // img planes
-    const r42BusinessCard = createImagePlane(
+    const auroraAppInfo = createImagePlane(
         './img/random42-business-card.png',
         assetCtx,
         [1636 * PIXEL, 1024 * PIXEL],
@@ -89,9 +90,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const raph = createImagePlane('./img/raph.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
 
     // video planes
-    const mainVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL);
-    console.log(mainVideo);
-
+    const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL);
+    const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL)
     // 3d-models
     const neuron = create3DModel('./gltf/18_Neuron.glb', assetCtx);
     const groupifyMeshes = (meshes: Array<Mesh>) => {
@@ -103,21 +103,32 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     };
 
     const uis: UIElementHandles = {
-        mainVideo: {
+        auroraVideo: {
             kind: UIKinds.video,
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, _) => {
-                    mainVideo.videoEl.play();
+                    auroraVideo.videoEl.play();
                     return state;
                 },
             },
-            mesh: mainVideo.mesh,
+            mesh: auroraVideo.mesh,
         },
-        r42BusinessCard: {
+        edwardWelcomeVideo: {
+            kind: UIKinds.video,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, _) => {
+                    edwardWelcomeVideo.videoEl.play();
+                    return state;
+                }
+            },
+            mesh: edwardWelcomeVideo.mesh
+        },
+        auroraAppInfo: {
             kind: UIKinds.img,
             api: defaultEventHandlers,
-            mesh: r42BusinessCard,
+            mesh: auroraAppInfo,
         },
         eva: {
             kind: UIKinds.img,
@@ -230,30 +241,44 @@ export const initUiComponents = (el: UIElementHandles): UIComponentHandles => {
     // setPosition(el.r42BusinessCard.mesh, new Vector3(0, 0, 0));
     // rootSurface.add(el.r42BusinessCard.mesh);
 
-    const belowPanel = new Group();
+    const biogenAndTismaPanel = new Group();
     setPosition(el.btnLinc.mesh, new Vector3(0, 340 * PIXEL, 0));
     setPosition(el.btnSma.mesh, new Vector3(0, -340 * PIXEL, 0));
-    belowPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
+    biogenAndTismaPanel.add(...[el.btnLinc.mesh, el.btnSma.mesh]);
 
-    const abovePanel = new Group();
-    abovePanel.add(el.neuronModel.mesh);
+    const neuronPanel = new Group();
+    neuronPanel.add(el.neuronModel.mesh);
 
-    const rightPanel = new Group();
+    const teamInfoPanel = new Group();
     setPosition(el.eva.mesh, new Vector3(0, 740 * PIXEL, 0));
     setPosition(el.ed.mesh, new Vector3(0, 0, 0));
     setPosition(el.raph.mesh, new Vector3(0, -740 * PIXEL, 0));
-    rightPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
+    teamInfoPanel.add(...[el.eva.mesh, el.ed.mesh, el.raph.mesh]);
 
-    const leftPanel = new Group();
-    leftPanel.add(el.mainVideo.mesh);
+    const auroraVideoPanel = new Group();
+    auroraVideoPanel.add(el.auroraVideo.mesh);
+
+    const edwardWelcomeVideoPanel = new Group()
+    edwardWelcomeVideoPanel.add(el.edwardWelcomeVideo.mesh);
+
 
     // grouos:
-    setPosition(rightPanel, new Vector3(2100 * PIXEL, -612 * PIXEL, 0));
-    setPosition(leftPanel, new Vector3(-2100 * PIXEL, 0, 0));
-    setPosition(belowPanel, new Vector3(0, -1300 * PIXEL, 0));
-    setPosition(abovePanel, new Vector3(0, 1024 * PIXEL, 0));
+    const Right = new Vector3(2100 * PIXEL, 0, 0);
+    const Left = new Vector3(-2100 * PIXEL, 0, 0);
+    // const Up  = new Vector3(0, 2100 * PIXEL, 0);
+    const Down  = new Vector3(0, -2100 * PIXEL, 0);
+    const addv3 = (v1: Vector3, v2: Vector3) => (new Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z))
+    // const multv3 = (v: Vector3, scale: number) => (new Vector3(v.x * scale, v.y * scale, v.z * scale))
 
-    rootSurface.add(...[leftPanel, rightPanel, belowPanel, abovePanel]);
+
+    setPosition(biogenAndTismaPanel, Right);
+    setPosition(neuronPanel, new Vector3(0,0,0));
+    setPosition(teamInfoPanel, Left);
+    setPosition(auroraVideoPanel, addv3(Right, Down));
+    setPosition(edwardWelcomeVideoPanel, addv3(Left, Down));
+
+
+    rootSurface.add(...[biogenAndTismaPanel, neuronPanel, teamInfoPanel, auroraVideoPanel, edwardWelcomeVideoPanel]);
     console.log('root surface', rootSurface);
 
     return {

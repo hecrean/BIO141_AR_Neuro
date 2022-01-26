@@ -127,7 +127,6 @@ const ArPipelineModule = (
             const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
             neuronHandle.mesh.rotateY(ROTATION_RATE);
 
-            (sceneCxt.uiElementHandles.mainVideo.mesh.material as Material).needsUpdate = true; 
 
 
             // for(const point of points)
