@@ -36,7 +36,7 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
         videoTexture.magFilter = LinearFilter;
         videoTexture.format = RGBFormat;
   
-    const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture, side: DoubleSide }));
+    const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: videoTexture, side: DoubleSide }));
     // const imgShaderMaterial = createImageMaterial(posterTexture)
     // const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
 
