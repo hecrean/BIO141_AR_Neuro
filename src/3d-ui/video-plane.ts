@@ -45,7 +45,8 @@ export const videoPlaneHandlers: VideoPlaneHandlers = {
         videoTexture.minFilter = LinearFilter;
         videoTexture.magFilter = LinearFilter;
         videoTexture.format = RGBFormat;
-        surface.mesh.material.map =  videoTexture
+        surface.mesh.material.map = videoTexture
+        surface.mesh.material.needsUpdate = true;
         surface.videoEl.play();
     },
     pause: (surface: VideoPlane) => {
