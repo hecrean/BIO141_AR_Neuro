@@ -1,6 +1,6 @@
 /**  */
 
-import { VideoTexture, LinearFilter, RGBFormat, Mesh, PlaneGeometry, Texture, MeshBasicMaterial, DoubleSide } from 'three';
+import { VideoTexture, LinearFilter, RGBFormat, Mesh, PlaneGeometry, Texture, MeshBasicMaterial, DoubleSide, TextureFilter } from 'three';
 import { pipe } from 'fp-ts/function'
 import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts'
@@ -20,33 +20,56 @@ interface VideoPlaneHandlers {
 
 export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: string, width: number, height: number): VideoPlane => {
     const videoEl = document.createElement('video');
-    videoEl.src = videoUrl;
+
     videoEl.crossOrigin = 'Anonymous';
-    videoEl.loop = true;
     videoEl.poster = 'https://caples.org/images/video-play-button.png';
     videoEl.controls = false;
+    videoEl.src = videoUrl;
+    videoEl.loop = true;
+    videoEl.load()
 
-    const posterTexture = pipe(
-        asset.texture.api.get(asset.texture.cache, posterUrl),
-        option.getOrElseW(() => new Texture()),
-    );
 
-    const videoTexture = new VideoTexture(videoEl);
-        videoTexture.minFilter = LinearFilter;
-        videoTexture.magFilter = LinearFilter;
-        videoTexture.format = RGBFormat;
-  
-    const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: videoTexture, side: DoubleSide }));
-    // const imgShaderMaterial = createImageMaterial(posterTexture)
-    // const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
+    switch (videoEl.readyState) {
+        case videoEl.HAVE_ENOUGH_DATA: {
+            const posterTexture = pipe(
+                asset.texture.api.get(asset.texture.cache, posterUrl),
+                option.getOrElseW(() => new Texture()),
+            );
+        
+            const videoTexture = new VideoTexture(videoEl);
+                videoTexture.minFilter = LinearFilter;
+                videoTexture.magFilter = LinearFilter;
+                videoTexture.format = RGBFormat;
+          
+            const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: videoTexture, side: DoubleSide }));
+            // const imgShaderMaterial = createImageMaterial(posterTexture)
+            // const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
+        
+           
+            return {
+                videoEl,
+                posterTexture,
+                videoTexture,
+                mesh,
+            };
+
+        }
+        default: {
+            const posterTexture = new Texture();
+            const videoTexture = new VideoTexture(videoEl)
+            console.log('route2')
+            const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: videoTexture, side: DoubleSide }));
+            return {
+                videoEl,
+                posterTexture,
+                videoTexture,
+                mesh,
+            };
+
+        }
+    }
 
    
-    return {
-        videoEl,
-        posterTexture,
-        videoTexture,
-        mesh,
-    };
 };
 
 export const videoPlaneHandlers: VideoPlaneHandlers = {
