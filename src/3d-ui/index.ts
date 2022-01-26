@@ -5,23 +5,12 @@ import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
 import { create3DModel } from './3d-model';
-import { state } from 'fp-ts';
-import { sample } from 'rxjs';
 
 function openInNewTab(href: string) {
-    // const link = document.createElement('a');
-    // document.body.append(link)
-    // Object.assign(link, { target: '_blank', href })
-    // link.click();
-    // link.remove()
     window.location.href = href;
 }
 function email(emailAddress: string,  emailSubject: string){
-    const a = document.createElement('a');
-    document.body.append(a);
-    a.href = `mailto:${emailAddress}?subject=${emailSubject}`;
-    a.click();
-    // a.remove();
+    window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
 }
 
 enum UIKinds {
