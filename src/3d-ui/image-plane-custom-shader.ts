@@ -1,4 +1,4 @@
-import { Color, Mesh, PlaneGeometry, ShaderMaterial } from "three";
+import { Color, Texture, ShaderMaterial, VideoTexture } from "three";
 
 export type ImgMaterialUniforms = {
     scale: {
@@ -8,7 +8,7 @@ export type ImgMaterialUniforms = {
         value: [number, number];
     };
     map: {
-        value: null;
+        value: Texture | VideoTexture;
     };
     zoom: {
         value: number;
@@ -21,14 +21,7 @@ export type ImgMaterialUniforms = {
     };
 }
 
-const initialUniforms: ImgMaterialUniforms = {
-    scale: {value: [1,1]},
-    imageBounds: {value: [1,1]},
-    map: {value: null},
-    zoom: {value: 1},
-    grayscale: {value: 0},
-    color: {value: new Color('white')}
-}
+
 
 const vertexShader = /* glsl */ `
   varying vec2 vUv;
@@ -67,11 +60,20 @@ const fragmentShader = /* glsl */ `
   }
 `
 
-export const imgMaterial = new Mesh(
-    new PlaneGeometry(1,1,1,1), 
-    new ShaderMaterial({
-        uniforms: initialUniforms, 
-        vertexShader: vertexShader, 
-        fragmentShader: fragmentShader
-    })
-)
+export const createImageMaterial = (scale: [number, number], imageBounds: [number, number], map: Texture | VideoTexture) => {
+  
+  const initialUniforms: ImgMaterialUniforms = {
+    scale: {value: scale},
+    imageBounds: {value: imageBounds},
+    map: {value: map},
+    zoom: {value: 1},
+    grayscale: {value: 0},
+    color: {value: new Color('white')}
+}
+
+  return new ShaderMaterial({
+  uniforms: initialUniforms, 
+  vertexShader: vertexShader, 
+  fragmentShader:fragmentShader
+})
+}
