@@ -56,20 +56,20 @@ const ArPipelineModule = (
     // define variables
 
    
-const points: HtmlPoints = [
-    {
-        position: new Vector3(1.55, 0.3, - 0.6),
-        element: document.querySelector('.point-0')!
-    },
-    {
-        position: new Vector3(0.5, 0.8, - 1.6),
-        element: document.querySelector('.point-1')!
-    },
-    {
-        position: new Vector3(1.6, - 1.3, - 0.7),
-        element: document.querySelector('.point-2')!
-    }
-]
+// const points: HtmlPoints = [
+//     {
+//         position: new Vector3(1.55, 0.3, - 0.6),
+//         element: document.querySelector('.point-0')!
+//     },
+//     {
+//         position: new Vector3(0.5, 0.8, - 1.6),
+//         element: document.querySelector('.point-1')!
+//     },
+//     {
+//         position: new Vector3(1.6, - 1.3, - 0.7),
+//         element: document.querySelector('.point-2')!
+//     }
+// ]
 
     return {
         // Pipeline modules need a name.
@@ -109,7 +109,7 @@ const points: HtmlPoints = [
         onUpdate: () => {
             // Update the position of objects in the scene, etc.
             const {
-                camera, scene /*, renderer, cameraTexture*/
+                /*camera, scene , renderer, cameraTexture*/
             } = XR8.Threejs.xrScene();
 
             // lerp view to image target
@@ -128,38 +128,38 @@ const points: HtmlPoints = [
             neuronHandle.mesh.rotateY(ROTATION_RATE);
 
 
-            for(const point of points)
-            {
+            // for(const point of points)
+            // {
 
-                const screenPosition = point.position.clone()
-                screenPosition.project(camera)
+            //     const screenPosition = point.position.clone()
+            //     screenPosition.project(camera)
 
-                sceneCxt.raycaster.setFromCamera(screenPosition, camera)
-                const intersects = sceneCxt.raycaster.intersectObjects(scene.children, true)
+            //     sceneCxt.raycaster.setFromCamera(screenPosition, camera)
+            //     const intersects = sceneCxt.raycaster.intersectObjects(scene.children, true)
         
-                if(intersects.length === 0)
-                {
-                    point.element.classList.add('visible')
-                }
-                else
-                {
-                    const intersectionDistance = intersects[0].distance
-                    const pointDistance = point.position.distanceTo(camera.position)
+            //     if(intersects.length === 0)
+            //     {
+            //         point.element.classList.add('visible')
+            //     }
+            //     else
+            //     {
+            //         const intersectionDistance = intersects[0].distance
+            //         const pointDistance = point.position.distanceTo(camera.position)
         
-                    if(intersectionDistance < pointDistance)
-                    {
-                        point.element.classList.remove('visible')
-                    }
-                    else
-                    {
-                        point.element.classList.add('visible')
-                    }
-                }
+            //         if(intersectionDistance < pointDistance)
+            //         {
+            //             point.element.classList.remove('visible')
+            //         }
+            //         else
+            //         {
+            //             point.element.classList.add('visible')
+            //         }
+            //     }
 
-                const translateX = screenPosition.x  * 0.5
-                const translateY = - screenPosition.y  * 0.5
-                point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
-            }
+            //     const translateX = screenPosition.x  * 0.5
+            //     const translateY = - screenPosition.y  * 0.5
+            //     point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+            // }
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
         // updates can be applied at an appropriate synchronized point in the rendering cycle.

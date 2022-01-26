@@ -1,16 +1,16 @@
 /**  */
 
-import { VideoTexture, LinearFilter, RGBFormat, Mesh, PlaneGeometry, Texture, MeshBasicMaterial } from 'three';
+import { VideoTexture, LinearFilter, RGBFormat, Mesh, PlaneGeometry, Texture, ShaderMaterial } from 'three';
 import { pipe } from 'fp-ts/function'
 import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts'
-// import { createImageMaterial, ImgMaterialUniforms} from './image-plane-custom-shader'
+import { createImageMaterial, ImgMaterialUniforms} from './image-plane-custom-shader'
 
 export type VideoPlane = {
     videoEl: HTMLVideoElement;
     posterTexture: Texture;
     videoTexture: VideoTexture;
-    mesh: THREE.Mesh<THREE.PlaneGeometry, MeshBasicMaterial>;
+    mesh: THREE.Mesh<THREE.PlaneGeometry, ShaderMaterial>;
 };
 
 interface VideoPlaneHandlers {
@@ -36,9 +36,9 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
         videoTexture.magFilter = LinearFilter;
         videoTexture.format = RGBFormat;
   
-    const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture }));
-    // const imgShaderMaterial = createImageMaterial(posterTexture)
-    // const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
+    // const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture }));
+    const imgShaderMaterial = createImageMaterial(posterTexture)
+    const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
 
    
     return {
@@ -51,24 +51,24 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
 
 export const videoPlaneHandlers: VideoPlaneHandlers = {
     play: (surface: VideoPlane) => {
-        // (surface.mesh.material.uniforms as ImgMaterialUniforms).map.value = surface.videoTexture;
-        // surface.mesh.material.needsUpdate = true;
+        (surface.mesh.material.uniforms as ImgMaterialUniforms).map.value = surface.videoTexture;
+        surface.mesh.material.needsUpdate = true;
 
-        surface.mesh.material.map = surface.videoTexture;
-        surface.mesh.material.map.needsUpdate = true;
-        surface.mesh.material.needsUpdate = true
+        // surface.mesh.material.map = surface.videoTexture;
+        // surface.mesh.material.map.needsUpdate = true;
+        // surface.mesh.material.needsUpdate = true
 
         // surface.mesh.material = new MeshBasicMaterial({map: surface.videoTexture})
         // surface.mesh.material.needsUpdate = true
         surface.videoEl.play();
     },
     pause: (surface: VideoPlane) => {
-        // (surface.mesh.material.uniforms as ImgMaterialUniforms).map.value = surface.posterTexture;
-        // surface.mesh.material.needsUpdate = true;
+        (surface.mesh.material.uniforms as ImgMaterialUniforms).map.value = surface.posterTexture;
+        surface.mesh.material.needsUpdate = true;
 
-        surface.mesh.material.map = surface.posterTexture;
-        surface.mesh.material.map.needsUpdate = true;
-        surface.mesh.material.needsUpdate = true
+        // surface.mesh.material.map = surface.posterTexture;
+        // surface.mesh.material.map.needsUpdate = true;
+        // surface.mesh.material.needsUpdate = true
 
         // surface.mesh.material = new MeshBasicMaterial({map: surface.posterTexture})
         // surface.mesh.material.needsUpdate = true
