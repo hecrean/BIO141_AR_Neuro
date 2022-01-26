@@ -91,7 +91,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const raph = createImagePlane('/img/raph.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL], true);
 
     // video planes
-    const mainVideo = createVideoPlane('mp4/aurora_demo.mp4', 1820 * PIXEL, 1024 * PIXEL, true);
+    const mainVideo = createVideoPlane(assetCtx, 'mp4/aurora_demo.mp4', '/img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL, true);
     console.log(mainVideo);
 
     // 3d-models
