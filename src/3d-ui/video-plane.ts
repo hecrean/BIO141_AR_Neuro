@@ -1,6 +1,6 @@
 /**  */
 
-import { VideoTexture, LinearFilter, RGBFormat, Mesh, PlaneGeometry, Texture, MeshBasicMaterial, DoubleSide, TextureFilter } from 'three';
+import { VideoTexture, LinearFilter, RGBFormat, Mesh, PlaneGeometry, Texture, MeshBasicMaterial, DoubleSide } from 'three';
 import { pipe } from 'fp-ts/function'
 import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts'
