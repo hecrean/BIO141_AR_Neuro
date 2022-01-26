@@ -7,7 +7,7 @@ import { option } from 'fp-ts'
 
 export type VideoPlane = {
     videoEl: HTMLVideoElement;
-    posterTexture: Texture | null;
+    posterTexture: Texture;
     videoTexture: VideoTexture;
     mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
 };
@@ -27,7 +27,7 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
 
     const posterTexture = pipe(
         asset.texture.api.get(asset.texture.cache, posterUrl),
-        option.getOrElseW(() => null),
+        option.getOrElseW(() => new Texture()),
     );
 
     const videoTexture = new VideoTexture(videoEl);
@@ -48,12 +48,12 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
 export const videoPlaneHandlers: VideoPlaneHandlers = {
     play: (surface: VideoPlane) => {
         surface.mesh.material.map = surface.videoTexture;
-        surface.mesh.material.needsUpdate = true;
+        surface.mesh.material.map.needsUpdate = true;
         surface.videoEl.play();
     },
     pause: (surface: VideoPlane) => {
         surface.mesh.material.map = surface.posterTexture;
-        surface.mesh.material.needsUpdate = true;
+        surface.mesh.material.map.needsUpdate = true;
         surface.videoEl.pause();
     },
 };
