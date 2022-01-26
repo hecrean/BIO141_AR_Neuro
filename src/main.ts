@@ -36,7 +36,9 @@ const observer = new MutationObserver(() => {
     } else if (inDom) {
         inDom = false;
         if(document.querySelector('.overlay-heading')){
-            document.querySelector('.overlay-heading')!.innerHTML = /*html*/ `Biogen Switzerland AG`
+            document.querySelector('.overlay-heading')!.innerHTML = /*html*/ `
+            <h1> Biogen Switzerland AG <h1>
+            `
         }
 
         observer.disconnect();
