@@ -14,6 +14,11 @@ function openInNewTab(href: string) {
     // link.remove()
     window.location.href = href;
 }
+function email(emailAddress: string,  emailSubject: string){
+    const a = document.createElement('a');
+    document.body.append(a);
+    a.href = `mailto:${emailAddress}?subject=${emailSubject}`
+}
 
 enum UIKinds {
     button,
@@ -123,18 +128,46 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
         },
         eva: {
             kind: UIKinds.img,
-            api: defaultEventHandlers,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, event) => {
+                    if (isMesh(event.object)) {
+                        event.object.material.color = new Color('blue');
+                    }
+
+                    email('hector@hectorcrean.xyz', 'test')
+                    return state;
+                }
+            },
             mesh: eva,
         },
         raph: {
             kind: UIKinds.img,
-            api: defaultEventHandlers,
-            mesh: raph,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, event) => {
+                    if (isMesh(event.object)) {
+                        event.object.material.color = new Color('blue');
+                    }
+
+                    email('hector@hectorcrean.xyz', 'test')
+                    return state;
+                }
+            },            mesh: raph,
         },
         ed: {
             kind: UIKinds.img,
-            api: defaultEventHandlers,
-            mesh: ed,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, event) => {
+                    if (isMesh(event.object)) {
+                        event.object.material.color = new Color('blue');
+                    }
+
+                    email('hector@hectorcrean.xyz', 'test')
+                    return state;
+                }
+            },            mesh: ed,
         },
         btnLinc: {
             kind: UIKinds.button,
