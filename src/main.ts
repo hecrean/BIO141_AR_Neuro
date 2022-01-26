@@ -12,7 +12,7 @@ import {
 import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
-import { Vector3, Quaternion } from 'three';
+import { Vector3, Quaternion, Material } from 'three';
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
@@ -126,6 +126,8 @@ const ArPipelineModule = (
             const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
             const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
             neuronHandle.mesh.rotateY(ROTATION_RATE);
+
+            (sceneCxt.uiElementHandles.mainVideo.mesh.material as Material).needsUpdate = true; 
 
 
             // for(const point of points)
