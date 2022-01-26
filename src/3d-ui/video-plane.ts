@@ -48,11 +48,13 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
 export const videoPlaneHandlers: VideoPlaneHandlers = {
     play: (surface: VideoPlane) => {
         surface.mesh.material.map = surface.videoTexture;
+        surface.mesh.material.needsUpdate = true
         surface.mesh.material.map.needsUpdate = true;
         surface.videoEl.play();
     },
     pause: (surface: VideoPlane) => {
         surface.mesh.material.map = surface.posterTexture;
+        surface.mesh.material.needsUpdate = true
         surface.mesh.material.map.needsUpdate = true;
         surface.videoEl.pause();
     },
