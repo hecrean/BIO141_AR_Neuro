@@ -38,6 +38,13 @@ canvas {
     background-color: rgb(253, 253, 253) !important;
 }
 
+.overlay-heading {
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    left: 50%;
+}
+
 .point {
     position: absolute;
     top: 50%;
