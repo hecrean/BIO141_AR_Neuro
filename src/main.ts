@@ -17,10 +17,10 @@ import { Vector3, Quaternion } from 'three';
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
 
-type HtmlPoints = Array<{
-    position: Vector3;
-    element: HTMLElement;
-}>
+// type HtmlPoints = Array<{
+//     position: Vector3;
+//     element: HTMLElement;
+// }>
 
 let inDom = false;
 const observer = new MutationObserver(() => {
