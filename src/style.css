@@ -40,9 +40,9 @@ canvas {
 
 .overlay-heading {
     position: absolute;
-    z-index: 999;
-    top: 10px;
-    left: 50%;
+    top: 5px;
+    left: 5px;
+    color: gray;
 }
 
 .point {

@@ -35,6 +35,10 @@ const observer = new MutationObserver(() => {
         inDom = true;
     } else if (inDom) {
         inDom = false;
+        if(document.querySelector('.overlay-heading')){
+            document.querySelector('.overlay-heading')!.innerHTML = /*html*/ `Biogen Switzerland AG`
+        }
+
         observer.disconnect();
     }
 });
