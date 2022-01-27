@@ -45,10 +45,12 @@ export const initSceneGraphCtx = (assetCtx: AssetsCtx): SceneGraphCtx => {
 };
 
 export type UserInput = {
+    userHasSeenAnimation: boolean;
     videoFocusState: {tag: 'aurora-app-focused'}|{tag:'edward-introduction-focused'}|{tag:'none-focused'};
 }
 
 export const initUserInput = (): UserInput => ({
+    userHasSeenAnimation: false,
     videoFocusState: {tag:'none-focused'}
 })
 
@@ -81,6 +83,7 @@ export const initState = (
     // components
     const root = sceneCtx.uiComponentHandles.get('rootSurface');
     if (root) {
+        // root.visible = false;
         renderCtx.scene.add(root)
     }
 

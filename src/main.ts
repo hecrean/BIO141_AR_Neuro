@@ -13,7 +13,6 @@ import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx, initUser
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
 import { Vector3, Quaternion } from 'three';
-import { tween } from 'shifty'
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
@@ -79,36 +78,6 @@ const ArPipelineModule = (
 
             const state = initState(renderCtx, sceneCxt, assetCtx, imageTargets, userInput);
 
-            // tween root object:
-            const root = state.sceneCtx.uiComponentHandles.get('rootSurface')
-            if (root) {
-                tween({
-                    from:  {
-                        x: 0,
-                        y: 100,
-                        z: 100,
-                        sx: 1,
-                        sy: 1,
-                        sz: 1,
-                        q1: 0, q2: 0, q3: 0, q4: 0
-                    },
-                    to:  {
-                        x: root.position.x,
-                        y: root.position.y,
-                        z: root.position.z,
-                        sx: 1,
-                        sy: 1,
-                        sz: 1,
-                    },
-                    duration: 3000,
-                    easing: 'easeOutQuad',
-                    render: ({ x, y, z, sx, sy, sz }: any) => {
-                        root.position.set(x,y,z);
-                        root.scale.set(sx, sy, sz)
-                     },  
-                })
-            }
-
 
             input$.subscribe((input) => responseToInput(input, state));
 
@@ -135,15 +104,22 @@ const ArPipelineModule = (
 
             // lerp view to image target
             const root = sceneCxt.uiComponentHandles.get('rootSurface');
+
             if (root) {
-                const LERP_RATE = 0.4;
-                const { x, y, z } = imageTargets['r42-business-card'].transform.position;
-                const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
-                root.position.lerp(new Vector3(x, y, z), LERP_RATE);
-                root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
-                const scale = imageTargets['r42-business-card'].transform.scale;
-                root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
+         
+                    const LERP_RATE = 0.4;
+                    const { x, y, z } = imageTargets['r42-business-card'].transform.position;
+                    const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
+                    root.position.lerp(new Vector3(x, y, z), LERP_RATE);
+                    root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
+                    const scale = imageTargets['r42-business-card'].transform.scale;
+                    root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
+            
+
             }
+         
+           
+          
            
 
             //rotate model
@@ -156,7 +132,7 @@ const ArPipelineModule = (
         // updates can be applied at an appropriate synchronized point in the rendering cycle.
         listeners: [
             onImageUpdatedListener(imageTargets),
-            onImageFoundListener(sceneCxt, imageTargets),
+            onImageFoundListener(userInput, sceneCxt, imageTargets),
             onImageLostListener(),
         ],
     };

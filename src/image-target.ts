@@ -1,6 +1,6 @@
 import { ImageFoundMsg, ImageLostMsg, ImageUpdatedMsg } from './type';
 import { SceneGraphCtx } from './state';
-
+import { UserInput} from './state'
 // this is used to keep track of our image targets...
 
 export type TargetName =
@@ -36,22 +36,27 @@ const log = (name: string, _: Transform) => {
 };
 
 
-export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageFoundMsg => {
+export const onImageFoundListener = (userState: UserInput, sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageFoundMsg => {
     return {
         event: 'reality.imagefound',
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
+
+                
+                   
                     imageTargets[detail.name] = createImageTarget(detail.name, {
                         position: detail.position,
                         rotation: detail.rotation,
                         scale: detail.scale,
                     });
+                       
                     const root = sceneCtx.uiComponentHandles.get('rootSurface')
                     if (root) {
                         root.visible = true;
                     }
+
                     break;
                 }
 
