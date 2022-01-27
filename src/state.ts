@@ -1,7 +1,8 @@
-import * as THREE from 'three';
-import { registerUi, initUiElements, UIComponentHandles, UIElementHandles, initUiComponents } from './3d-ui';
+import { Group, Raycaster, Vector2} from 'three';
+import { parseLayout, initLayout } from '3d-ui/3d-layout';
+import {initUiElements, UIElementHandles } from './3d-ui/element-factory'
 import { AssetsCtx } from './assets';
-import { interactionCache, InteractionCache } from './interaction-cache';
+import { interactionCache, InteractionCache, interactionCacheApi } from './interaction-cache';
 import { DirectionalLight, AmbientLight } from 'three';
 import { ImageTargets } from 'image-target';
 
@@ -15,35 +16,56 @@ export type RenderCxt = {
 export type SceneGraphCtx = {
     raycaster: THREE.Raycaster;
     uiElementHandles: UIElementHandles;
-    uiComponentHandles: UIComponentHandles;
+    uiComponentHandles: Map<string, Group>;
     interactionCache: InteractionCache;
     mouse: THREE.Vector2;
 };
 
 export const initSceneGraphCtx = (assetCtx: AssetsCtx): SceneGraphCtx => {
     const uiElementHandles = initUiElements(assetCtx);
-    const uiComponentHandles = initUiComponents(uiElementHandles);
 
+    const layout = initLayout(uiElementHandles)
+    const uiComponentHandles = parseLayout(layout)
+    
     const sceneCtx: SceneGraphCtx = {
         interactionCache: interactionCache(),
-        raycaster: new THREE.Raycaster(),
-        mouse: new THREE.Vector2(),
+        raycaster: new Raycaster(),
+        mouse: new Vector2(),
         uiElementHandles: uiElementHandles,
         uiComponentHandles: uiComponentHandles,
     };
 
+    const registerUi = (cache: InteractionCache, uiElHandles: UIElementHandles): void => {
+        Object.values(uiElHandles).map((handle) => interactionCacheApi.register(cache, handle.mesh, handle.api));
+    };
+    
     registerUi(sceneCtx.interactionCache, sceneCtx.uiElementHandles);
 
     return sceneCtx;
 };
 
-export type State = { sceneCtx: SceneGraphCtx; assetCtx: AssetsCtx; renderCtx: RenderCxt; imageTargets: ImageTargets };
+export type UserInput = {
+    videoFocusState: {tag: 'aurora-app-focused'}|{tag:'edward-introduction-focused'}|{tag:'none-focused'};
+}
+
+export const initUserInput = (): UserInput => ({
+    videoFocusState: {tag:'none-focused'}
+})
+
+export type State = { 
+    sceneCtx: SceneGraphCtx; 
+    assetCtx: AssetsCtx; 
+    renderCtx: RenderCxt; 
+    imageTargets: ImageTargets;
+    userInput: UserInput;
+};
 
 export const initState = (
     renderCtx: RenderCxt,
     sceneCtx: SceneGraphCtx,
     assetCtx: AssetsCtx,
     imageTargets: ImageTargets,
+    userInput: UserInput
 ): State => {
     // light
     const directionalLight1 = new DirectionalLight(0xffffff, 1);
@@ -57,9 +79,11 @@ export const initState = (
     renderCtx.scene.add(...[ambientLight1, directionalLight1]);
 
     // components
-    renderCtx.scene.add(sceneCtx.uiComponentHandles.rootSurface.group);
+    const root = sceneCtx.uiComponentHandles.get('rootSurface');
+    if (root) {
+        renderCtx.scene.add(root)
+    }
 
 
-
-    return { renderCtx, sceneCtx, assetCtx, imageTargets };
+    return { renderCtx, sceneCtx, assetCtx, imageTargets, userInput };
 };

@@ -37,6 +37,7 @@ export const api = {
         ({ raycaster }: SceneGraphCtx) =>
         ({ scene, camera }: RenderCxt): IntersectionEvent<K>[] => {
             switch (canvasEvent.tag) {
+                case 'dblclick':
                 // case "pointercancel":
                 case 'pointerdown':
                 // case "pointerenter":
@@ -45,7 +46,6 @@ export const api = {
                 // case "pointerout":
                 // case "pointerover":
                 case 'pointerup': {
-                    canvasEvent.tag === 'pointermove' ? console.log(canvasEvent.tag) : () => ({});
                     const ev = canvasEvent.event as PointerEvent;
 
                     const pointerPosition = new Vector2(

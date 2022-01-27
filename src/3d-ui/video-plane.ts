@@ -25,9 +25,12 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
     videoEl.poster = 'https://caples.org/images/video-play-button.png';
     videoEl.controls = false;
     videoEl.src = videoUrl;
-    videoEl.loop = true;
+    videoEl.setAttribute("preload", "auto");
+    videoEl.setAttribute("loop", "");
+    videoEl.setAttribute("muted", "");
+    videoEl.setAttribute("playsinline", "");
+    videoEl.setAttribute("webkit-playsinline", "");
     videoEl.load()
-
 
     switch (videoEl.readyState) {
         case videoEl.HAVE_ENOUGH_DATA: {
@@ -57,7 +60,6 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
         default: {
             const posterTexture = new Texture();
             const videoTexture = new VideoTexture(videoEl)
-            console.log('route2')
             const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: videoTexture, side: DoubleSide }));
             return {
                 videoEl,

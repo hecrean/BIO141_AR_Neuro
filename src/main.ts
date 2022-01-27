@@ -9,19 +9,16 @@ import {
     onImageLostListener,
     onImageUpdatedListener,
 } from './image-target';
-import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx } from './state';
+import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx, initUserInput, UserInput } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
 import { Vector3, Quaternion } from 'three';
+import { tween } from 'shifty'
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
 
-// type HtmlPoints = Array<{
-//     position: Vector3;
-//     element: HTMLElement;
-// }>
-
+// Iphone welcome / prompt for permission styling :
 let inDom = false;
 const observer = new MutationObserver(() => {
     if (document.querySelector('.prompt-box-8w')) {
@@ -46,36 +43,23 @@ const observer = new MutationObserver(() => {
 });
 observer.observe(document.body, { childList: true });
 
-// update
+
+// Input to Output Mapping
 const responseToInput = (input: Input, state: State) => {
     const { threeEvent } = raycasterApi;
     const intersectionEvts = threeEvent(input.canvasEvent)(state.sceneCtx)(state.renderCtx);
     return interpreter(state, intersectionEvts[0]);
 };
 
-/// Our ArPipelineModule :
+/// ArPipelineModule :
 const ArPipelineModule = (
     sceneCxt: SceneGraphCtx,
     assetCtx: AssetsCtx,
     imageTargets: ImageTargets,
+    userInput: UserInput
 ): CameraPipelineModule => {
     // define variables
 
-   
-// const points: HtmlPoints = [
-//     {
-//         position: new Vector3(1.55, 0.3, - 0.6),
-//         element: document.querySelector('.point-0')!
-//     },
-//     {
-//         position: new Vector3(0.5, 0.8, - 1.6),
-//         element: document.querySelector('.point-1')!
-//     },
-//     {
-//         position: new Vector3(1.6, - 1.3, - 0.7),
-//         element: document.querySelector('.point-2')!
-//     }
-// ]
 
     return {
         // Pipeline modules need a name.
@@ -93,7 +77,38 @@ const ArPipelineModule = (
 
             const renderCtx: RenderCxt = { scene, camera, gl: renderer };
 
-            const state = initState(renderCtx, sceneCxt, assetCtx, imageTargets);
+            const state = initState(renderCtx, sceneCxt, assetCtx, imageTargets, userInput);
+
+            // tween root object:
+            const root = state.sceneCtx.uiComponentHandles.get('rootSurface')
+            if (root) {
+                tween({
+                    from:  {
+                        x: 0,
+                        y: 100,
+                        z: 100,
+                        sx: 1,
+                        sy: 1,
+                        sz: 1,
+                        q1: 0, q2: 0, q3: 0, q4: 0
+                    },
+                    to:  {
+                        x: root.position.x,
+                        y: root.position.y,
+                        z: root.position.z,
+                        sx: 1,
+                        sy: 1,
+                        sz: 1,
+                    },
+                    duration: 3000,
+                    easing: 'easeOutQuad',
+                    render: ({ x, y, z, sx, sy, sz }: any) => {
+                        root.position.set(x,y,z);
+                        root.scale.set(sx, sy, sz)
+                     },  
+                })
+            }
+
 
             input$.subscribe((input) => responseToInput(input, state));
 
@@ -119,66 +134,36 @@ const ArPipelineModule = (
             } = XR8.Threejs.xrScene();
 
             // lerp view to image target
-            const rootHandle = sceneCxt.uiComponentHandles.rootSurface.group;
-            const LERP_RATE = 0.4;
-            const { x, y, z } = imageTargets['r42-business-card'].transform.position;
-            const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
-            rootHandle.position.lerp(new Vector3(x, y, z), LERP_RATE);
-            rootHandle.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
-            const scale = imageTargets['r42-business-card'].transform.scale;
-            rootHandle.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
+            const root = sceneCxt.uiComponentHandles.get('rootSurface');
+            if (root) {
+                const LERP_RATE = 0.4;
+                const { x, y, z } = imageTargets['r42-business-card'].transform.position;
+                const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
+                root.position.lerp(new Vector3(x, y, z), LERP_RATE);
+                root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
+                const scale = imageTargets['r42-business-card'].transform.scale;
+                root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
+            }
+           
 
             //rotate model
             const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
             const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
             neuronHandle.mesh.rotateY(ROTATION_RATE);
 
-
-
-            // for(const point of points)
-            // {
-
-            //     const screenPosition = point.position.clone()
-            //     screenPosition.project(camera)
-
-            //     sceneCxt.raycaster.setFromCamera(screenPosition, camera)
-            //     const intersects = sceneCxt.raycaster.intersectObjects(scene.children, true)
-        
-            //     if(intersects.length === 0)
-            //     {
-            //         point.element.classList.add('visible')
-            //     }
-            //     else
-            //     {
-            //         const intersectionDistance = intersects[0].distance
-            //         const pointDistance = point.position.distanceTo(camera.position)
-        
-            //         if(intersectionDistance < pointDistance)
-            //         {
-            //             point.element.classList.remove('visible')
-            //         }
-            //         else
-            //         {
-            //             point.element.classList.add('visible')
-            //         }
-            //     }
-
-            //     const translateX = screenPosition.x  * 0.5
-            //     const translateY = - screenPosition.y  * 0.5
-            //     point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
-            // }
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
         // updates can be applied at an appropriate synchronized point in the rendering cycle.
         listeners: [
-            onImageUpdatedListener(sceneCxt, imageTargets),
+            onImageUpdatedListener(imageTargets),
             onImageFoundListener(sceneCxt, imageTargets),
-            onImageLostListener(sceneCxt, imageTargets),
+            onImageLostListener(),
         ],
     };
 };
 
-const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx, imageTargets: ImageTargets) => () => {
+const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx, imageTargets: ImageTargets, userInput: UserInput) => () => {
+    XR8.XrController.configure({ disableWorldTracking: true });
     XR8.addCameraPipelineModules([
         // Add camera pipeline modules.
         // Existing pipeline modules.
@@ -191,7 +176,7 @@ const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx, imageTargets: 
         XRExtras.Loading.pipelineModule(), // Manages the loading screen on startup.
         XRExtras.RuntimeError.pipelineModule(), // Shows an error image on runtime error.
         // Custom pipeline modules.
-        ArPipelineModule(sceneCxt, assetCtx, imageTargets),
+        ArPipelineModule(sceneCxt, assetCtx, imageTargets, userInput),
     ]);
 
     // Open the camera and start running the camera run loop.
@@ -208,7 +193,8 @@ const runAR = async () => {
     await loadAssetBundle<'gltf'>(assetCtx.gltf.api, assetCtx.gltf.cache, gltfBundle)();
     const sceneCxt = initSceneGraphCtx(assetCtx);
     const imageTargets = initImageTargets();
-    XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx, imageTargets) });
+    const userInput = initUserInput()
+    XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx, imageTargets, userInput) });
 
     const loadImage = document.getElementById('loadImage') as HTMLImageElement;
     if (loadImage) {
@@ -217,3 +203,6 @@ const runAR = async () => {
 };
 
 runAR();
+  
+
+

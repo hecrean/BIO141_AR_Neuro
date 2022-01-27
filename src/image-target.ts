@@ -31,25 +31,10 @@ export const initImageTargets = (): ImageTargets => ({
     'r42-business-card': { tag: 'r42-business-card', transform: initTransform() },
 });
 
-const log = (name: string, detail: Transform) => {
-    console.log(`handling event ${name}: details: ${JSON.stringify(detail)}`);
+const log = (name: string, _: Transform) => {
+    console.log(`handling event ${name}}`);
 };
 
-// type Transform = {
-//     position: THREE.Vector3;
-//     rotation: THREE.Quaternion;
-//     scale: THREE.Vector3;
-// };
-
-// const getTargetTransform = (detail: Detail): Transform => {
-//     const { x: x1, y: x2, z: x3 } = detail.position;
-//     const { x: q1, y: q2, z: q3, w: q4 } = detail.rotation;
-//     const r = new Vector3(x1, x2, x3);
-//     const q = new Quaternion(q1, q2, q3, q4);
-//     const s = new Vector3(detail.scale, detail.scale, detail.scale);
-
-//     return { position: r, rotation: q, scale: s };
-// };
 
 export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageFoundMsg => {
     return {
@@ -63,8 +48,10 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: Imag
                         rotation: detail.rotation,
                         scale: detail.scale,
                     });
-                    const root = sceneCtx.uiComponentHandles.rootSurface.group;
-                    root.visible = true;
+                    const root = sceneCtx.uiComponentHandles.get('rootSurface')
+                    if (root) {
+                        root.visible = true;
+                    }
                     break;
                 }
 
@@ -74,15 +61,13 @@ export const onImageFoundListener = (sceneCtx: SceneGraphCtx, imageTargets: Imag
         },
     };
 };
-export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageLostMsg => {
+export const onImageLostListener = (): ImageLostMsg => {
     return {
         event: 'reality.imagelost',
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
-                    console.log(imageTargets[detail.name]);
-                    console.log(sceneGraphCtx);
                     break;
                 }
                 default:
@@ -92,7 +77,7 @@ export const onImageLostListener = (sceneGraphCtx: SceneGraphCtx, imageTargets: 
     };
 };
 
-export const onImageUpdatedListener = (_: SceneGraphCtx, imageTargets: ImageTargets): ImageUpdatedMsg => {
+export const onImageUpdatedListener = (imageTargets: ImageTargets): ImageUpdatedMsg => {
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {

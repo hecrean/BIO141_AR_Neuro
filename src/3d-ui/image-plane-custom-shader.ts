@@ -1,4 +1,4 @@
-import { Texture, ShaderMaterial, VideoTexture } from "three";
+import { Texture, ShaderMaterial, VideoTexture, DoubleSide } from "three";
 
 export type ImgMaterialUniforms = {
     map: {
@@ -35,8 +35,9 @@ export const createImageMaterial = (map: Texture | VideoTexture) => {
 }
 
   return new ShaderMaterial({
-  uniforms: initialUniforms, 
-  vertexShader: vertexShader, 
-  fragmentShader:fragmentShader
+    side: DoubleSide,
+    uniforms: initialUniforms, 
+    vertexShader: vertexShader, 
+    fragmentShader:fragmentShader
 })
 }

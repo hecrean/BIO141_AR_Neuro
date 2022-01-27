@@ -27,6 +27,7 @@ const pointermove$ = observable(canvasEl, 'pointermove');
 const pointerout$ = observable(canvasEl, 'pointerout');
 const pointerover$ = observable(canvasEl, 'pointerover');
 const pointerup$ = observable(canvasEl, 'pointerup');
+const dbclick$ = observable(canvasEl, 'dblclick');
 
 export type Input = {
     canvasEvent: CanvasEvent<CanvasEventName>;
@@ -42,6 +43,7 @@ export const input$ = merge(
     pointerup$,
     pointercancel$,
     pointerout$,
+    dbclick$
 ).pipe(
     map<CanvasEvent<CanvasEventName>, Input>((canvasEv) => ({
         canvasEvent: canvasEv,
@@ -66,6 +68,7 @@ export type EventHandlers = {
     onTouchMove: (state: State, event: IntersectionEvent<'touchmove'>) => State;
     onTouchEnd: (state: State, event: IntersectionEvent<'touchend'>) => State;
     onTouchCancel: (state: State, event: IntersectionEvent<'touchcancel'>) => State;
+    onDoubleClick:  (state: State, event: IntersectionEvent<'dblclick'>) => State;
 };
 
 export const interpreter = <K extends CanvasEventName>(state: State, ev: IntersectionEvent<K>): State => {
@@ -93,6 +96,8 @@ export const interpreter = <K extends CanvasEventName>(state: State, ev: Interse
             return handlers.onPointerOver(state, ev as IntersectionEvent<'pointerover'>);
         case 'pointerup':
             return handlers.onPointerUp(state, ev as IntersectionEvent<'pointerup'>);
+        case 'dblclick':
+            return handlers.onDoubleClick(state, ev as IntersectionEvent<'dblclick'>);
         default:
             return state;
     }

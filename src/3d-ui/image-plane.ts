@@ -11,23 +11,18 @@ export const createImagePlane = (
     imageUrl: string,
     asset: AssetsCtx,
     size: [number, number],
-    visible: boolean,
     backgroundColor?: Color,
 ) => {
     const imgTexture = pipe(
         asset.texture.api.get(asset.texture.cache, imageUrl),
         option.getOrElseW(() => null),
     );
-    if (imgTexture) {
-        console.log('img tex is valid');
-    }
 
     const mesh = new Mesh(
         new PlaneGeometry(size[0], size[1]),
         new MeshBasicMaterial({
             side: DoubleSide,
             map: imgTexture,
-            visible: visible,
             color: backgroundColor,
             transparent: true,
         }),
