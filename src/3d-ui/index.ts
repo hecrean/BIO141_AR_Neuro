@@ -5,12 +5,19 @@ import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
 import { create3DModel } from './3d-model';
+import { IntersectionEvent } from '../events/canvas'
 
 function openInNewTab(href: string) {
     window.location.href = href;
 }
 function email(emailAddress: string,  emailSubject: string){
     window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
+}
+
+const changeButtonColor = (event: IntersectionEvent<"pointerdown">, color: Color) => {
+    if (isMesh(event.object)) {
+        event.object.material.color = color;
+    }
 }
 
 enum UIKinds {
@@ -135,11 +142,10 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    if (isMesh(event.object)) {
-                        event.object.material.color = new Color('blue');
-                    }
-
-                    email('hector@hectorcrean.xyz', 'test')
+                   
+                    changeButtonColor(event, new Color('blue'))
+                    setTimeout(() => changeButtonColor(event, new Color('white')), 1000)
+                    email('eva@biogen.com', 'test')
                     return state;
                 }
             },
@@ -150,9 +156,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    if (isMesh(event.object)) {
-                        event.object.material.color = new Color('blue');
-                    }
+                    changeButtonColor(event, new Color('blue'))
+                    setTimeout(() => changeButtonColor(event, new Color('white')), 1000)
 
                     email('hector@hectorcrean.xyz', 'test')
                     return state;
@@ -164,9 +169,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    if (isMesh(event.object)) {
-                        event.object.material.color = new Color('blue');
-                    }
+                    changeButtonColor(event, new Color('blue'))
+                    setTimeout(() => changeButtonColor(event, new Color('white')), 1000)
 
                     email('hector@hectorcrean.xyz', 'test')
                     return state;
