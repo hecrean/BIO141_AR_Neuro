@@ -1,5 +1,5 @@
 import { EventHandlers } from '../events/canvas';
-import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Color, Vector3 } from 'three';
+import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Color } from 'three';
 import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
