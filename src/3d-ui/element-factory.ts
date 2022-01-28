@@ -122,12 +122,11 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    const videoIsPlaying = videoElementIsPlaying(edwardWelcomeVideo.videoEl);
+                    const videoIsPlaying = videoElementIsPlaying(auroraVideo.videoEl);
                     switch (videoIsPlaying) {
                         case true: 
                             auroraVideo.videoEl.pause(); 
                             state.userInput.videoFocusState = { tag: 'none-focused'}
-
                             break;
                         case false:  
                             auroraVideo.videoEl.play(); 
