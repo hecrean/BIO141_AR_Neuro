@@ -32,44 +32,67 @@ export const createVideoPlane = (asset: AssetsCtx, videoUrl: string, posterUrl: 
     videoEl.setAttribute("webkit-playsinline", "");
     videoEl.load()
 
-    switch (videoEl.readyState) {
-        case videoEl.HAVE_ENOUGH_DATA: {
-            const posterTexture = pipe(
-                asset.texture.api.get(asset.texture.cache, posterUrl),
-                option.getOrElseW(() => new Texture()),
-            );
+    const posterTexture = pipe(
+        asset.texture.api.get(asset.texture.cache, posterUrl),
+        option.getOrElseW(() => new Texture()),
+    );
+
+    const videoTexture = new VideoTexture(videoEl);
+    videoTexture.minFilter = LinearFilter;
+    videoTexture.magFilter = LinearFilter;
+    videoTexture.format = RGBFormat;
+  
+    const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture, side: DoubleSide }));
+    // const imgShaderMaterial = createImageMaterial(posterTexture)
+    // const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
+
+   
+    return {
+        videoEl,
+        posterTexture,
+        videoTexture,
+        mesh,
+    };
+
+    // switch (videoEl.readyState) {
+    //     case videoEl.HAVE_ENOUGH_DATA: {
+    //         const posterTexture = pipe(
+    //             asset.texture.api.get(asset.texture.cache, posterUrl),
+    //             option.getOrElseW(() => new Texture()),
+    //         );
         
-            const videoTexture = new VideoTexture(videoEl);
-                videoTexture.minFilter = LinearFilter;
-                videoTexture.magFilter = LinearFilter;
-                videoTexture.format = RGBFormat;
+    //         const videoTexture = new VideoTexture(videoEl);
+    //         videoTexture.minFilter = LinearFilter;
+    //         videoTexture.magFilter = LinearFilter;
+    //         videoTexture.format = RGBFormat;
           
-            const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: videoTexture, side: DoubleSide }));
-            // const imgShaderMaterial = createImageMaterial(posterTexture)
-            // const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
+    //         const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture, side: DoubleSide }));
+    //         // const imgShaderMaterial = createImageMaterial(posterTexture)
+    //         // const mesh = new Mesh(new PlaneGeometry(width, height), imgShaderMaterial);
         
            
-            return {
-                videoEl,
-                posterTexture,
-                videoTexture,
-                mesh,
-            };
+    //         return {
+    //             videoEl,
+    //             posterTexture,
+    //             videoTexture,
+    //             mesh,
+    //         };
 
-        }
-        default: {
-            const posterTexture = new Texture();
-            const videoTexture = new VideoTexture(videoEl)
-            const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: videoTexture, side: DoubleSide }));
-            return {
-                videoEl,
-                posterTexture,
-                videoTexture,
-                mesh,
-            };
+    //     }
+    //     default: {
+    //         console.log('route 2 --------------------------------')
+    //         const posterTexture = new Texture();
+    //         const videoTexture = new VideoTexture(videoEl)
+    //         const mesh = new Mesh(new PlaneGeometry(width, height), new MeshBasicMaterial({ map: posterTexture, side: DoubleSide }));
+    //         return {
+    //             videoEl,
+    //             posterTexture,
+    //             videoTexture,
+    //             mesh,
+    //         };
 
-        }
-    }
+    //     }
+    //}
 
    
 };

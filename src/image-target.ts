@@ -77,7 +77,7 @@ export const onImageFoundListener = (userState: UserInput, sceneCtx: SceneGraphC
         },
     };
 };
-export const onImageLostListener = (userState: UserInput,): ImageLostMsg => {
+export const onImageLostListener = (_: UserInput,): ImageLostMsg => {
     return {
         event: 'reality.imagelost',
         process: ({ name, detail }) => {
@@ -87,7 +87,8 @@ export const onImageLostListener = (userState: UserInput,): ImageLostMsg => {
                     // userState.neuronRotationDirection === 1 
                     // ? userState.neuronRotationDirection = -1
                     // : userState.neuronRotationDirection = 1
-                    userState.neuronRotating = false;
+
+                    // userState.neuronRotating = false;
                     break;
                 }
                 default:

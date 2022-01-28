@@ -102,8 +102,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
        
 
     // video planes
-    const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL);
-    const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/uv-map.png', 1820 * PIXEL, 1024 * PIXEL)
+    const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1820 * PIXEL, 1024 * PIXEL);
+    const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1820 * PIXEL, 1024 * PIXEL)
     
     // 3d-models
     const neuron = create3DModel('./gltf/18_Neuron.glb', assetCtx);
@@ -120,23 +120,25 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.video,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, event) => {
-                    changeColor(event, new Color('blue'))
+                onPointerDown: (state, _) => {
                     const videoIsPlaying = videoElementIsPlaying(auroraVideo.videoEl);
                     switch (videoIsPlaying) {
                         case true: 
+                            auroraVideo.mesh.material.map = auroraVideo.posterTexture;
+                            auroraVideo.mesh.material.needsUpdate = true;
                             auroraVideo.videoEl.pause(); 
                             state.userInput.videoFocusState = { tag: 'none-focused'}
                             break;
                         case false:  
+                            auroraVideo.mesh.material.map = auroraVideo.videoTexture;
+                            auroraVideo.mesh.material.needsUpdate = true;
                             auroraVideo.videoEl.play(); 
                             state.userInput.videoFocusState = { tag: 'aurora-app-focused'}
                             break;
                     }
                     return state;
                 },
-                onPointerUp: (state, event) => {
-                    changeColor(event, new Color('white'))
+                onPointerUp: (state, _) => {
                     return state;
                 },
             },
@@ -146,15 +148,18 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.video,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, event) => {
-                    changeColor(event, new Color('blue'))
+                onPointerDown: (state, _) => {
                     const videoIsPlaying = videoElementIsPlaying(edwardWelcomeVideo.videoEl);
                     switch (videoIsPlaying) {
                         case true: 
+                            edwardWelcomeVideo.mesh.material.map = auroraVideo.posterTexture;
+                            edwardWelcomeVideo.mesh.material.needsUpdate = true;
                             edwardWelcomeVideo.videoEl.pause(); 
                             state.userInput.videoFocusState = { tag: 'none-focused'}
                             break;
                         case false:  
+                            edwardWelcomeVideo.mesh.material.map = auroraVideo.videoTexture;
+                            edwardWelcomeVideo.mesh.material.needsUpdate = true;
                             edwardWelcomeVideo.videoEl.play(); 
                             state.userInput.videoFocusState = { tag: 'edward-introduction-focused'}
 
@@ -162,8 +167,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     }
                     return state;
                 },
-                onPointerUp: (state, event) => {
-                    changeColor(event, new Color('white'))
+                onPointerUp: (state, _) => {
+                    // changeColor(event, new Color('white'))
                     return state;
                 },
             },
