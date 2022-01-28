@@ -13,6 +13,7 @@ import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx, initUser
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
 import { Vector3, Quaternion } from 'three';
+import { PIXEL} from './3d-ui/element-factory'
 
 
 declare const XR8: XR8Type;
@@ -102,6 +103,42 @@ const ArPipelineModule = (
             const {
                 /*camera, scene , renderer, cameraTexture*/
             } = XR8.Threejs.xrScene();
+
+
+            switch(userInput.videoFocusState.tag){
+                
+                case 'aurora-app-focused': {
+                    const auroraVidPanel = sceneCxt.uiComponentHandles.get('auroraVideoPanel')
+
+                    if (auroraVidPanel) {
+                        auroraVidPanel.position.lerp(new Vector3(0,0,1), 0.5)
+                        auroraVidPanel.scale.lerp(new Vector3(2,2,2), 0.5)
+                    }
+                    break;
+                }
+                case 'edward-introduction-focused': {
+                    const edwardVidPane = sceneCxt.uiComponentHandles.get('edwardWelcomeVideoPanel')
+                    if (edwardVidPane) {
+                        edwardVidPane.position.lerp(new Vector3(0,0,1), 0.5)
+                        edwardVidPane.scale.lerp(new Vector3(2,2,2), 0.5)
+                    }    
+                    break;
+                }            
+                case 'none-focused': {
+                    const auroraVidPanel = sceneCxt.uiComponentHandles.get('auroraVideoPanel')
+                    if (auroraVidPanel) {
+                        auroraVidPanel.position.lerp(new Vector3(2100 * PIXEL, -2100 * PIXEL, 0), 0.1)
+                        auroraVidPanel.scale.lerp(new Vector3(1,1,1), 0.5)
+                    }
+                    const edwardVidPane = sceneCxt.uiComponentHandles.get('edwardWelcomeVideoPanel')
+                    if (edwardVidPane) {
+                        edwardVidPane.position.lerp(new Vector3(-2100 * PIXEL, -2100 * PIXEL, 0), 0.1)
+                        edwardVidPane.scale.lerp(new Vector3(1,1,1), 0.5)
+                    }    
+
+                    break;
+                }
+            }
 
             const root = sceneCxt.uiComponentHandles.get('rootSurface');
             switch(userInput.stage.tag){
