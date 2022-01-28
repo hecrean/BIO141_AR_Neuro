@@ -70,6 +70,9 @@ export const defaultEventHandlers: EventHandlers = {
 const isMesh = (o: Object3D): o is Mesh<BufferGeometry, MeshStandardMaterial> => {
     return o instanceof Mesh;
 };
+const isGroup = (o: Object3D): o is Group => {
+    return o instanceof Group;
+};
 
 function openInNewTab(href: string) {
     window.location.href = href;
@@ -78,9 +81,16 @@ function email(emailAddress: string,  emailSubject: string){
     window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
 }
 
-const changeButtonColor = (event: IntersectionEvent<"pointerdown">|IntersectionEvent<'pointerup'>, color: Color) => {
+const changeColor = (event: IntersectionEvent<"pointerdown">|IntersectionEvent<'pointerup'>, color: Color) => {
     if (isMesh(event.object)) {
         event.object.material.color = color;
+    }
+    if (isGroup(event.object)){
+        event.object.children.forEach((obj) => {
+            if(isMesh(obj)){
+                obj.material.color = color;
+            }
+        })
     }
 }
 const videoElementIsPlaying = (el: HTMLVideoElement) => {
@@ -123,7 +133,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                    }
                 },
                 onPointerDown: (state, event) => {
-                    changeButtonColor(event, new Color('blue'))
+                    changeColor(event, new Color('blue'))
                     const videoIsPlaying = videoElementIsPlaying(edwardWelcomeVideo.videoEl);
                     switch (videoIsPlaying) {
                         case true: 
@@ -136,7 +146,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    changeButtonColor(event, new Color('white'))
+                    changeColor(event, new Color('white'))
                     return state;
                 },
             },
@@ -159,7 +169,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     }
                  },
                 onPointerDown: (state, event) => {
-                    changeButtonColor(event, new Color('blue'))
+                    changeColor(event, new Color('blue'))
                     const videoIsPlaying = videoElementIsPlaying(edwardWelcomeVideo.videoEl);
                     switch (videoIsPlaying) {
                         case true: 
@@ -172,7 +182,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    changeButtonColor(event, new Color('white'))
+                    changeColor(event, new Color('white'))
                     return state;
                 },
             },
@@ -192,12 +202,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    changeButtonColor(event, new Color('blue'))
+                    changeColor(event, new Color('blue'))
                     email('eva@biogen.com', 'test')
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    changeButtonColor(event, new Color('white'))
+                    changeColor(event, new Color('white'))
                     return state;
                 },
             },
@@ -208,12 +218,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    changeButtonColor(event, new Color('blue'))
+                    changeColor(event, new Color('blue'))
                     email('raph@biogen.com', 'test')
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    changeButtonColor(event, new Color('white'))
+                    changeColor(event, new Color('white'))
                     return state;
                 },
             },            
@@ -224,12 +234,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    changeButtonColor(event, new Color('blue'))
+                    changeColor(event, new Color('blue'))
                     email('ed@biogen.com', 'test')
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    changeButtonColor(event, new Color('white'))
+                    changeColor(event, new Color('white'))
                     return state;
                 },
             },            
@@ -240,12 +250,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    changeButtonColor(event, new Color('blue'))
+                    changeColor(event, new Color('blue'))
                     openInNewTab('https://www.biogenlinc.ch/');
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    changeButtonColor(event, new Color('white'))
+                    changeColor(event, new Color('white'))
                     return state;
                 },
             },
@@ -256,12 +266,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
-                    changeButtonColor(event, new Color('blue'))
+                    changeColor(event, new Color('blue'))
                     openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
                     return state;
                 },
                 onPointerUp: (state, event) => {
-                    changeButtonColor(event, new Color('white'))
+                    changeColor(event, new Color('white'))
                     return state;
                 },
             },
@@ -271,6 +281,16 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.model,
             api: {
                 ...defaultEventHandlers,
+                onPointerDown: (state, event) => { 
+                    console.log('clicked on neuron')
+                    changeColor(event, new Color('red'))
+                    return state;
+                },
+                onPointerUp: (state, event) => { 
+                    changeColor(event, new Color('red'))
+                    return state;
+                }
+                
             },
             mesh: groupifyMeshes(neuron),
         },

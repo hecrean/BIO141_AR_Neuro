@@ -23,7 +23,6 @@ export type SceneGraphCtx = {
 
 export const initSceneGraphCtx = (assetCtx: AssetsCtx): SceneGraphCtx => {
     const uiElementHandles = initUiElements(assetCtx);
-
     const layout = initLayout(uiElementHandles)
     const uiComponentHandles = parseLayout(layout)
     
@@ -45,13 +44,18 @@ export const initSceneGraphCtx = (assetCtx: AssetsCtx): SceneGraphCtx => {
 };
 
 export type UserInput = {
-    userHasSeenAnimation: boolean;
+    stage: 
+    | {tag: 'image-target-not-yet-seen'}
+    | {tag: 'initial-animation-sequence'}
+    | {tag: 'post-initial-animation-sequence'}
     videoFocusState: {tag: 'aurora-app-focused'}|{tag:'edward-introduction-focused'}|{tag:'none-focused'};
+    neuronRotationDirection: -1 | 1
 }
 
 export const initUserInput = (): UserInput => ({
-    userHasSeenAnimation: false,
-    videoFocusState: {tag:'none-focused'}
+    stage: { tag: 'image-target-not-yet-seen'},
+    videoFocusState: {tag:'none-focused'},
+    neuronRotationDirection: 1
 })
 
 export type State = { 
@@ -83,7 +87,7 @@ export const initState = (
     // components
     const root = sceneCtx.uiComponentHandles.get('rootSurface');
     if (root) {
-        // root.visible = false;
+        root.visible = false;
         renderCtx.scene.add(root)
     }
 

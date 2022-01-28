@@ -47,21 +47,23 @@ export type ImageScanningMsg = {
  * Emitted when target is first found
  * typically we make AR content visible at this point
  */
+export type ImgTrackedTransform = {
+    name: string;
+    detail: {
+        name: TargetName;
+        type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL';
+        position: { x: number; y: number; z: number };
+        rotation: { x: number; y: number; z: number; w: number };
+        scale: number;
+    };
+}
+
 export type ImageFoundMsg = {
     event: 'reality.imagefound';
     process: ({
         name,
         detail,
-    }: {
-        name: string;
-        detail: {
-            name: TargetName;
-            type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL';
-            position: { x: number; y: number; z: number };
-            rotation: { x: number; y: number; z: number; w: number };
-            scale: number;
-        };
-    }) => void;
+    }:ImgTrackedTransform ) => void;
 };
 /**
  * Fires any time target image's position/rotation/scale is updated.
@@ -71,16 +73,7 @@ export type ImageUpdatedMsg = {
     process: ({
         name,
         detail,
-    }: {
-        name: string;
-        detail: {
-            name: TargetName;
-            type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL';
-            position: { x: number; y: number; z: number };
-            rotation: { x: number; y: number; z: number; w: number };
-            scale: number;
-        };
-    }) => void;
+    }: ImgTrackedTransform) => void;
 };
 /**
  * Emitted when target no longer tracked
@@ -90,16 +83,7 @@ export type ImageLostMsg = {
     process: ({
         name,
         detail,
-    }: {
-        name: string;
-        detail: {
-            name: TargetName;
-            type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL';
-            position: { x: number; y: number; z: number };
-            rotation: { x: number; y: number; z: number; w: number };
-            scale: number;
-        };
-    }) => void;
+    }: ImgTrackedTransform) => void;
 };
 
 export type CameraPipelineEventMsg =

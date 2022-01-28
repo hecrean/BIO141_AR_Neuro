@@ -92,6 +92,7 @@ export const parseLayout = (layout: Layout): Map<string, Group> => {
     const components: Map<string, Group> = new Map();
     
     const rootSurface = new Group()
+    rootSurface.position.set(100, 0, 0)
     components.set('rootSurface', rootSurface)
 
 

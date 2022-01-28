@@ -1,6 +1,7 @@
-import { ImageFoundMsg, ImageLostMsg, ImageUpdatedMsg } from './type';
+import { ImageFoundMsg, ImageLostMsg, ImageUpdatedMsg,ImgTrackedTransform } from './type';
 import { SceneGraphCtx } from './state';
 import { UserInput} from './state'
+
 // this is used to keep track of our image targets...
 
 export type TargetName =
@@ -35,6 +36,15 @@ const log = (name: string, _: Transform) => {
     console.log(`handling event ${name}}`);
 };
 
+const updateGlobalImageTargetTracker = (detail: ImgTrackedTransform['detail'], imageTargets: ImageTargets) => {
+    imageTargets[detail.name] = createImageTarget(detail.name, {
+        position: detail.position,
+        rotation: detail.rotation,
+        scale: detail.scale,
+    });
+}
+
+
 
 export const onImageFoundListener = (userState: UserInput, sceneCtx: SceneGraphCtx, imageTargets: ImageTargets): ImageFoundMsg => {
     return {
@@ -43,18 +53,18 @@ export const onImageFoundListener = (userState: UserInput, sceneCtx: SceneGraphC
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
-
-                
-                   
-                    imageTargets[detail.name] = createImageTarget(detail.name, {
-                        position: detail.position,
-                        rotation: detail.rotation,
-                        scale: detail.scale,
-                    });
-                       
                     const root = sceneCtx.uiComponentHandles.get('rootSurface')
-                    if (root) {
-                        root.visible = true;
+
+                    switch(userState.stage.tag){
+                        case 'image-target-not-yet-seen':
+                            if (root) {
+                                root.visible = true;
+                            }
+                            updateGlobalImageTargetTracker(detail, imageTargets)
+                            userState.stage = {tag: 'initial-animation-sequence'};
+                           
+                            break;
+                       default: break;
                     }
 
                     break;
@@ -66,13 +76,16 @@ export const onImageFoundListener = (userState: UserInput, sceneCtx: SceneGraphC
         },
     };
 };
-export const onImageLostListener = (): ImageLostMsg => {
+export const onImageLostListener = (userState: UserInput,): ImageLostMsg => {
     return {
         event: 'reality.imagelost',
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
+                    userState.neuronRotationDirection === 1 
+                    ? userState.neuronRotationDirection = -1
+                    : userState.neuronRotationDirection = 1
                     break;
                 }
                 default:
@@ -82,21 +95,26 @@ export const onImageLostListener = (): ImageLostMsg => {
     };
 };
 
-export const onImageUpdatedListener = (imageTargets: ImageTargets): ImageUpdatedMsg => {
+export const onImageUpdatedListener = (userState: UserInput, imageTargets: ImageTargets): ImageUpdatedMsg => {
     return {
         event: 'reality.imageupdated',
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
-                    imageTargets[detail.name] = createImageTarget(detail.name, {
-                        position: detail.position,
-                        rotation: detail.rotation,
-                        scale: detail.scale,
-                    });
-         
+                    switch(userState.stage.tag) {
+                        case 'initial-animation-sequence':
+                            updateGlobalImageTargetTracker(detail, imageTargets)
+                            setTimeout(() => userState.stage = {tag: 'post-initial-animation-sequence'}, 4000);
+                            break;
+                        case 'post-initial-animation-sequence':
+                            updateGlobalImageTargetTracker(detail, imageTargets)
+                            break;
+                        default: break;
+                    }
                     break;
                 }
+                
                 default:
                     break;
             }

@@ -12,7 +12,9 @@ import {
 import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx, initUserInput, UserInput } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
-import { Vector3, Quaternion } from 'three';
+import { Vector3, Quaternion, MathUtils } from 'three';
+import { isMesh } from 'util';
+
 
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
@@ -102,38 +104,75 @@ const ArPipelineModule = (
                 /*camera, scene , renderer, cameraTexture*/
             } = XR8.Threejs.xrScene();
 
-            // lerp view to image target
             const root = sceneCxt.uiComponentHandles.get('rootSurface');
+            switch(userInput.stage.tag){
+                case 'image-target-not-yet-seen': {
 
-            if (root) {
+                    break;
+                }
+                case 'initial-animation-sequence': {
+
+                    // - opacity 0 -> 100%
+                    // - rotation of neuron 0 -> 100%
+                    // - elements start from centre, and organise themselves around neuron
+
+                    if (root) {
+                        const LERP_RATE = 0.05;
+                        const { x, y, z } = imageTargets['r42-business-card'].transform.position;
+                        const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
+                        root.position.lerp(new Vector3(x, y, z), LERP_RATE);
+                        root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
+                        const scale = imageTargets['r42-business-card'].transform.scale;
+                        root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
+
+                    }
+
+                     //rotate model
+                     const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
+                     const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
+                     neuronHandle.mesh.rotateY(userInput.neuronRotationDirection * ROTATION_RATE);
+
+
+                
+                    break;
+                }
+                case 'post-initial-animation-sequence': {
+
+                    // lerp plane to tracked image target
+                    if (root) {
          
-                    const LERP_RATE = 0.4;
-                    const { x, y, z } = imageTargets['r42-business-card'].transform.position;
-                    const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
-                    root.position.lerp(new Vector3(x, y, z), LERP_RATE);
-                    root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
-                    const scale = imageTargets['r42-business-card'].transform.scale;
-                    root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
-            
+                        const LERP_RATE = 0.4;
+                        const { x, y, z } = imageTargets['r42-business-card'].transform.position;
+                        const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
+                        root.position.lerp(new Vector3(x, y, z), LERP_RATE);
+                        root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
+                        const scale = imageTargets['r42-business-card'].transform.scale;
+                        root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
+                    }
 
+
+                    //rotate model
+                    const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
+                    const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
+                    neuronHandle.mesh.rotateY(userInput.neuronRotationDirection * ROTATION_RATE);
+
+                    break;
+
+                }
             }
+
+           
          
            
           
-           
-
-            //rotate model
-            const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
-            const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
-            neuronHandle.mesh.rotateY(ROTATION_RATE);
 
         },
         // Listeners are called right after the processing stage that fired them. This guarantees that
         // updates can be applied at an appropriate synchronized point in the rendering cycle.
         listeners: [
-            onImageUpdatedListener(imageTargets),
+            onImageUpdatedListener(userInput, imageTargets),
             onImageFoundListener(userInput, sceneCxt, imageTargets),
-            onImageLostListener(),
+            onImageLostListener(userInput),
         ],
     };
 };

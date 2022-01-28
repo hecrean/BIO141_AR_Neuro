@@ -3,13 +3,13 @@ import { AssetsCtx } from '../assets';
 import { option } from 'fp-ts';
 import { pipe } from 'fp-ts/function';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
-import { isMeshWithStandardMaterial } from '../util';
+import { isMesh } from '../util';
 
 
 const load3DModelFromFile = (gltf: GLTF) => {
     const model: Array<Mesh> = [];
     gltf.scene.traverse((child) => {
-        if(isMeshWithStandardMaterial(child)){
+        if(isMesh(child)){
            model.push(child)
         }
     })
