@@ -1,5 +1,5 @@
 import { EventHandlers } from '../events/canvas';
-import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Color } from 'three';
+import { Mesh, Object3D, BufferGeometry, MeshStandardMaterial, Group, Color, Vector3 } from 'three';
 import { AssetsCtx } from '../assets';
 import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
@@ -120,27 +120,17 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.video,
             api: {
                 ...defaultEventHandlers,
-                onDoubleClick: (state, _) => {
-                   switch(state.userInput.videoFocusState.tag){
-                        case 'none-focused':
-                           state.userInput.videoFocusState = {tag: 'aurora-app-focused'}
-                           return state;
-                        case 'aurora-app-focused':
-                            state.userInput.videoFocusState = {tag: 'none-focused'}
-                            return state;
-                        default:
-                            return state;
-                   }
-                },
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
                     const videoIsPlaying = videoElementIsPlaying(edwardWelcomeVideo.videoEl);
                     switch (videoIsPlaying) {
                         case true: 
                             auroraVideo.videoEl.pause(); 
+                            auroraVideo.mesh.scale.lerp(new Vector3(1,1,1), 1)
                             break;
                         case false:  
                             auroraVideo.videoEl.play(); 
+                            auroraVideo.mesh.scale.lerp(new Vector3(3,3,3), 1)
                             break;
                     }
                     return state;
@@ -174,9 +164,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     switch (videoIsPlaying) {
                         case true: 
                             edwardWelcomeVideo.videoEl.pause(); 
+                            edwardWelcomeVideo.mesh.scale.lerp(new Vector3(1,1,1), 1)
+                            
                             break;
                         case false:  
                             edwardWelcomeVideo.videoEl.play(); 
+                            edwardWelcomeVideo.mesh.scale.lerp(new Vector3(1,1,1), 1)
                             break;
                     }
                     return state;
