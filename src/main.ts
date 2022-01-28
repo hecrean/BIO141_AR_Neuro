@@ -12,8 +12,7 @@ import {
 import { initSceneGraphCtx, RenderCxt, initState, State, SceneGraphCtx, initUserInput, UserInput } from './state';
 import { input$, Input, interpreter } from './events/canvas';
 import { api as raycasterApi } from './raycaster';
-import { Vector3, Quaternion, MathUtils } from 'three';
-import { isMesh } from 'util';
+import { Vector3, Quaternion } from 'three';
 
 
 declare const XR8: XR8Type;
