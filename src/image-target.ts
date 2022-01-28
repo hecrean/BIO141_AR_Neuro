@@ -54,6 +54,7 @@ export const onImageFoundListener = (userState: UserInput, sceneCtx: SceneGraphC
             switch (detail.name) {
                 case 'r42-business-card': {
                     const root = sceneCtx.uiComponentHandles.get('rootSurface')
+                    userState.neuronRotating = true;
 
                     switch(userState.stage.tag){
                         case 'image-target-not-yet-seen':
@@ -83,9 +84,10 @@ export const onImageLostListener = (userState: UserInput,): ImageLostMsg => {
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
-                    userState.neuronRotationDirection === 1 
-                    ? userState.neuronRotationDirection = -1
-                    : userState.neuronRotationDirection = 1
+                    // userState.neuronRotationDirection === 1 
+                    // ? userState.neuronRotationDirection = -1
+                    // : userState.neuronRotationDirection = 1
+                    userState.neuronRotating = false;
                     break;
                 }
                 default:
@@ -102,6 +104,7 @@ export const onImageUpdatedListener = (userState: UserInput, imageTargets: Image
             log(name, detail);
             switch (detail.name) {
                 case 'r42-business-card': {
+                    userState.neuronRotating = true
                     switch(userState.stage.tag) {
                         case 'initial-animation-sequence':
                             updateGlobalImageTargetTracker(detail, imageTargets)

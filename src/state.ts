@@ -50,12 +50,14 @@ export type UserInput = {
     | {tag: 'post-initial-animation-sequence'}
     videoFocusState: {tag: 'aurora-app-focused'}|{tag:'edward-introduction-focused'}|{tag:'none-focused'};
     neuronRotationDirection: -1 | 1
+    neuronRotating: boolean;
 }
 
 export const initUserInput = (): UserInput => ({
     stage: { tag: 'image-target-not-yet-seen'},
     videoFocusState: {tag:'none-focused'},
-    neuronRotationDirection: 1
+    neuronRotationDirection: 1,
+    neuronRotating: true,
 })
 
 export type State = { 

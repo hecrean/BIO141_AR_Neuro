@@ -129,7 +129,9 @@ const ArPipelineModule = (
                      //rotate model
                      const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
                      const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
-                     neuronHandle.mesh.rotateY(userInput.neuronRotationDirection * ROTATION_RATE);
+                     if(userInput.neuronRotating){
+                        neuronHandle.mesh.rotateY(userInput.neuronRotationDirection * ROTATION_RATE);
+                     }
 
 
                 
@@ -153,8 +155,9 @@ const ArPipelineModule = (
                     //rotate model
                     const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
                     const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
-                    neuronHandle.mesh.rotateY(userInput.neuronRotationDirection * ROTATION_RATE);
-
+                    if(userInput.neuronRotating){
+                        neuronHandle.mesh.rotateY(userInput.neuronRotationDirection * ROTATION_RATE);
+                     }
                     break;
 
                 }
