@@ -30,7 +30,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                     element: elements.btnLinc 
                 },
                 {
-                    transform: {position: [0, -340 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, 0 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.btnSma 
                 }
             ]
@@ -65,7 +65,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraVideoPanel',
-            transform: {position: [1800 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [950 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -75,7 +75,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'edwardWelcomeVideoPanel',
-            transform: {position: [-1800 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [-950 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -85,18 +85,18 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraAppPanel',
-            transform: {position: [0, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [1400 * PIXEL, -170 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraApp 
                 },
                   {
-                    transform: {position: [-100 * PIXEL, -120 * PIXEL ,0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0 * PIXEL, -120 * PIXEL ,0.1 * PIXEL], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonAndroid 
                 },
                 {
-                    transform: {position: [500 * PIXEL,-120 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [600 * PIXEL,-120 * PIXEL, 0.1 * PIXEL], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonMac 
                 },
             ]
