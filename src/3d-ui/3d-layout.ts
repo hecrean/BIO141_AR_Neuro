@@ -26,11 +26,11 @@ export const initLayout = (elements: UIElementHandles): Layout => {
             transform: {position: [1400 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
-                    transform: {position: [0, 340 * PIXEL, 0] , rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, 340 * PIXEL, -0.06 * PIXEL] , rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.btnLinc 
                 },
                 {
-                    transform: {position: [0, 0 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, 0 * PIXEL, -0.08 * PIXEL], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.btnSma 
                 }
             ]
@@ -85,10 +85,10 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraAppPanel',
-            transform: {position: [1400 * PIXEL, -380 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [1400 * PIXEL, -395 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
-                    transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0,0, 0.05 * PIXEL], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraApp 
                 },
                   {
