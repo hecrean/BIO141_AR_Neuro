@@ -92,11 +92,11 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                     element: elements.auroraApp 
                 },
                   {
-                    transform: {position: [0, -340 * PIXEL ,0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [-300 * PIXEL, -340 * PIXEL ,0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonAndroid 
                 },
                 {
-                    transform: {position: [0,-340 * PIXEL,600 * PIXEL], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [300 * PIXEL,-340 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonMac 
                 },
             ]
