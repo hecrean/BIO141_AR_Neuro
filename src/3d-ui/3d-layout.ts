@@ -85,18 +85,18 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraAppPanel',
-            transform: {position: [0, -2100 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [0, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1.5,1.5,1.5]},
                     element: elements.auroraApp 
                 },
                 {
-                    transform: {position: [0,-0.13 * 640 * PIXEL,0.5], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0,-0.13 * 640 * PIXEL,0.05], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonAndroid 
                 },
                 {
-                    transform: {position: [0.6 * 640 * PIXEL, -0.13 * 640 * PIXEL,0.5], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0.6 * 640 * PIXEL, -0.13 * 640 * PIXEL,0.05], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonMac 
                 },
             ]
