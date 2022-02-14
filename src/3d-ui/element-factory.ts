@@ -105,12 +105,12 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
        
 
     // video planes
-    const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1820 * PIXEL, 1024 * PIXEL);
-    const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1820 * PIXEL, 1024 * PIXEL)
+    const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1829 * PIXEL, 1024 * PIXEL);
+    const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1829 * PIXEL, 1024 * PIXEL)
     
-    const androidDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [1.8 * 640 * PIXEL, 1.8 * 240 * PIXEL]);
-    const macDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [1.8 * 640 * PIXEL, 1.8 * 240 * PIXEL]);
-    const auroraAppPlane = createImagePlane('./img/App.png', assetCtx, [3.6 * 640 * PIXEL, 3.6 * 240 * PIXEL])
+    const androidDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [1152 * PIXEL, 432 * PIXEL]);
+    const macDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [1152 * PIXEL, 432 * PIXEL]);
+    const auroraAppPlane = createImagePlane('./img/App.png', assetCtx,[1152 * PIXEL, 432 * PIXEL])
     // 3d-models
     const neuron = create3DModel('./gltf/18_Neuron.glb', assetCtx);
     const groupifyMeshes = (meshes: Array<Mesh>) => {
@@ -203,7 +203,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/Eva Thoma.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/Eva Thoma.png', assetCtx, [1920 * PIXEL, 720 * PIXEL]),
         },
         raph: {
             kind: UIKinds.img,
@@ -219,7 +219,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/Raphael_Bieri.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/Raphael_Bieri.png', assetCtx,[1920 * PIXEL, 720 * PIXEL]),
         },
         ed: {
             kind: UIKinds.img,
@@ -235,7 +235,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/Eduard_Rohrbach.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/Eduard_Rohrbach.png', assetCtx, [1920 * PIXEL, 720 * PIXEL]),
         },
         btnLinc: {
             kind: UIKinds.button,
@@ -251,7 +251,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_Biogen_Linc_button.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_Biogen_Linc_button.png', assetCtx, [1872 * PIXEL, 672 * PIXEL]),
         },
         btnSma: {
             kind: UIKinds.button,
@@ -267,7 +267,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [1872 * PIXEL, 672 * PIXEL]),
         },
         auroraApp: {
             kind: UIKinds.button,
