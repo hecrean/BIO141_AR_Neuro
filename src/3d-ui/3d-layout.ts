@@ -85,7 +85,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraAppPanel',
-            transform: {position: [0, 0, 0], rotation: [0,0,0,0], scale: [1.5,1.5,1.5]},
+            transform: {position: [0, -2100 * PIXEL, 0], rotation: [0,0,0,0], scale: [1.5,1.5,1.5]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
