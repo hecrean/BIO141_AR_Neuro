@@ -186,6 +186,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
                     email('eva@biogen.com', 'test')
+                    setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -202,6 +203,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
                     email('raph@biogen.com', 'test')
+                    setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -218,6 +220,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
                     email('ed@biogen.com', 'test')
+                    setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -234,6 +237,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
                     openInNewTab('https://www.biogenlinc.ch/');
+                    setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -250,6 +254,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
                     openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
+                    setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -271,10 +276,10 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, _) => {
-                    // changeColor(event, new Color('blue'))
+                onPointerDown: (state, event) => {
+                    changeColor(event, new Color('blue'))
                     openInNewTab('https://play.google.com/store/apps/details?id=com.biogen.uso.sma&hl=en_US&gl=US');
-                   
+                    setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -289,9 +294,11 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, _) => {
-                    // changeColor(event, new Color('blue'))
+                onPointerDown: (state, event) => {
+                    changeColor(event, new Color('blue'))
                     openInNewTab('https://apps.apple.com/us/app/smability-tracker/id1587029408l')
+                    setTimeout(() => changeColor(event, new Color('white')), 1000)
+
                     return state;
                 },
                 onPointerUp: (state, event) => {
