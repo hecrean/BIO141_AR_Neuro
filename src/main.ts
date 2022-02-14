@@ -216,7 +216,7 @@ const ArPipelineModule = (
 };
 
 const onxrloaded = (sceneCxt: SceneGraphCtx, assetCtx: AssetsCtx, imageTargets: ImageTargets, userInput: UserInput) => () => {
-    XR8.XrController.configure({ disableWorldTracking: true });
+    XR8.XrController.configure({ disableWorldTracking: undefined });
     XR8.addCameraPipelineModules([
         // Add camera pipeline modules.
         // Existing pipeline modules.
