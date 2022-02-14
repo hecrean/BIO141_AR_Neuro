@@ -65,7 +65,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraVideoPanel',
-            transform: {position: [2100 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [2100 * PIXEL, -1200 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -75,7 +75,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'edwardWelcomeVideoPanel',
-            transform: {position: [-2100 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [-2100 * PIXEL, -1200 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -100,11 +100,11 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                 //     element: elements.auroraAppDownloadButtonMac 
                 // },
                   {
-                    transform: {position: [0,-2 * 240 * PIXEL,0.0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0,-2.2 * 240 * PIXEL,0.0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonAndroid 
                 },
                 {
-                    transform: {position: [0,-3.8 * 240 * PIXEL,0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0,-4 * 240 * PIXEL,0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonMac 
                 },
             ]
