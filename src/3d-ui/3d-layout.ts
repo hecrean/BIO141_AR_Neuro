@@ -23,7 +23,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
     return [
         {
             tag: 'biogenAndTismaPanel',
-            transform: {position: [1000 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [1400 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0, 340 * PIXEL, 0] , rotation: [0,0,0,0], scale: [1,1,1]},
@@ -47,7 +47,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'teamInfoPanel',
-            transform: {position: [-1000 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [-1400 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0, 576 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -65,7 +65,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraVideoPanel',
-            transform: {position: [2100 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [1800 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -75,7 +75,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'edwardWelcomeVideoPanel',
-            transform: {position: [-2100 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [-1800 * PIXEL, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -92,11 +92,11 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                     element: elements.auroraApp 
                 },
                   {
-                    transform: {position: [-300 * PIXEL, -340 * PIXEL ,0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [-100 * PIXEL, -120 * PIXEL ,0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonAndroid 
                 },
                 {
-                    transform: {position: [300 * PIXEL,-340 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [500 * PIXEL,-120 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonMac 
                 },
             ]
