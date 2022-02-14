@@ -108,6 +108,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1820 * PIXEL, 1024 * PIXEL);
     const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1820 * PIXEL, 1024 * PIXEL)
     
+    const androidDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [0.5 * 640 * PIXEL, 0.5 * 240 * PIXEL]);
+    const macDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [0.5 * 640 * PIXEL, 0.5 * 240 * PIXEL]);
     // 3d-models
     const neuron = create3DModel('./gltf/18_Neuron.glb', assetCtx);
     const groupifyMeshes = (meshes: Array<Mesh>) => {
@@ -270,6 +272,15 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
+                onPointerDown: (state, event) => {
+                    changeColor(event, new Color('blue'))
+                   
+                    return state;
+                },
+                onPointerUp: (state, event) => {
+                    changeColor(event, new Color('white'))
+                    return state;
+                },
             },
             mesh: createImagePlane('./img/App.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
 
@@ -288,7 +299,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [0.5 * 640 * PIXEL, 0.5 * 240 * PIXEL]),
+            mesh: androidDownloadPlane,
 
         },
         auroraAppDownloadButtonMac: {
@@ -305,7 +316,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [0.5 * 640 * PIXEL, 0.5 * 240 * PIXEL]),
+            mesh: macDownloadPlane
 
         },
         neuronModel: {
