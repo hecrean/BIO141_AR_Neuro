@@ -289,7 +289,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
+                    openInNewTab('https://play.google.com/store/apps/details?id=com.biogen.uso.sma&hl=en_US&gl=US');
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -306,7 +306,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
+                    openInNewTab('https://apps.apple.com/us/app/smability-tracker/id1587029408l');
                     return state;
                 },
                 onPointerUp: (state, event) => {
