@@ -80,9 +80,10 @@ function openInNewTab(href: string) {
     window.location.href = href;
 }
 function email(emailAddress: string,  emailSubject: string){
-    const currentHref = window.location.href;
-    window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
-    setTimeout(() => window.location.href = currentHref, 1000);
+    const emailActionConfirmation = confirm(`Would you like to email ${emailAddress} about ${emailSubject}?`);
+    if(emailActionConfirmation) {
+        window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
+    }
 }
 
 const changeColor = (event: IntersectionEvent<"pointerdown">|IntersectionEvent<'pointerup'>, color: Color) => {
