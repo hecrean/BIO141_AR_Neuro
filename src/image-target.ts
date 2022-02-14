@@ -5,10 +5,6 @@ import { UserInput} from './state'
 // this is used to keep track of our image targets...
 
 export type TargetName =
-    // | 'Eva-Thoma-front'
-    // | 'Eduard-Rohrbach-front'
-    // | 'Raphael-Bieri-front'
-    // | 'business_card'
     'r42-business-card';
 
 type Transform = {

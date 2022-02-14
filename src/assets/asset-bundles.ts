@@ -10,7 +10,14 @@ export const textureBundle: AssetBundle = {
         './img/btn_linc.png',
         './img/btn_sma.png',
         './img/play-wireframe.png',
-        './img/uv-map.png'
+        './img/uv-map.png',
+        './img/BIO141_Biogen_Linc_button.png',
+        './img/BIO141_Download_buttons_Android.png',
+        './img/BIO141_Download_buttons_Mac.png',
+        './img/BIO141_TIS_button.png',
+        './img/Eduard_Rohrbach.png',
+        './img/Eva Thoma.png',
+        './img/Raphael_Bieri.png',
     ],
 };
 

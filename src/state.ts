@@ -48,7 +48,10 @@ export type UserInput = {
     | {tag: 'image-target-not-yet-seen'}
     | {tag: 'initial-animation-sequence'}
     | {tag: 'post-initial-animation-sequence'}
-    videoFocusState: {tag: 'aurora-app-focused'}|{tag:'edward-introduction-focused'}|{tag:'none-focused'};
+    videoFocusState: 
+    | {tag: 'aurora-app-focused'}
+    | {tag:'edward-introduction-focused'}
+    | {tag:'none-focused'};
     neuronRotationDirection: -1 | 1
     neuronRotating: boolean;
 }

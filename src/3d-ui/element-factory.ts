@@ -197,7 +197,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/eva.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/Eva Thoma.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
         },
         raph: {
             kind: UIKinds.img,
@@ -213,7 +213,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/raph.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/Raphael_Bieri.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
         },
         ed: {
             kind: UIKinds.img,
@@ -229,7 +229,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/ed.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/Eduard_Rohrbach.png', assetCtx, [3 * 640 * PIXEL, 3 * 240 * PIXEL]),
         },
         btnLinc: {
             kind: UIKinds.button,
@@ -245,7 +245,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/btn_linc.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_Biogen_Linc_button.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
         },
         btnSma: {
             kind: UIKinds.button,
@@ -261,7 +261,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/btn_sma.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
         },
         neuronModel: {
             kind: UIKinds.model,

@@ -160,7 +160,6 @@ const ArPipelineModule = (
                         root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
                         const scale = imageTargets['r42-business-card'].transform.scale;
                         root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
-
                     }
 
                      //rotate model
