@@ -280,7 +280,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/App', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/App.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
 
         },
         auroraAppDownloadButtonAndroid: {
