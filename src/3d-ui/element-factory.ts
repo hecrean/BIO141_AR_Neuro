@@ -36,6 +36,9 @@ export type UIElementHandles = {
     btnLinc: UIElement<Mesh>;
     btnSma: UIElement<Mesh>;
     neuronModel: UIElement<Group>;
+    auroraApp: UIElement<Mesh>;
+    auroraAppDownloadButtonAndroid: UIElement<Mesh>;
+    auroraAppDownloadButtonMac: UIElement<Mesh>;
 };
 
 export type UIComponent = {
@@ -262,6 +265,57 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 },
             },
             mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+        },
+        auroraApp: {
+            kind: UIKinds.button,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, event) => {
+                    changeColor(event, new Color('blue'))
+                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
+                    return state;
+                },
+                onPointerUp: (state, event) => {
+                    changeColor(event, new Color('white'))
+                    return state;
+                },
+            },
+            mesh: createImagePlane('./img/App', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+
+        },
+        auroraAppDownloadButtonAndroid: {
+            kind: UIKinds.button,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, event) => {
+                    changeColor(event, new Color('blue'))
+                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
+                    return state;
+                },
+                onPointerUp: (state, event) => {
+                    changeColor(event, new Color('white'))
+                    return state;
+                },
+            },
+            mesh: createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+
+        },
+        auroraAppDownloadButtonMac: {
+            kind: UIKinds.button,
+            api: {
+                ...defaultEventHandlers,
+                onPointerDown: (state, event) => {
+                    changeColor(event, new Color('blue'))
+                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
+                    return state;
+                },
+                onPointerUp: (state, event) => {
+                    changeColor(event, new Color('white'))
+                    return state;
+                },
+            },
+            mesh: createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+
         },
         neuronModel: {
             kind: UIKinds.model,
