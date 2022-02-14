@@ -50,7 +50,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
             transform: {position: [-2100 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
-                    transform: {position: [0, 740 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, 700 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.eva 
                 },
                 {
@@ -58,14 +58,14 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                     element: elements.ed 
                 },
                 {
-                    transform: {position: [0, -740 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, -700 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.raph 
                 }
             ]
         },
         {
             tag: 'auroraVideoPanel',
-            transform: {position: [2100 * PIXEL, -2100 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [2100 * PIXEL, -1800 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -75,7 +75,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'edwardWelcomeVideoPanel',
-            transform: {position: [-2100 * PIXEL, -2100 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [-2100 * PIXEL, -1800 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -85,7 +85,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraAppPanel',
-            transform: {position: [0, -2100 * PIXEL, 0], rotation: [0,0,0,0], scale: [1.5,1.5,1.5]},
+            transform: {position: [0, -1800 * PIXEL, 0], rotation: [0,0,0,0], scale: [1.5,1.5,1.5]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
