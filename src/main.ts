@@ -127,12 +127,12 @@ const ArPipelineModule = (
                 case 'none-focused': {
                     const auroraVidPanel = sceneCxt.uiComponentHandles.get('auroraVideoPanel')
                     if (auroraVidPanel) {
-                        auroraVidPanel.position.lerp(new Vector3(2100 * PIXEL, -2100 * PIXEL, 0), 0.1)
+                        auroraVidPanel.position.lerp(new Vector3(2100 * PIXEL, -1400 * PIXEL, 0), 0.1)
                         auroraVidPanel.scale.lerp(new Vector3(1,1,1), 0.5)
                     }
                     const edwardVidPane = sceneCxt.uiComponentHandles.get('edwardWelcomeVideoPanel')
                     if (edwardVidPane) {
-                        edwardVidPane.position.lerp(new Vector3(-2100 * PIXEL, -2100 * PIXEL, 0), 0.1)
+                        edwardVidPane.position.lerp(new Vector3(-2100 * PIXEL, -1400 * PIXEL, 0), 0.1)
                         edwardVidPane.scale.lerp(new Vector3(1,1,1), 0.5)
                     }    
 
