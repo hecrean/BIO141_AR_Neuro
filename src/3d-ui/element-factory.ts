@@ -281,9 +281,10 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, event) => {
-                    changeColor(event, new Color('blue'))
-                    openInNewTab('https://play.google.com/store/apps/details?id=com.biogen.uso.sma&hl=en_US&gl=US');
+                onPointerDown: (state, _) => {
+                    // changeColor(event, new Color('blue'))
+                    setTimeout( () => openInNewTab('https://play.google.com/store/apps/details?id=com.biogen.uso.sma&hl=en_US&gl=US'), 500);
+                   
                     return state;
                 },
                 onPointerUp: (state, event) => {
@@ -298,9 +299,9 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, event) => {
-                    changeColor(event, new Color('blue'))
-                    openInNewTab('https://apps.apple.com/us/app/smability-tracker/id1587029408l');
+                onPointerDown: (state, _) => {
+                    // changeColor(event, new Color('blue'))
+                    setTimeout( () =>  openInNewTab('https://apps.apple.com/us/app/smability-tracker/id1587029408l'), 500);
                     return state;
                 },
                 onPointerUp: (state, event) => {
