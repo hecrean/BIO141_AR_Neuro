@@ -88,15 +88,15 @@ export const initLayout = (elements: UIElementHandles): Layout => {
             transform: {position: [0, -1400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
-                    transform: {position: [0,432*PIXEL,0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraApp 
                 },
                   {
-                    transform: {position: [0, 0,0.0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, -340 * PIXEL ,0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonAndroid 
                 },
                 {
-                    transform: {position: [0,-432 * PIXEL,0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0,-340 * PIXEL,600 * PIXEL], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.auroraAppDownloadButtonMac 
                 },
             ]
