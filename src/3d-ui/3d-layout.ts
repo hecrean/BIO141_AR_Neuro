@@ -50,7 +50,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
             transform: {position: [-2100 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
-                    transform: {position: [0, 720 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, 550 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.eva 
                 },
                 {
@@ -58,7 +58,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                     element: elements.ed 
                 },
                 {
-                    transform: {position: [0, -720 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, -550 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.raph 
                 }
             ]
