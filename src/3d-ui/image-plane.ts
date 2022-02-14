@@ -25,6 +25,8 @@ export const createImagePlane = (
             map: imgTexture,
             color: backgroundColor,
             transparent: true,
+            depthTest: false,
+            depthWrite: false,
         }),
     );
 
