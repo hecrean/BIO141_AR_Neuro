@@ -297,7 +297,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [0.5 * 640 * PIXEL, 0.5 * 240 * PIXEL]),
 
         },
         auroraAppDownloadButtonMac: {
@@ -314,7 +314,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [0.5 * 640 * PIXEL, 0.5 * 240 * PIXEL]),
 
         },
         neuronModel: {
