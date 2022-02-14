@@ -23,7 +23,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
     return [
         {
             tag: 'biogenAndTismaPanel',
-            transform: {position: [2100 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [1000 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0, 340 * PIXEL, 0] , rotation: [0,0,0,0], scale: [1,1,1]},
@@ -47,10 +47,10 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'teamInfoPanel',
-            transform: {position: [-2100 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [-1000 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
-                    transform: {position: [0, 550 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, 576 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.eva 
                 },
                 {
@@ -58,7 +58,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                     element: elements.ed 
                 },
                 {
-                    transform: {position: [0, -550 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, -576 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.raph 
                 }
             ]

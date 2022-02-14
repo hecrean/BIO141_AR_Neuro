@@ -27,7 +27,6 @@ export type UIElement<T extends Object3D> = {
 };
 
 export type UIElementHandles = {
-    auroraAppInfo: UIElement<Mesh>;
     auroraVideo: UIElement<Mesh>;
     edwardWelcomeVideo: UIElement<Mesh>;
     ed: UIElement<Mesh>;
@@ -108,9 +107,9 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1829 * PIXEL, 1024 * PIXEL);
     const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1829 * PIXEL, 1024 * PIXEL)
     
-    const androidDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [1152 * PIXEL, 432 * PIXEL]);
-    const macDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [1152 * PIXEL, 432 * PIXEL]);
-    const auroraAppPlane = createImagePlane('./img/App.png', assetCtx,[1152 * PIXEL, 432 * PIXEL])
+    const androidDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [600 * PIXEL, 189 * PIXEL]);
+    const macDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [600 * PIXEL, 189 * PIXEL]);
+    const auroraAppPlane = createImagePlane('./img/App.png', assetCtx,[1200 * PIXEL, 675 * PIXEL])
     // 3d-models
     const neuron = create3DModel('./gltf/18_Neuron.glb', assetCtx);
     const groupifyMeshes = (meshes: Array<Mesh>) => {
@@ -180,15 +179,6 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             },
             mesh: edwardWelcomeVideo.mesh
         },
-        auroraAppInfo: {
-            kind: UIKinds.img,
-            api: defaultEventHandlers,
-            mesh: createImagePlane(
-                './img/random42-business-card.png',
-                assetCtx,
-                [1636 * PIXEL, 1024 * PIXEL],
-            ),
-        },
         eva: {
             kind: UIKinds.img,
             api: {
@@ -203,7 +193,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/Eva Thoma.png', assetCtx, [1920 * PIXEL, 720 * PIXEL]),
+            mesh: createImagePlane('./img/Eva Thoma.png', assetCtx, [1024 * PIXEL, 576 * PIXEL]),
         },
         raph: {
             kind: UIKinds.img,
@@ -219,7 +209,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/Raphael_Bieri.png', assetCtx,[1920 * PIXEL, 720 * PIXEL]),
+            mesh: createImagePlane('./img/Raphael_Bieri.png', assetCtx,[1024 * PIXEL, 576 * PIXEL]),
         },
         ed: {
             kind: UIKinds.img,
@@ -235,7 +225,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/Eduard_Rohrbach.png', assetCtx, [1920 * PIXEL, 720 * PIXEL]),
+            mesh: createImagePlane('./img/Eduard_Rohrbach.png', assetCtx, [1024 * PIXEL, 576 * PIXEL]),
         },
         btnLinc: {
             kind: UIKinds.button,
@@ -251,7 +241,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_Biogen_Linc_button.png', assetCtx, [1872 * PIXEL, 672 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_Biogen_Linc_button.png', assetCtx, [1024 * PIXEL, 322 * PIXEL]),
         },
         btnSma: {
             kind: UIKinds.button,
@@ -267,7 +257,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [1872 * PIXEL, 672 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [1024 * PIXEL, 322 * PIXEL]),
         },
         auroraApp: {
             kind: UIKinds.button,
