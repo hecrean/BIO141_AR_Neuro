@@ -270,15 +270,6 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             kind: UIKinds.button,
             api: {
                 ...defaultEventHandlers,
-                onPointerDown: (state, event) => {
-                    changeColor(event, new Color('blue'))
-                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
-                    return state;
-                },
-                onPointerUp: (state, event) => {
-                    changeColor(event, new Color('white'))
-                    return state;
-                },
             },
             mesh: createImagePlane('./img/App.png', assetCtx, [2.8 * 640 * PIXEL, 2.8 * 240 * PIXEL]),
 
