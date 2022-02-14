@@ -5,7 +5,7 @@ import { UserInput} from './state'
 // this is used to keep track of our image targets...
 
 export type TargetName =
-    'r42-business-card';
+    'qrcode';
 
 type Transform = {
     position: { x: number; y: number; z: number };
@@ -25,7 +25,7 @@ const createImageTarget = (tag: TargetName, transform: Transform) => ({ tag, tra
 export type ImageTargets = { [T in TargetName]: ImageTarget<T> };
 
 export const initImageTargets = (): ImageTargets => ({
-    'r42-business-card': { tag: 'r42-business-card', transform: initTransform() },
+    'qrcode': { tag: 'qrcode', transform: initTransform() },
 });
 
 const log = (name: string, _: Transform) => {
@@ -48,7 +48,7 @@ export const onImageFoundListener = (userState: UserInput, sceneCtx: SceneGraphC
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
-                case 'r42-business-card': {
+                case 'qrcode': {
                     const root = sceneCtx.uiComponentHandles.get('rootSurface')
                     userState.neuronRotating = true;
 
@@ -79,7 +79,7 @@ export const onImageLostListener = (_: UserInput,): ImageLostMsg => {
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
-                case 'r42-business-card': {
+                case 'qrcode': {
                     // userState.neuronRotationDirection === 1 
                     // ? userState.neuronRotationDirection = -1
                     // : userState.neuronRotationDirection = 1
@@ -100,7 +100,7 @@ export const onImageUpdatedListener = (userState: UserInput, imageTargets: Image
         process: ({ name, detail }) => {
             log(name, detail);
             switch (detail.name) {
-                case 'r42-business-card': {
+                case 'qrcode': {
                     userState.neuronRotating = true
                     switch(userState.stage.tag) {
                         case 'initial-animation-sequence':

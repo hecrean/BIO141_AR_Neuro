@@ -86,7 +86,7 @@ const ArPipelineModule = (
             // Add objects to the scene and set starting camera position.
 
             XR8.XrController.configure({
-                imageTargets: ['r42-business-card'],
+                imageTargets: ['qrcode'],
             });
 
             // Sync the xr controller's 6DoF position and camera paremeters with our scene.
@@ -154,11 +154,11 @@ const ArPipelineModule = (
 
                     if (root) {
                         const LERP_RATE = 0.05;
-                        const { x, y, z } = imageTargets['r42-business-card'].transform.position;
-                        const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
+                        const { x, y, z } = imageTargets['qrcode'].transform.position;
+                        const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['qrcode'].transform.rotation;
                         root.position.lerp(new Vector3(x, y, z), LERP_RATE);
                         root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
-                        const scale = imageTargets['r42-business-card'].transform.scale;
+                        const scale = imageTargets['qrcode'].transform.scale;
                         root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
                     }
 
@@ -179,11 +179,11 @@ const ArPipelineModule = (
                     if (root) {
          
                         const LERP_RATE = 0.4;
-                        const { x, y, z } = imageTargets['r42-business-card'].transform.position;
-                        const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['r42-business-card'].transform.rotation;
+                        const { x, y, z } = imageTargets['qrcode'].transform.position;
+                        const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['qrcode'].transform.rotation;
                         root.position.lerp(new Vector3(x, y, z), LERP_RATE);
                         root.quaternion.slerp(new Quaternion(q1, q2, q3, q4), LERP_RATE);
-                        const scale = imageTargets['r42-business-card'].transform.scale;
+                        const scale = imageTargets['qrcode'].transform.scale;
                         root.scale.lerp(new Vector3(scale, scale, scale), LERP_RATE);
                     }
 
