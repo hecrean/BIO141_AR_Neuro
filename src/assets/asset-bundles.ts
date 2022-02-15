@@ -3,14 +3,6 @@ import { AssetBundle } from '.';
 export const textureBundle: AssetBundle = {
     tag: 'texture',
     urls: [
-        './img/random42-business-card.png',
-        './img/ed.png',
-        './img/raph.png',
-        './img/eva.png',
-        './img/btn_linc.png',
-        './img/btn_sma.png',
-        './img/play-wireframe.png',
-        './img/uv-map.png',
         './img/BIO141_Biogen_Linc_button.png',
         './img/BIO141_Download_buttons_Android.png',
         './img/BIO141_Download_buttons_Mac.png',
