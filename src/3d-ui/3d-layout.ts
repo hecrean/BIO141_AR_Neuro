@@ -45,12 +45,13 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                 },
             ]
         },
+        //[1140 * PIXEL, 360 * PIXEL]
         {
             tag: 'teamInfoPanel',
             transform: {position: [-1400 * PIXEL, 0, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
-                    transform: {position: [0, 576 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, 400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.eva 
                 },
                 {
@@ -58,7 +59,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
                     element: elements.ed 
                 },
                 {
-                    transform: {position: [0, -576 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+                    transform: {position: [0, -400 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
                     element: elements.raph 
                 }
             ]
