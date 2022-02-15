@@ -11,7 +11,8 @@ export const textureBundle: AssetBundle = {
         './img/Eva Thoma.png',
         './img/Raphael_Bieri.png',
         './img/App.png',
-
+        './img/Poster_A.png',
+        './img/Poster_B.png',
     ],
 };
 

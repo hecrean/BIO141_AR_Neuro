@@ -115,8 +115,8 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
        
 
     // video planes
-    const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1829 * PIXEL, 1024 * PIXEL);
-    const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/play-wireframe.png', 1829 * PIXEL, 1024 * PIXEL)
+    const auroraVideo = createVideoPlane(assetCtx, './mp4/aurora_demo.mp4', './img/Poster_A.png', 1829 * PIXEL, 1024 * PIXEL);
+    const edwardWelcomeVideo = createVideoPlane(assetCtx,  './mp4/aurora_demo.mp4', './img/Poster_B.png', 1829 * PIXEL, 1024 * PIXEL)
     
     const androidDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [600 * PIXEL, 189 * PIXEL]);
     const macDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [600 * PIXEL, 189 * PIXEL]);
