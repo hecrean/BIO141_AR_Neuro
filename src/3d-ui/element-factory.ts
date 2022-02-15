@@ -5,6 +5,7 @@ import { createImagePlane } from './image-plane';
 import { createVideoPlane } from './video-plane';
 import { create3DModel } from './3d-model';
 import { IntersectionEvent } from '../events/canvas'
+import { RAPHEL_BIEIRI_EMAIL, EDWARD_ROHRBACK_EMAIL, EVA_THOMA_EMAIL, BIOGEN_LINC_WEBSITE_URL, AURORA_APP_APPLE_STORE_URL, AURORA_APP_GOOGLE_PLAY_STORE_URL, TOGETHER_IN_SMA_URL} from '../constants'
 
 // Each element is unique, and only used once in the app. The record provides a handle to objects within the scene,
 // and so we can conveniently mutate scene objects with functions that take in the corresponding scene handle
@@ -195,7 +196,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    email('eva@biogen.com', 'test')
+                    email(EVA_THOMA_EMAIL, 'Aurora App')
                     setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
@@ -212,7 +213,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    email('raph@biogen.com', 'test')
+                    email(RAPHEL_BIEIRI_EMAIL, 'Aurora App')
                     setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
@@ -229,7 +230,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    email('ed@biogen.com', 'test')
+                    email(EDWARD_ROHRBACK_EMAIL, 'Aurora App')
                     setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
@@ -246,7 +247,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    openInNewTab('https://www.biogenlinc.ch/');
+                    openInNewTab(BIOGEN_LINC_WEBSITE_URL);
                     setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
@@ -263,7 +264,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    openInNewTab('https://www.togetherinsma.ch/de_CH/patienten/allgemeines.html');
+                    openInNewTab(TOGETHER_IN_SMA_URL);
                     setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
@@ -288,7 +289,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    openInNewTab('https://play.google.com/store/apps/details?id=com.biogen.uso.sma&hl=en_US&gl=US');
+                    openInNewTab(AURORA_APP_GOOGLE_PLAY_STORE_URL);
                     setTimeout(() => changeColor(event, new Color('white')), 1000)
                     return state;
                 },
@@ -306,7 +307,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => {
                     changeColor(event, new Color('blue'))
-                    openInNewTab('https://apps.apple.com/us/app/smability-tracker/id1587029408l')
+                    openInNewTab(AURORA_APP_APPLE_STORE_URL)
                     setTimeout(() => changeColor(event, new Color('white')), 1000)
 
                     return state;
@@ -324,7 +325,6 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
             api: {
                 ...defaultEventHandlers,
                 onPointerDown: (state, event) => { 
-                    console.log('clicked on neuron')
                     changeColor(event, new Color('red'))
                     return state;
                 },
