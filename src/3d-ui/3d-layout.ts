@@ -23,7 +23,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
     return [
         {
             tag: 'biogenAndTismaPanel',
-            transform: {position: [1200 * PIXEL, 148 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [1200 * PIXEL, 125 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0, 370 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
