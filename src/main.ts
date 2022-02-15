@@ -19,6 +19,11 @@ import { PIXEL} from './3d-ui/element-factory'
 declare const XR8: XR8Type;
 declare const XRExtras: XRExtrasType;
 
+const ROTATION_RATE = 0.05 * (2 * Math.PI ) / 60;
+const LERP_RATE = 0.1;
+
+
+
 // Iphone welcome / prompt for permission styling :
 let inDom = false;
 const observer = new MutationObserver(() => {
@@ -153,7 +158,6 @@ const ArPipelineModule = (
                     // - elements start from centre, and organise themselves around neuron
 
                     if (root) {
-                        const LERP_RATE = 0.005;
                         const { x, y, z } = imageTargets['qrcode'].transform.position;
                         const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['qrcode'].transform.rotation;
                         root.position.lerp(new Vector3(x, y, z), LERP_RATE);
@@ -179,7 +183,6 @@ const ArPipelineModule = (
                     // lerp plane to tracked image target
                     if (root) {
          
-                        const LERP_RATE = 0.005;
                         const { x, y, z } = imageTargets['qrcode'].transform.position;
                         const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['qrcode'].transform.rotation;
                         root.position.lerp(new Vector3(x, y, z), LERP_RATE);
@@ -191,7 +194,6 @@ const ArPipelineModule = (
 
                     //rotate model
                     const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
-                    const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
                     if(userInput.neuronRotating){
                         neuronHandle.mesh.rotateZ(userInput.neuronRotationDirection * ROTATION_RATE);
                      }
