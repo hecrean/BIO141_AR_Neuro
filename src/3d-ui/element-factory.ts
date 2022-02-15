@@ -168,13 +168,13 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     const videoIsPlaying = videoElementIsPlaying(edwardWelcomeVideo.videoEl);
                     switch (videoIsPlaying) {
                         case true: 
-                            edwardWelcomeVideo.mesh.material.map = auroraVideo.posterTexture;
+                            edwardWelcomeVideo.mesh.material.map = edwardWelcomeVideo.posterTexture;
                             edwardWelcomeVideo.mesh.material.needsUpdate = true;
                             edwardWelcomeVideo.videoEl.pause(); 
                             state.userInput.videoFocusState = { tag: 'none-focused'}
                             break;
                         case false:  
-                            edwardWelcomeVideo.mesh.material.map = auroraVideo.videoTexture;
+                            edwardWelcomeVideo.mesh.material.map = edwardWelcomeVideo.videoTexture;
                             edwardWelcomeVideo.mesh.material.needsUpdate = true;
                             edwardWelcomeVideo.videoEl.play(); 
                             state.userInput.videoFocusState = { tag: 'edward-introduction-focused'}
