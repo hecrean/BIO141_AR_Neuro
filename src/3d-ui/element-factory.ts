@@ -80,10 +80,17 @@ function openInNewTab(href: string) {
     window.location.href = href;
 }
 function email(emailAddress: string,  emailSubject: string){
-    const emailActionConfirmation = confirm(`Would you like to email ${emailAddress} about ${emailSubject}?`);
-    if(emailActionConfirmation) {
-        window.location.href = `mailto:${emailAddress}?subject=${emailSubject}`;
-    }
+    // const emailActionConfirmation = confirm(`Would you like to email ${emailAddress} about ${emailSubject}?`);
+
+    const mailtoLink = `mailto:${encodeURIComponent(emailAddress)}?subject=${encodeURIComponent(emailSubject)}`;
+    let emailWindow = window.open(mailtoLink, 'emailWindow');
+    // setTimeout(() => emailWindow?.close(), 500);
+
+    try { if (emailWindow?.location.href === 'about:blank') { emailWindow.close(); }} catch (Error) {/* do nothing */}
+
+    // if(emailActionConfirmation) {
+    //     window.location.href = `mailto:${encodeURIComponent(emailAddress)}?subject=${encodeURIComponent(emailSubject)}`;
+    // }
 }
 
 const changeColor = (event: IntersectionEvent<"pointerdown">|IntersectionEvent<'pointerup'>, color: Color) => {
