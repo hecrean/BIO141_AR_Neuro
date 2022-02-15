@@ -256,7 +256,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_Biogen_Linc_button.png', assetCtx, [1024 * PIXEL, 322 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_Biogen_Linc_button.png', assetCtx, [1200 * PIXEL, 377 * PIXEL]),
         },
         btnSma: {
             kind: UIKinds.button,
@@ -273,7 +273,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [1024 * PIXEL, 322 * PIXEL]),
+            mesh: createImagePlane('./img/BIO141_TIS_button.png', assetCtx, [1200 * PIXEL, 377 * PIXEL]),
         },
         auroraApp: {
             kind: UIKinds.button,
