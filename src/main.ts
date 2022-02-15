@@ -193,7 +193,7 @@ const ArPipelineModule = (
                     const neuronHandle = sceneCxt.uiElementHandles.neuronModel;
                     const ROTATION_RATE = (0.2 * 2 * Math.PI * 1) / 60;
                     if(userInput.neuronRotating){
-                        neuronHandle.mesh.rotateY(userInput.neuronRotationDirection * ROTATION_RATE);
+                        neuronHandle.mesh.rotateZ(userInput.neuronRotationDirection * ROTATION_RATE);
                      }
                     break;
 
@@ -250,10 +250,11 @@ const runAR = async () => {
     const userInput = initUserInput()
     XRExtras.Loading.showLoading({ onxrloaded: onxrloaded(sceneCxt, assetCtx, imageTargets, userInput) });
 
-    const loadImage = document.getElementById('loadImage') as HTMLImageElement;
-    if (loadImage) {
-        loadImage.src = 'img/r42.png';
-    }
+    //add a loading image : 
+    // const loadImage = document.getElementById('loadImage') as HTMLImageElement;
+    // if (loadImage) {
+    //     loadImage.src = 'img/r42.png';
+    // }
 };
 
 runAR();
