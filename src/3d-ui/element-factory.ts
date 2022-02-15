@@ -205,7 +205,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },
-            mesh: createImagePlane('./img/Eva Thoma.png', assetCtx, [1140 * PIXEL, 360 * PIXEL]),
+            mesh: createImagePlane('./img/Eva Thoma.png', assetCtx,  [1200 * PIXEL, 377 * PIXEL]),
         },
         raph: {
             kind: UIKinds.img,
@@ -222,7 +222,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/Raphael_Bieri.png', assetCtx,[1140 * PIXEL, 360 * PIXEL]),
+            mesh: createImagePlane('./img/Raphael_Bieri.png', assetCtx, [1200 * PIXEL, 377 * PIXEL]),
         },
         ed: {
             kind: UIKinds.img,
@@ -239,7 +239,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                     return state;
                 },
             },            
-            mesh: createImagePlane('./img/Eduard_Rohrbach.png', assetCtx, [1140 * PIXEL, 360 * PIXEL]),
+            mesh: createImagePlane('./img/Eduard_Rohrbach.png', assetCtx, [1200 * PIXEL, 377 * PIXEL]),
         },
         btnLinc: {
             kind: UIKinds.button,
