@@ -84,7 +84,7 @@ function email(emailAddress: string,  emailSubject: string){
 
     const currentHref = window.location.href;
 
-    const emailActionConfirmation = confirm(`Would you like to email ${emailAddress} about ${emailSubject}?`);
+    const emailActionConfirmation = confirm(`Would you like to email ${emailAddress}?`);
 
     if(emailActionConfirmation) {
         window.location.href = `mailto:${encodeURIComponent(emailAddress)}?subject=${encodeURIComponent(emailSubject)}`;
