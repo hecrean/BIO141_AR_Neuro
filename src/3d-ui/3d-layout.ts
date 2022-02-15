@@ -66,7 +66,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'auroraVideoPanel',
-            transform: {position: [950 * PIXEL, -1800 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [950 * PIXEL, -1800 * PIXEL, -0.1], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},
@@ -76,7 +76,7 @@ export const initLayout = (elements: UIElementHandles): Layout => {
         },
         {
             tag: 'edwardWelcomeVideoPanel',
-            transform: {position: [-950 * PIXEL, -1800 * PIXEL, 0], rotation: [0,0,0,0], scale: [1,1,1]},
+            transform: {position: [-950 * PIXEL, -1800 * PIXEL, -0.1], rotation: [0,0,0,0], scale: [1,1,1]},
             children: [
                 {
                     transform: {position: [0,0,0], rotation: [0,0,0,0], scale: [1,1,1]},

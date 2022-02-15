@@ -120,7 +120,7 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
     
     const androidDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Android.png', assetCtx, [600 * PIXEL, 189 * PIXEL]);
     const macDownloadPlane = createImagePlane('./img/BIO141_Download_buttons_Mac.png', assetCtx, [600 * PIXEL, 189 * PIXEL]);
-    const auroraAppPlane = createImagePlane('./img/App.png', assetCtx,[1200 * PIXEL, 675 * PIXEL])
+    const auroraAppPlane = createImagePlane('./img/App.png', assetCtx,[1200 * PIXEL, 525 * PIXEL])
     // 3d-models
     const neuron = create3DModel('./gltf/18_Neuron.glb', assetCtx);
     const groupifyMeshes = (meshes: Array<Mesh>) => {
