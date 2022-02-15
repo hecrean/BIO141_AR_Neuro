@@ -153,7 +153,7 @@ const ArPipelineModule = (
                     // - elements start from centre, and organise themselves around neuron
 
                     if (root) {
-                        const LERP_RATE = 0.02;
+                        const LERP_RATE = 0.005;
                         const { x, y, z } = imageTargets['qrcode'].transform.position;
                         const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['qrcode'].transform.rotation;
                         root.position.lerp(new Vector3(x, y, z), LERP_RATE);
@@ -179,7 +179,7 @@ const ArPipelineModule = (
                     // lerp plane to tracked image target
                     if (root) {
          
-                        const LERP_RATE = 0.02;
+                        const LERP_RATE = 0.005;
                         const { x, y, z } = imageTargets['qrcode'].transform.position;
                         const { x: q1, y: q2, z: q3, w: q4 } = imageTargets['qrcode'].transform.rotation;
                         root.position.lerp(new Vector3(x, y, z), LERP_RATE);
