@@ -5,7 +5,9 @@
         "dev": "vite --host --https",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
+        "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+        "deploy": "A:\\productionInteractive\\devserver\\deploy.exe ./dist BIO141_AR_Neuro --clean",
+        "publish": "npm run build && npm run deploy"
     },
     "devDependencies": {
         "@types/three": "^0.136.1",

@@ -8,20 +8,19 @@ export const textureBundle: AssetBundle = {
         './img/BIO141_Download_buttons_Mac.png',
         './img/BIO141_TIS_button.png',
         './img/Eduard_Rohrbach.png',
-        './img/Eva Thoma.png',
+        './img/Eva_Thoma.png',
         './img/Raphael_Bieri.png',
         './img/App.png',
         './img/Poster_A.png',
         './img/Poster_B.png',
+        './img/Header.png',
     ],
 };
 
 export const gltfBundle: AssetBundle = {
     tag: 'gltf',
-    urls: [
-        './gltf/18_Neuron.glb'
-    ]
-}
+    urls: ['./gltf/18_Neuron.glb'],
+};
 
 // export const mp4Bundle: AssetBundle = {
 //     tag: 'mp4',
