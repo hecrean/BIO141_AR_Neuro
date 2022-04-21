@@ -37,6 +37,7 @@ export type UIElement<T extends Object3D> = {
 export type UIElementHandles = {
     auroraVideo: UIElement<Mesh>;
     edwardWelcomeVideo: UIElement<Mesh>;
+    teamHeader: UIElement<Mesh>;
     ed: UIElement<Mesh>;
     eva: UIElement<Mesh>;
     raph: UIElement<Mesh>;
@@ -211,6 +212,13 @@ export const initUiElements = (assetCtx: AssetsCtx): UIElementHandles => {
                 },
             },
             mesh: edwardWelcomeVideo.mesh,
+        },
+        teamHeader: {
+            kind: UIKinds.img,
+            api: {
+                ...defaultEventHandlers,
+            },
+            mesh: createImagePlane('./img/Header_SMA_Team.png', assetCtx, [1600 * PIXEL, 360 * PIXEL]),
         },
         eva: {
             kind: UIKinds.img,

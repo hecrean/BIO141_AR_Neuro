@@ -53,6 +53,10 @@ export const initLayout = (elements: UIElementHandles): Layout => {
             transform: { position: [-1200 * PIXEL, 0, 0], rotation: [0, 0, 0, 0], scale: [1, 1, 1] },
             children: [
                 {
+                    transform: { position: [0, 740 * PIXEL, 0], rotation: [0, 0, 0, 0], scale: [1, 1, 1] },
+                    element: elements.teamHeader,
+                },
+                {
                     transform: { position: [0, 370 * PIXEL, 0], rotation: [0, 0, 0, 0], scale: [1, 1, 1] },
                     element: elements.eva,
                 },
